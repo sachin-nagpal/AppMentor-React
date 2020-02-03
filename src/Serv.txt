@@ -1,0 +1,17 @@
+import React from 'react';
+
+
+
+<div className="services-container">
+    <p className="services-heading">Services</p>
+    <hr className="bg-white"></hr>
+    <p className="services-heading">Business Analytics Consultation</p>
+    <p className="services-heading">Essay Editing</p>
+    <p style={{lineHeight: "1.2em"}} className="services-heading">Masters in Business <br></br> Administration Counselling</p>
+    <p className="services-heading">Interview Preparation</p>
+    <p className="services-heading text-center mt-5">12.99$/minute</p>
+    <div className="btn-container">
+    <button className="services-btn text-white d-block my-4" style={{backgroundColor: "#25d366"}}>Request A Call  ></button>
+    <button className="services-btn bg-white w-100" style={{color: "#295caa"}}>Message</button>
+    </div>
+</div>
