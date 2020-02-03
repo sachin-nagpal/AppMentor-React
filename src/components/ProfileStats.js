@@ -1,5 +1,5 @@
 import React,{useState} from 'react';
-import eye from './eye.png';
+import eye from '../images/eye.png';
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 
 

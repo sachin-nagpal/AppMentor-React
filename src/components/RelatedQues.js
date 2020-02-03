@@ -1,6 +1,6 @@
 import React from 'react';
 import '../styles/QA.css';
-import image from './image.jpeg';
+import image from '../images/image.jpeg';
 
 
 const RelatedQues = (props) => {

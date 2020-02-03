@@ -1,8 +1,8 @@
 import React from 'react';
 import '../styles/QA.css';
-import image from './image.jpeg';
-import edit from './edit.png';
-import share from './share.png';
+import image from '../images/image.jpeg';
+import edit from '../images/edit.png';
+import share from '../images/share.png';
 
 const QAheader = (props) => {
     return(

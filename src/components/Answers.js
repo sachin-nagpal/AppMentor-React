@@ -1,11 +1,11 @@
 import React,{useState} from 'react';
 import '../styles/QA.css';
-import image from './image.jpeg';
-import follow from './follow.png';
-import call from './call.png';
-import comment from './comment.png';
-import shareWhite from './shareWhite.png';
-import share from './share.png';
+import image from '../images/image.jpeg';
+import follow from '../images/follow.png';
+import call from '../images/call.png';
+import comment from '../images/comment.png';
+import shareWhite from '../images/shareWhite.png';
+import share from '../images/share.png';
 
 const Answers = (props) => {
     

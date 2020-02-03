@@ -1,6 +1,6 @@
 import React from 'react';
-import './main.css';
-import image from './image.jpeg';
+import '../styles/main.css';
+import image from '../images/image.jpeg';
 
 const SimilarProfiles = (props) => {
     return(
