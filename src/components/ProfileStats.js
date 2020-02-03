@@ -1,17 +1,13 @@
 import React,{useState} from 'react';
-import eye from '../images/eye.png';
+import eye from './eye.png';
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
-import { createUseStyles } from 'react-jss';
 
-const useStyles = createUseStyles({
-
-})
 
 const ProfileStats = (props) => {
-    const [dropdownOpen, setDropdownOpen] = useState(false); 
+    const [dropdownOpen, setDropdownOpen] = useState(false);
 
     const toggle = () => setDropdownOpen(prevState => !prevState);
-    const classes = useStyles();
+
     return(
         <div>
             <div className="prof-stats-container">

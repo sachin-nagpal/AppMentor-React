@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+body{
+    background-color: #ffffff;
+}
+
+.questions-header{
+    box-shadow: 0 2px 7px rgba(129, 129, 129, 0.75);
+    background-color: #416aa6;
+}
+
+.search-dropdown{
+    color: #295caa;
+    font-family: "Segoe UI";
+    font-size: 24px;
+    border: 2px solid #295caa !important;
+    background-color: #f5f5f5 !important;
+}
+
+.filter-text{
+    color: #295caa;
+    font-family: "Segoe UI";
+    font-size: 24px;
+}
+
+.questions__questions{
+    margin: 5px 0px;
+    line-height: 1.2em;
+    color: #295caa;
+    font-family: Roboto;
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.questions__answers-about{
+    display: flex;
+    justify-content: space-evenly;
+    width: 130px;
+    align-items: center;
+    color: #9c9c9c;
+    font-family: Roboto;
+    font-size: 1em;
+    font-weight: 400;
+}
+
+.questions__answers{
+    font-family: 'Roboto', sans-serif;
+    color: #0f0f0f; 
+    font-size: 18px;
+}
+
+.questions__answers-container{
+    margin-top: 30px;
+    position: relative;
+    border-radius: 15px;
+    padding: 10px 15px;
+    border: 1px solid #d7d7d7;
+    background-color: #f8f8f8;
+}
+
+.answers-triangle{
+    border-top: 1px solid #d7d7d7;
+    height: 22px;
+    position: absolute;
+    background-color: #f8f8f8;
+    width: 22px;
+    transform: rotate(45deg);
+    left: 15%;
+    top: -12px;
+    border-left: 1px solid #d7d7d7;
+}
+
+.questions__answers{
+    font-family: 'Roboto', sans-serif;
+    color: #0f0f0f; 
+    font-size: 18px;
+}
+
+.user-about-container{
+    margin-top: 15px;
+}
+
+.user-img{
+    height:50px;
+    width:50px;
+    border-radius: 50%;
+}
+
+.questions__user-about{
+    color: #4e4e4e;
+    font-family: Roboto;
+}
+
+
+.questions__user-about{
+    margin-left: 10px;
+    color: #4e4e4e;
+    font-family: Roboto;
+    font-size: 14px;
+    font-weight: 300;
+}
