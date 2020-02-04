@@ -8,6 +8,9 @@ import axios from 'axios';
 //user context
 import {UserLoginState} from '../context/UserLoginState';
 
+//Set Cookie
+import { useCookies } from 'react-cookie';
+
 import PersonHead from '../images/personHead.png'
 import LockIcon from '../images/LockIcon.png'
 
@@ -54,6 +57,7 @@ const LoginForm = ({handleFlip,handleForgotCard}) => {
         console.log(response.data);
         if(response.data.userid){
           setIsUserLogin();
+          setCookie(response.data.userid)
           return;
         }
         if(response.data.msg === "Password Mismatch"){
@@ -68,6 +72,7 @@ const LoginForm = ({handleFlip,handleForgotCard}) => {
   const classes = useStyles();
   const [isIncorrectLoginDetails,setIncorrectLoginDetails] = useToggleState(false); 
   const {setIsUserLogin} = useContext(UserLoginState);
+  const [cookies, setCookie] = useCookies(['loginId']);
   return (
     <div className={classes.formContainer}>
       <div className={classes.mainHeading}>
