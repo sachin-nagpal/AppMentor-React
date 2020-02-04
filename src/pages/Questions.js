@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
-import './App.css';
+import React, { useState, useEffect } from 'react';
+// import './App.css';
+import SingleQuestion from '../components/SingleQuestion';
 import '../styles/Questions.css';
-import '../styles/css';
+// import '../styles/css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import edit from './edit.png';
-import img from './image.jpeg';
+import axios from 'axios';
+
 import RelatedQues from '../components/RelatedQues';
 import {
   InputGroup,
@@ -25,6 +26,24 @@ const Questions = (props) => {
   const toggleDropDown = () => setDropdownOpen(!dropdownOpen);
 
   const toggleSplit = () => setSplitButtonOpen(!splitButtonOpen);
+
+  const [quesResponse, setResponse] = useState([]);
+
+  useEffect(() => {
+        axios.get('http://localhost/MyApplicationMentor/getallquestion')
+          .then(function (response) {
+            // handle success
+            // console.log(response.data.findallquestions);
+            setResponse(response.data.findallquestions)
+          })
+          .catch(function (error) {
+            // handle error
+            console.log(error);
+          })
+          .finally(function () {
+            // always executed
+          });
+  }, [])
 
   return (
     <div>
@@ -52,35 +71,10 @@ const Questions = (props) => {
         <div className="container mt-5">
             <div className="row">
                 <div className="col-md-8">
-                    <div>
-                      <div className="d-flex">
-                        <div className="asked-by">Asked by</div>
-                        <div className="asked-by-name">Ashmeet Singh</div>
-                        <div className="asked-by"> in </div>
-                        <div className="asked-by-name">Business Analytics, MBA and France Universities</div>
-                      </div>
+                  {quesResponse.map(quest=>(
+                    <SingleQuestion quesData={quest}/>
 
-                      <div className="questions__questions">What are the best universities in France to study business analytics for two years?</div>
-
-                      <div className="questions__answers-about"><img src={edit} height="20px" width="20px"></img> 1 <div style={{height:"5px", width:"5px", borderRadius:"50%", backgroundColor: "#c4c4c4"}}></div> 3 days ago</div>
-                    
-                      <div className="questions__answers-container">
-                        <div className="answers-triangle"></div>
-                        <div className="questions__answers">
-                          Hey there,Masters in Business Analytics is a perfect blend of Data Science, Information Theory, Business Intelligence, and Computer Science. Its major aim is to change heavy data into actionable intelligence by using different quantitative and statistical methods. Many reputed...  <span style={{color: "#0074d3"}}>(Read More)</span>
-
-                          <div className="user-about-container">
-                            <div className="d-flex align-items-center">
-                              <img className="user-img" src={img}></img>
-                              <div className="questions__user-about">
-                                <div style={{fontSize:"17px"}}>username</div> 
-                                <div style={{fontSize:"15px"}}>userabout</div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                  ))}
                 </div>
 
                 <div className="col-md-4">

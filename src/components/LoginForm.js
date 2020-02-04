@@ -3,8 +3,10 @@ import { useFormik } from 'formik';
 import { Col, Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import useStyles from '../styles/LoginComponentStyle'
 import useToggleState from '../hooks/useToggleState';
+import {Redirect} from 'react-router-dom';
 
 import axios from 'axios';
+
 //user context
 import {UserLoginState} from '../context/UserLoginState';
 
@@ -57,7 +59,7 @@ const LoginForm = ({handleFlip,handleForgotCard}) => {
         console.log(response.data);
         if(response.data.userid){
           setIsUserLogin();
-          setCookie(response.data.userid)
+          setCookie('loginId', response.data.userid, { path: '/' });
           return;
         }
         if(response.data.msg === "Password Mismatch"){
@@ -71,12 +73,14 @@ const LoginForm = ({handleFlip,handleForgotCard}) => {
   });
   const classes = useStyles();
   const [isIncorrectLoginDetails,setIncorrectLoginDetails] = useToggleState(false); 
-  const {setIsUserLogin} = useContext(UserLoginState);
+  const {isUserLogin,setIsUserLogin} = useContext(UserLoginState);
   const [cookies, setCookie] = useCookies(['loginId']);
   return (
     <div className={classes.formContainer}>
+    {isUserLogin && <Redirect to="/allquestions"/> }
       <div className={classes.mainHeading}>
         <p>Sign In</p>
+        <p>{cookies.loginId}</p>
       </div>
         <Form onSubmit={formik.handleSubmit} className={classes.signForm}>
         {/* <Label htmlFor="loginEmail">Email Address</Label> */}

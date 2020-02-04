@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom'; 
 import SignupLoginPage from './pages/SignupLoginPage';
 import AllQuestions from './pages/AllQuestions';
+import SingleQuestionPage from './pages/SingleQuestionPage';
+import Questions from './pages/Questions';
 import { CookiesProvider } from 'react-cookie';
 import axios from 'axios';
 import './styles/body.css';
@@ -44,7 +46,8 @@ class App extends Component {
                 <Switch location={location}>
                   <Route exact path='/' render={(routeProps) => <Home {...routeProps}/>}/>
                     <Route exact path='/profile' render={(routeProps)=><Profile {...routeProps} user={this.state.user}/>}/>
-                    <Route exact path='/allquestions' render={(routeProps)=><AllQuestions {...routeProps} user={this.state.user}/>}/>
+                    <Route exact path='/allquestions' render={(routeProps)=><Questions {...routeProps} user={this.state.user}/>}/>
+                    <Route exact path='/singlequestion/:slug' render={(routeProps)=><SingleQuestionPage {...routeProps} user={this.state.user}/>}/>
                     <Route exact path='/signup-login' render={(routeProps)=><SignupLoginPage {...routeProps} user={this.state.user}/>}/>
                     {/* <Route exact path='/' render={(routeProps)=> <Page><PaletteList palette={this.state.palettes} {...routeProps} deletePalette={this.deletePalette}/></Page>}/>
                     <Route exact path='/palette/:id' render={(routeProps)=> <Page><Palette palette={generatePalette(this.findPalette(routeProps.match.params.id))}/></Page>}/>
