@@ -53,7 +53,7 @@ const Questions = (props) => {
         <div className="questions-header">
            <div className="w-50 m-auto py-3">
             <InputGroup>
-              <InputGroupButtonDropdown addonType="append" isOpen={dropdownOpen} toggle={toggleDropDown}>
+              {/* <InputGroupButtonDropdown addonType="append" isOpen={dropdownOpen} toggle={toggleDropDown}>
                 <DropdownToggle caret className="search-dropdown">
                   <div className="filter-text">Filter</div>
                 </DropdownToggle>
@@ -64,8 +64,8 @@ const Questions = (props) => {
                   <DropdownItem divider />
                   <DropdownItem>Another Action</DropdownItem>
                 </DropdownMenu>
-              </InputGroupButtonDropdown>
-              <Input />
+              </InputGroupButtonDropdown> */}
+              <Input placeholder="Search Questions"/>
             </InputGroup>
            </div>
         </div>
@@ -81,7 +81,7 @@ const Questions = (props) => {
 
                 <div className="col-md-4">
                     <div style={{backgroundColor:"#ffffff"}}>
-                      <RelatedQues relatedQ = {quesResponse.relatedquestions}/>
+                      {/* <RelatedQues relatedQ = {relatedQuestions}/> */}
                     </div>
                   </div>            
             </div>

@@ -60,9 +60,9 @@ const NavbarComponent = (props) => {
                         <NavItem>
                             <NavLink to="/profile" tag={Link}>Profile</NavLink>
                             </NavItem>
-                        <NavItem>
+                        {/* <NavItem>
                             <NavLink href="https://github.com/reactstrap/reactstrap">GitHub</NavLink>
-                        </NavItem>
+                        </NavItem> */}
                         <NavItem>
                             <NavLink to="/allquestions" tag={Link}>Questions</NavLink>
                         </NavItem>

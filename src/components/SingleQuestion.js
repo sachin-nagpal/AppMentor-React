@@ -30,7 +30,8 @@ export default function SingleQuestion({quesData}) {
                 <Link  to={{ pathname: `/singlequestion/${quesData.slug}`, state: { title: 'Hero Detail'} }}>read more</Link>
                 <div className="user-about-container">
                 <div className="d-flex align-items-center">
-                    <img className="user-img" src={quesData.image}></img>
+                    {/* <img className="user-img" src={quesData.image}></img> */}
+                    <img className="user-img" src={img}></img>
                     <div className="questions__user-about">
                     <div style={{fontSize:"17px"}}>{quesData.fname} {quesData.lname}</div> 
                     <div style={{fontSize:"15px"}}>userabout</div>
