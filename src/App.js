@@ -46,8 +46,9 @@ class App extends Component {
               <Switch location={location}>
                 <Route exact path='/' render={(routeProps) => <Home {...routeProps}/>}/>
                   <Route exact path='/profile' render={(routeProps)=><Profile {...routeProps} user={this.state.user}/>}/>
-                  <Route exact path='/allquestions' render={(routeProps)=><AllQuestions {...routeProps} user={this.state.user}/>}/>
+                  <Route exact path='/answers' render={(routeProps)=><Questions {...routeProps} user={this.state.user}/>}/>
                   <Route exact path='/signup-login' render={(routeProps)=><SignupLoginPage {...routeProps} user={this.state.user}/>}/>
+                  <Route exact path='/singlequestion/:slug' render={(routeProps)=><SingleQuestionPage {...routeProps} user={this.state.user}/>}/>
                   <Route path='*' exact={true} component={NotFound} />
                   <Route exact path='/signup-login' exact={true} component={SignupLoginPage} />
                 </Switch>

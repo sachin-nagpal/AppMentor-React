@@ -8,8 +8,6 @@ import shareWhite from '../images/shareWhite.png';
 import share from '../images/share.png';
 
 import UpvoteBtn from './UpvoteBtn';
-// import Moment from 'react-moment';
-const moment = require('moment');
 const Answers = ({answers}) => {
     
     const [time,setTime] = useState(0);
@@ -17,7 +15,6 @@ const Answers = ({answers}) => {
     const [clickedCount,setClickedCount] = useState(0);
     useEffect(() => {
         if(answers.findallanswers){
-            setTime(moment(answers.created_at,"MM-DD-YYYY"))
             console.log(time);
             setClickedCount(answers.findallanswers.upvotes)
         }
