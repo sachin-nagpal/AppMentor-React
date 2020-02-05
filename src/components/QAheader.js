@@ -4,9 +4,10 @@ import image from '../images/image.jpeg';
 import edit from '../images/edit.png';
 import share from '../images/share.png';
 
-const QAheader = (props) => {
+const QAheader = ({quesResponse}) => {
     return(
         <div>
+        { quesResponse.findquestion &&
             <div className="bg-white">
                 <div className="QAheader-inside-container">
                     <div className="d-flex">
@@ -20,11 +21,11 @@ const QAheader = (props) => {
                     </div>
 
                     <div className="main-ques">
-                        ESCP offers an MSc in marketing & creativity. Is this a better program than the ones offered by HEC or ESADE?
+                        {quesResponse.findquestion.title}
                     </div>
                     <div className="ad-answer-row d-flex align-items-center">
                         <div className="d-flex align-items-center">
-                            <img src={edit} className="small-icons"></img><strong>2 Answers</strong>
+                            <img src={edit} className="small-icons"></img><strong>{quesResponse.findallanswers.length}</strong>
                             <div className="dot"></div>
                             <img src={share} className="small-icons"></img><strong>Share this Question</strong>
                         </div>
@@ -36,6 +37,7 @@ const QAheader = (props) => {
                 </div>
 
             </div>
+        }
         </div>
     );
 }

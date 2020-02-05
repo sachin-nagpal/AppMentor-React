@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import '../styles/QA.css';
 import image from '../images/image.jpeg';
 import follow from '../images/follow.png';
@@ -7,22 +7,32 @@ import comment from '../images/comment.png';
 import shareWhite from '../images/shareWhite.png';
 import share from '../images/share.png';
 
-const Answers = (props) => {
+import UpvoteBtn from './UpvoteBtn';
+// import Moment from 'react-moment';
+const moment = require('moment');
+const Answers = ({answers}) => {
     
+    const [time,setTime] = useState(0);
     const [clicked,isClicked] = useState(false);
-    const [clickedCount,setClickedCount] = useState(20);
+    const [clickedCount,setClickedCount] = useState(0);
+    useEffect(() => {
+        if(answers.findallanswers){
+            setTime(moment(answers.created_at,"MM-DD-YYYY"))
+            console.log(time);
+            setClickedCount(answers.findallanswers.upvotes)
+        }
+    }, []);
 
     const handleClick=()=>{
-        isClicked(!clicked);
+        isClicked(true);
         const val = clickedCount;
         if(!clicked){
-            setClickedCount(val+1)
+            setClickedCount(val+1);
         }
         else{
-            setClickedCount(20)
+            setClickedCount(clickedCount)
         } 
     }
-
     return(
         <div>
             <div className="answers-container">
@@ -32,52 +42,33 @@ const Answers = (props) => {
                             <img src={image} alt="" className="answers-img"></img>  
                         </div>
                         <div>
-                            <div className="ans-user-name">Abhyank Srinet</div>
+                            <div className="ans-user-name">{answers.fname} {answers.lname}</div>
                             <div className="ans-user-about">Founder at MiM-Essay.com , MiM Grad- ESCP Europe</div>
                             <div className="ans-date">Answered on 02 December 2019</div>
                         </div>
                     </div>
                     <div>
-                        <button className="answers-btn mr-3" style={{backgroundColor: "#3e70bb"}}>
+                        <button className="answers-btn" style={{backgroundColor: "#3e70bb"}}>
                             <img src={follow} alt="" className="ans-btn-img"></img> 
                             <span className="">Follow</span>
                         </button>
                         <button className="answers-btn" style={{backgroundColor: "#2f9657"}}>
                             <img src={call} alt="" className="ans-btn-img"></img> 
-                            <span className="">Talk to Abhyank</span>
+                            <span className="">Connect</span>
                         </button>
                     </div> 
                 </div>
 
                 <div className="ans-text-area">
-                    Hey there,
-                    <br></br>
-                    <br></br>
-                    Well according to Financial times rankings of the past few years, ESCP has always been among the top 10 
-                    <br></br>
-                    schools offering the MSc degree.
-                    <br></br>
-                    <br></br>
-                    It has an excellent curriculum and great professors. Its flagship degrees are the MiM or Masters in Management,
-                    <br></br>
-                    Specialised Masters (MSc) and the Executive MBA program.
-                    <br></br>
-                    <br></br>
-                    Talking about the MSc in Marketing Program it focuses on the interface between creativity and analytical 
-                    <br></br>
-                    thinking in marketing management incorporating consultancy projects, creative seminars, case studies, direct
-                    <br></br>
-                    experience in emerging markets, class discussions and guest speakers in its curriculum.
-                    <br></br>
-                    <br></br>
-                    Considering past year requirement post-graduation student usually land up a professors.
+                    {answers.answer}
                 </div> 
 
                 <div className="d-flex align-items-center">
                     <div className="d-inline-flex">
-                        <div className="upvote-triangle" onClick={handleClick}>
+                        {/* <div className="upvote-triangle" onClick={handleClick}>
                             <div style={{color:"#959595", marginLeft:"20px"}}>{clickedCount}</div>
-                        </div>
+                        </div> */}
+                        <UpvoteBtn upvotes={answers.upvotes} handleClick={handleClick} clickedCount={clickedCount}/>
                     </div>
                     <img src={comment} alt="" className="ans-btn-img"></img><span className="comment-share-text">Comment</span>
                     <img src={shareWhite} alt="" className="ans-btn-img"></img><span className="comment-share-text">Share</span>

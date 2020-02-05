@@ -28,13 +28,15 @@ const Questions = (props) => {
   const toggleSplit = () => setSplitButtonOpen(!splitButtonOpen);
 
   const [quesResponse, setResponse] = useState([]);
+  const [relatedQuestions,setRelatedQuestions] = useState([]);
 
   useEffect(() => {
         axios.get('http://localhost/MyApplicationMentor/getallquestion')
           .then(function (response) {
             // handle success
-            // console.log(response.data.findallquestions);
-            setResponse(response.data.findallquestions)
+            console.log(response.data);
+            setResponse(response.data.findallquestions);
+            setRelatedQuestions(response.data.relatedquestions);
           })
           .catch(function (error) {
             // handle error
@@ -79,7 +81,7 @@ const Questions = (props) => {
 
                 <div className="col-md-4">
                     <div style={{backgroundColor:"#ffffff"}}>
-                      <RelatedQues/>
+                      <RelatedQues relatedQ = {quesResponse.relatedquestions}/>
                     </div>
                   </div>            
             </div>

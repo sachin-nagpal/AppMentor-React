@@ -1,25 +1,29 @@
 import React from 'react';
-import './App.css';
+// import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import QAheader from '../components/QAheader';
 import Answers from '../components/Answers';
 import RelatedQues from '../components/RelatedQues';
 
-const QA = (props) => {
+import uuid from 'uuid';
+
+const QA = ({quesResponse,getQuestionsData}) => {
   return (
     <div style={{backgroundColor:"#f5f5f5"}}>
           <div>
-              <QAheader/>
+              <QAheader quesResponse={quesResponse}/>
           </div>
-          <div className="container-fluid mt-5" style={{padding: "0px 200px"}}>
+          <div className="container mt-4">
             <div className="row">
               <div className="col-md-8">
-                <div className="d-flex justify-content-around">
-                  <Answers/>
+                <div className="">
+                  {quesResponse.findallanswers && quesResponse.findallanswers.map(answers=>(
+                    <Answers answers={answers} key={uuid()}/>
+                  ))}
                 </div>
               </div>
               <div className="col-md-4">
-                <RelatedQues/>
+                <RelatedQues relatedQ = {quesResponse.relatedquestions} getQuestionsData={getQuestionsData}/>
               </div>
             </div>
           </div>

@@ -4,9 +4,9 @@ import img from '../images/image.jpeg';
 import ShowMoreText from './ShowMoreText';
 import {Link} from 'react-router-dom';
 export default function SingleQuestion({quesData}) {
-    console.log(quesData)
+    // console.log(quesData)
 
-    console.log(quesData.img)
+    // console.log(quesData.img)
     return (
         <div>
             <div>
@@ -27,7 +27,7 @@ export default function SingleQuestion({quesData}) {
                 {/* Hey there,Masters in Business Analytics is a perfect blend of Data Science, Information Theory, Business Intelligence, and Computer Science. Its major aim is to change heavy data into actionable intelligence by using different quantitative and statistical methods. Many reputed...  <span style={{color: "#0074d3"}}>(Read More)</span> */}
                 {/* <ShowMoreText text={quesData.details} length={50} btnText={{ more:"see more",less:"see less" }} btnCol="#295caa"/> */}
                 {quesData.details}
-                <Link  to={{ pathname: `/singlequestion/:${quesData.slug}`, state: { title: 'Hero Detail'} }}>read more</Link>
+                <Link  to={{ pathname: `/singlequestion/${quesData.slug}`, state: { title: 'Hero Detail'} }}>read more</Link>
                 <div className="user-about-container">
                 <div className="d-flex align-items-center">
                     <img className="user-img" src={quesData.image}></img>

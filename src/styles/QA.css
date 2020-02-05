@@ -94,11 +94,12 @@ strong{
 }
 
 .answers-container{  
+    width: 100%;
     border-radius: 7px;
     box-shadow: 0 0 8px 1px rgba(211, 211, 211, 0.75);
     padding: 20px;
     background-color: white;
-    width: max-content;
+    margin-bottom: 30px;
 }
 
 
@@ -143,33 +144,13 @@ strong{
     outline: none;
     color: #ffffff;
     font-family: Roboto;
-    font-size: 15px;
+    font-size: 13px;
     font-weight: 400;
     border: none;
     border-radius: 4px;
+    margin-left: 10px;
 }
 
-.upvote-triangle{
-    margin-right: 35px;
-    width: 0px;
-    height: 0px;
-    position: relative;
-    border-left: 15px solid transparent;
-    border-right: 15px solid transparent;
-    border-bottom: 20px solid #959595;
-}
-
-.upvote-triangle:before{
-    content: "";
-    width: 0px;
-    height: 0px;
-    position: absolute;
-    border-left: 10px solid transparent;
-    border-right: 10px solid transparent;
-    border-bottom: 14px solid white;
-    top: 3.5px;
-    left: -10px;
-}
 
 
 .ans-btn-img{
