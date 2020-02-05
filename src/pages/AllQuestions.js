@@ -18,7 +18,7 @@ const AllQuestions = () => {
     
     return (
         <div>
-            
+            <h1>All AllQuestions</h1>
         </div>
     )
 }

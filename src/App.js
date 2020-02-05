@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom'; 
 import SignupLoginPage from './pages/SignupLoginPage';
 import AllQuestions from './pages/AllQuestions';
+import SingleQuestionPage from './pages/SingleQuestionPage';
+import Questions from './pages/Questions';
+import { CookiesProvider } from 'react-cookie';
 import axios from 'axios';
 import './styles/body.css';
 

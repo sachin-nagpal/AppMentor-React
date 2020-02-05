@@ -1,0 +1,21 @@
+.upvote-triangle{
+    margin-right: 35px;
+    width: 0px;
+    height: 0px;
+    position: relative;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-bottom: 20px solid #959595;
+}
+
+.upvote-triangle:before{
+    content: "";
+    width: 0px;
+    height: 0px;
+    position: absolute;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 14px solid white;
+    top: 3.5px;
+    left: -10px;
+}

@@ -1,4 +1,7 @@
 import React, { useState, useContext } from 'react';
+import axios from 'axios';
+import useToggleState from '../hooks/useToggleState';
+
 import {
     Collapse,
     Navbar,
@@ -16,10 +19,39 @@ import search from '../images/search.png';
 //user context
 import {UserLoginState} from '../context/UserLoginState';
 
+
+
+//Cookies
+import { useCookies } from 'react-cookie';
+import {Redirect} from 'react-router-dom';
 const NavbarComponent = (props) => {
+    function userLogout(){
+        axios.get('/http://localhost/MyApplicationMentor/userlogout', {
+            params: {
+              ID: 12345
+            }
+          })
+          .then(function (response) {
+            console.log(response);
+          })
+          .catch(function (error) {
+            console.log(error);
+          })
+          .finally(function () {
+            // always executed
+          });  
+    }
      const [isOpen, setIsOpen] = useState(false);
      const {isUserLogin} = useContext(UserLoginState);
+     const [isLogout,setIsLogout] = useState(false);
      const toggle = () => setIsOpen(!isOpen);
+
+     const [cookies, setCookie] = useCookies(['loginId']);
+
+     function handleUserLogout(){
+        alert(cookies);
+        setIsLogout(isLogout);
+     }
         return (
             <div>
                 <Navbar className="navbar-inner" color="" light expand="md" style={{boxShadow:"-2px 2px 5px rgba(211, 210, 210, 0.75)"}}>
