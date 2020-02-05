@@ -9,6 +9,9 @@ import {
     NavLink
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import '../styles/navbar.css';
+import navLogo from '../images/nav-logo.png';
+import search from '../images/search.png';
 
 //user context
 import {UserLoginState} from '../context/UserLoginState';
@@ -19,24 +22,32 @@ const NavbarComponent = (props) => {
      const toggle = () => setIsOpen(!isOpen);
         return (
             <div>
-                <Navbar color="" light expand="md">
-                    <NavbarBrand to="/" tag={Link}>MyApplicationMentor</NavbarBrand>
+                <Navbar className="navbar-inner" color="" light expand="md" style={{boxShadow:"-2px 2px 5px rgba(211, 210, 210, 0.75)"}}>
+                    <NavbarBrand to="/" tag={Link} className="brand-logo"> <img src={navLogo} alt="hh" height="25px" width="25px"></img> myApplicationMentor</NavbarBrand>
                     <NavbarToggler onClick={toggle} />
-                    <Collapse isOpen={isOpen} navbar>
-                    <Nav className="mr-auto" navbar>
-                        <NavItem>
-                            <NavLink to="/profile" tag={Link}>Profile</NavLink>
+                    <Collapse isOpen={isOpen} navbar style={{justifyContent: "flex-end"}}>
+                        <Nav className="d-flex align-items-center" navbar style={{justifyContent: "flex-end"}}>
+                            <NavItem>
+
                             </NavItem>
-                        <NavItem>
-                            <NavLink href="https://github.com/reactstrap/reactstrap">GitHub</NavLink>
-                        </NavItem>
-                        <NavItem>
-                            <NavLink to="/allquestions" tag={Link}>Answers</NavLink>
-                        </NavItem>
-                        <NavItem>
-                            {!isUserLogin ? <NavLink to="/signup-login" tag={Link}>Signup/Login</NavLink> : <button>Log out</button>}
-                        </NavItem>
-                    </Nav>
+                            <NavItem className="search-bg mr-5">
+                                <img src={search} alt="search" height="20px" width="20px"></img>
+                            </NavItem>
+                            <NavItem className="mr-5">
+                                <NavLink href="https://github.com/reactstrap/reactstrap" className="nav-links"><strong>Explore</strong></NavLink>
+                            </NavItem>
+                            <NavItem className="mr-5">
+                                <NavLink to="/answers" tag={Link} className="nav-links"><strong>Answers</strong></NavLink>
+                            </NavItem>
+                            <NavItem className="mr-5">
+                                {!isUserLogin ? <NavLink to="/signup-login" tag={Link} className="nav-links"><strong>Blogs</strong></NavLink> : <button>Log out</button>}
+                            </NavItem>
+                            <NavItem>
+                               <Link to="/signup-login" className="login-btn mr-5">
+                                Login
+                               </Link>       
+                            </NavItem>
+                        </Nav>
                     </Collapse>
                 </Navbar>
             </div>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { createUseStyles } from 'react-jss';
 import BannerTabs from '../components/BannerTabs';
 import ProfileInfoBanner from '../components/ProfileInfoBanner';
@@ -6,6 +6,8 @@ import ProfieStats from '../components/ProfileStats';
 import ProfilePageServices from '../components/ProfilePageServices';
 import SimilarProfiles from '../components/SimilarProfiles';
 import { Container, Row, Col } from 'reactstrap';
+import axios from 'axios';
+
 // import '../main.css';
 
 
@@ -55,8 +57,22 @@ const useStyles = createUseStyles({
 function Profile(props) {
         const classes = useStyles(props);
 
+        const [name,setName] = useState('');
+        useEffect(()=>{
+            axios.get(`http://localhost/MyApplicationMentor/getallquestion`)
+                .then(res => {
+                    var name = res.data.findalltopics[0].name;
+                    console.log(name);
+                    setName(name);
+                    // console.log(res.data.findalltopics[0].name);
+                // const persons = res.data;
+                // this.sssetState({ persons });
+                })
+            })
+
     return (
         <div className={classes.profile}>
+            <h1>{name}</h1>
             <Container> 
                 < Row >
                     <Col xs="12" sm="12" md="8">

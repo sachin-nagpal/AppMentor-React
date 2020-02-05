@@ -3,7 +3,7 @@ import { useFormik } from 'formik';
 import { Col, Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import useStyles from '../styles/LoginComponentStyle'
 import useToggleState from '../hooks/useToggleState';
-
+import {Redirect} from 'react-router-dom';
 import axios from 'axios';
 //user context
 import {UserLoginState} from '../context/UserLoginState';
@@ -70,6 +70,7 @@ const LoginForm = ({handleFlip,handleForgotCard}) => {
   const {setIsUserLogin} = useContext(UserLoginState);
   return (
     <div className={classes.formContainer}>
+      {setIsUserLogin && <Redirect path="/"/>}
       <div className={classes.mainHeading}>
         <p>Sign In</p>
       </div>
