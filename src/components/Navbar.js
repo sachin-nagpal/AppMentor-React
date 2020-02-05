@@ -2,6 +2,10 @@ import React, { useState, useContext } from 'react';
 import axios from 'axios';
 import useToggleState from '../hooks/useToggleState';
 
+import { Button } from 'reactstrap';
+
+import { useAuth } from "../context/auth";
+
 import {
     Collapse,
     Navbar,
@@ -43,11 +47,11 @@ const NavbarComponent = (props) => {
      const [isLogout,setIsLogout] = useState(false);
      const toggle = () => setIsOpen(!isOpen);
 
-     const [cookies, setCookie] = useCookies(['loginId']);
+     const { authTokens, setAuthTokens } = useAuth();
 
      function handleUserLogout(){
-        alert(cookies);
-        setIsLogout(isLogout);
+        //  setIsLogout(isLogout);
+         setAuthTokens();
      }
         return (
             <div>
@@ -67,7 +71,7 @@ const NavbarComponent = (props) => {
                             <NavLink to="/allquestions" tag={Link}>Questions</NavLink>
                         </NavItem>
                         <NavItem>
-                            {!isUserLogin ? <NavLink to="/signup-login" tag={Link}>Signup/Login</NavLink> : <button onClick={handleUserLogout}>Log out</button>}
+                            {!authTokens ? <NavLink to="/signup-login" tag={Link}>Signup/Login</NavLink> : <Button onClick={handleUserLogout}>Log out</Button>}
                         </NavItem>
                     </Nav>
                     </Collapse>

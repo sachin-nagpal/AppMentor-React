@@ -1,9 +1,11 @@
-import React,{useContext} from 'react';
+import React,{useContext,useState} from 'react';
 import { useFormik } from 'formik';
 import { Col, Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import useStyles from '../styles/LoginComponentStyle'
 import useToggleState from '../hooks/useToggleState';
-import {Redirect} from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
+import { useAuth } from "../context/auth";
+import { withRouter } from 'react-router-dom'
 
 import axios from 'axios';
 
@@ -12,6 +14,7 @@ import {UserLoginState} from '../context/UserLoginState';
 
 //Set Cookie
 import { useCookies } from 'react-cookie';
+
 
 import PersonHead from '../images/personHead.png'
 import LockIcon from '../images/LockIcon.png'
@@ -36,13 +39,17 @@ const validate = values => {
   return errors;
 };
 
-const LoginForm = ({handleFlip,handleForgotCard}) => {
+const LoginForm = ({handleFlip,handleForgotCard,props,history, path}) => {
   // Pass the useFormik() hook initial form values and a submit function that will
   // be called when the form is submitted
   const handleClick=(e)=>{
       console.log(e.target);
       
   }
+  const referer = '/';
+  const { setAuthTokens } = useAuth();
+  const [isLoggedIn, setLoggedIn] = useState(false);
+  const [isError, setIsError] = useState(false);
   const formik = useFormik({
     initialValues: {
       loginPassword: '',
@@ -57,30 +64,33 @@ const LoginForm = ({handleFlip,handleForgotCard}) => {
       })
       .then(function (response) {
         console.log(response.data);
-        if(response.data.userid){
-          setIsUserLogin();
-          setCookie('loginId', response.data.userid, { path: '/' });
-          return;
+        if (response.data.msg === "Password Mismatch") {
+          setAuthTokens('1324234242342342');
+          console.log(props.location.state.referer);
+          
+          setLoggedIn(true);
         }
-        if(response.data.msg === "Password Mismatch"){
-          setIncorrectLoginDetails();
+        if(response.msg === "Password Mismatch"){
+          // setIncorrectLoginDetails();
+          setIsError(true);
         }
       })
       .catch(function (error) {
         console.log(error);
+        setIsError(true);
       });
     },
   });
   const classes = useStyles();
-  const [isIncorrectLoginDetails,setIncorrectLoginDetails] = useToggleState(false); 
   const {isUserLogin,setIsUserLogin} = useContext(UserLoginState);
-  const [cookies, setCookie] = useCookies(['loginId']);
+    if (isLoggedIn) {
+    return <Redirect to={referer} />;
+  }
   return (
     <div className={classes.formContainer}>
     {isUserLogin && <Redirect to="/allquestions"/> }
       <div className={classes.mainHeading}>
         <p>Sign In</p>
-        <p>{cookies.loginId}</p>
       </div>
         <Form onSubmit={formik.handleSubmit} className={classes.signForm}>
         {/* <Label htmlFor="loginEmail">Email Address</Label> */}
@@ -132,4 +142,4 @@ const LoginForm = ({handleFlip,handleForgotCard}) => {
   );
 };
 
-export default React.memo(LoginForm);
+export default withRouter(LoginForm);

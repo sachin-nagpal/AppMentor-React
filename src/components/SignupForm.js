@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import { useFormik } from 'formik';
 import { Button, Form, Input } from 'reactstrap';
 import useStyles from '../styles/LoginComponentStyle';
@@ -52,7 +52,8 @@ const SignupForm = ({handleFlip}) => {
   const responseFacebook = (response) => {
     console.log(response);
   }
-
+const [isLoggedIn, setLoggedIn] = useState(false);
+const [isError, setIsError] = useState(false);
   const formik = useFormik({
     initialValues: {
       firstName: '',
@@ -72,6 +73,7 @@ const SignupForm = ({handleFlip}) => {
       })
       .then(function (response) {
         console.log(response);
+        
       })
       .catch(function (error) {
         console.log(error);
