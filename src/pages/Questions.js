@@ -1,10 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useContext } from 'react';
 // import './App.css';
 import SingleQuestion from '../components/SingleQuestion';
 import '../styles/Questions.css';
 // import '../styles/css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
+
+
+//user context
+import {UserLoginState} from '../context/UserLoginState';
+
 
 import RelatedQues from '../components/RelatedQues';
 import {
@@ -29,6 +34,8 @@ const Questions = (props) => {
 
   const [quesResponse, setResponse] = useState([]);
   const [relatedQuestions,setRelatedQuestions] = useState([]);
+
+  const {userInfo} = useContext(UserLoginState);
 
   useEffect(() => {
         axios.get('http://localhost/MyApplicationMentor/getallquestion')
@@ -68,6 +75,7 @@ const Questions = (props) => {
               <Input placeholder="Search Questions"/>
             </InputGroup>
            </div>
+        <div>Add Questions</div>
         </div>
       
         <div className="container mt-5">
