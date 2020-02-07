@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState,useEffect } from 'react';
 import { createUseStyles } from 'react-jss';
 import BannerTabs from '../components/BannerTabs';
 import ProfileInfoBanner from '../components/ProfileInfoBanner';
@@ -7,7 +7,6 @@ import ProfilePageServices from '../components/ProfilePageServices';
 import SimilarProfiles from '../components/SimilarProfiles';
 import { Container, Row, Col } from 'reactstrap';
 import axios from 'axios';
-
 // import '../main.css';
 
 
@@ -55,21 +54,23 @@ const useStyles = createUseStyles({
 })
 
 function Profile(props) {
-        const classes = useStyles(props);
+    const classes = useStyles(props);
+    const [user, setUser] = useState({});
+  useEffect(() => {
+      // (()=>{async () => {
+      //   await axios.get(`https://randomuser.me/api/`)
+      //    .then(res => {
+      //       const user = res.data.results;
+      //       this.setState(user[0]);
+      //   })
+      // })
 
-        const [name,setName] = useState('');
-        useEffect(()=>{
-            axios.get(`http://localhost/MyApplicationMentor/getallquestion`)
-                .then(res => {
-                    var name = res.data.findalltopics[0].name;
-                    console.log(name);
-                    setName(name);
-                    // console.log(res.data.findalltopics[0].name);
-                // const persons = res.data;
-                // this.sssetState({ persons });
-                })
-            })
-
+      axios.get(`https://randomuser.me/api/`)
+          .then(res => {
+              const user = res.data.results;
+              setUser(user[0]);
+          })
+  }, [])
     return (
         <div className={classes.profile}>
             <h1>{name}</h1>
@@ -77,8 +78,8 @@ function Profile(props) {
                 < Row >
                     <Col xs="12" sm="12" md="8">
                         <div className={classes.profileMain}>
-                            <ProfileInfoBanner style={{height: '32rem',width:'100%',stripBgCol:'#c3d0ee'}} user={props.user}/>
-                            <BannerTabs style={{tabFontColor: '#295caa', bgCol: '#416aa6'}} user={props.user}/>
+                            <ProfileInfoBanner style={{height: '32rem',width:'100%',stripBgCol:'#c3d0ee'}} user={user}/>
+                            <BannerTabs style={{tabFontColor: '#295caa', bgCol: '#416aa6'}} user={user}/>
                         </div>  
                     </Col>  
                     <Col xs="12" sm="12" md="3">

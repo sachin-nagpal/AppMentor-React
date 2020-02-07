@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Route, Switch } from 'react-router-dom'; 
 import SignupLoginPage from './pages/SignupLoginPage';
-import AllQuestions from './pages/AllQuestions';
+import PrivateRoutes from './components/PrivateRoutes';
 import SingleQuestionPage from './pages/SingleQuestionPage';
 import Questions from './pages/Questions';
 import { CookiesProvider } from 'react-cookie';
@@ -12,6 +12,7 @@ import Navbar from './components/Navbar';
 
 //Context
 import UserLoginStateContextProvider from './context/UserLoginState';
+import { AuthContext } from "./context/auth";
 
 //Pages
 import Home from './pages/Home';
@@ -19,45 +20,56 @@ import Profile from './pages/Profile';
 import NotFound from './pages/NotFound';
 import LoginForm from './components/LoginForm';
 
-class App extends Component {
-    constructor(props) {
-        super(props);
-        this.state = { 
-            user: {}
-        }
-    }
-  async componentDidMount() {
-    //  axios.get('').then(function (response) {
-    //   this.setState = {user:response.data};
-    //  }.bind(this));
-    await axios.get(`https://randomuser.me/api/`)
-       .then(res => {
-          const user = res.data.results;
-          this.setState({user:user[0]});
-      })
-  }
+function App(props) {
+  const [user, setUser] = useState({});
+  const [authTokens, setAuthTokens] = useState();
+  
+  useEffect(() => {
+    // (()=>{async () => {
+    //   await axios.get(`https://randomuser.me/api/`)
+    //    .then(res => {
+    //       const user = res.data.results;
+    //       this.setState(user[0]);
+    //   })
+    // })
 
-    render() {
+      axios.get(`https://randomuser.me/api/`)
+        .then(res => {
+          const user = res.data.results;
+          setUser(user[0]);
+        })
+  },[])
+  // async componentDidMount() {
+  //   //  axios.get('').then(function (response) {
+  //   //   this.setState = {user:response.data};
+  //   //  }.bind(this));
+  
+  // }
+   const setTokens = (data) => {
+     localStorage.setItem("userId", JSON.stringify(data));
+     setAuthTokens(data);
+   }
       return (
           <>
         <UserLoginStateContextProvider>
-        <Navbar />
-            <Route render={({location}) => (
-              <Switch location={location}>
-                <Route exact path='/' render={(routeProps) => <Home {...routeProps}/>}/>
-                  <Route exact path='/profile' render={(routeProps)=><Profile {...routeProps} user={this.state.user}/>}/>
-                  <Route exact path='/answers' render={(routeProps)=><Questions {...routeProps} user={this.state.user}/>}/>
-                  <Route exact path='/signup-login' render={(routeProps)=><SignupLoginPage {...routeProps} user={this.state.user}/>}/>
-                  <Route exact path='/singlequestion/:slug' render={(routeProps)=><SingleQuestionPage {...routeProps} user={this.state.user}/>}/>
-                  <Route path='*' exact={true} component={NotFound} />
-                  <Route exact path='/signup-login' exact={true} component={SignupLoginPage} />
-                </Switch>
-          )}/>
+        <AuthContext.Provider value={{ authTokens, setAuthTokens: setTokens }}>
+          <Navbar />
+            <Route>
+                <Switch>
+                  <Route exact path='/' render={(routeProps) => <Home {...routeProps}/>}/>
+                    {/* <Route exact path='/profile' render={(routeProps)=><Profile {...routeProps} user={this.state.user}/>}/> */}
+                    <Route exact path='/allquestions' render={(routeProps)=><Questions {...routeProps} user={user}/>}/>
+                    <Route exact path='/singlequestion/:slug' render={(routeProps)=><SingleQuestionPage {...routeProps} user={user}/>}/>
+                    <Route exact path='/signup-login' render={(routeProps)=><SignupLoginPage {...routeProps} user={user}/>}/>
+                    <PrivateRoutes path='/profile' component={Profile}/>/>
+                    <Route path='*' exact={true} component={NotFound} />
+                  </Switch>
+            </Route>
+          </AuthContext.Provider>
           </UserLoginStateContextProvider> 
          
           </>
         );
-    } 
 }
 
 export default App;
