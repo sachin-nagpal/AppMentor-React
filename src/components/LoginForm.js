@@ -64,8 +64,8 @@ const LoginForm = ({handleFlip,handleForgotCard,props,history, path}) => {
       })
       .then(function (response) {
         console.log(response.data);
-        if (response.data.msg === "Password Mismatch") {
-          setAuthTokens('1324234242342342');
+        if (response.data.userid) {
+          setAuthTokens(response.data.userid);
           console.log(props.location.state.referer);
           
           setLoggedIn(true);
@@ -88,7 +88,6 @@ const LoginForm = ({handleFlip,handleForgotCard,props,history, path}) => {
   }
   return (
     <div className={classes.formContainer}>
-    {isUserLogin && <Redirect to="/allquestions"/> }
       <div className={classes.mainHeading}>
         <p>Sign In</p>
       </div>
