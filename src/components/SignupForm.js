@@ -8,6 +8,9 @@ import axios from 'axios';
 import { GoogleLogin } from 'react-google-login'; 
 import FacebookLogin from 'react-facebook-login';
 
+import { Redirect } from 'react-router-dom';
+import { useAuth } from "../context/auth";
+
 const validate = values => {
   const errors = {};
   if (!values.firstName) {
@@ -52,8 +55,9 @@ const SignupForm = ({handleFlip}) => {
   const responseFacebook = (response) => {
     console.log(response);
   }
-const [isLoggedIn, setLoggedIn] = useState(false);
-const [isError, setIsError] = useState(false);
+  const [isLoggedIn, setLoggedIn] = useState(false);
+  const [isError, setIsError] = useState(false);
+  const { authTokens, setAuthTokens } = useAuth();
   const formik = useFormik({
     initialValues: {
       firstName: '',
@@ -73,7 +77,9 @@ const [isError, setIsError] = useState(false);
       })
       .then(function (response) {
         console.log(response);
-        
+        if (response.data.msg) {
+          setAuthTokens('123456')
+        }
       })
       .catch(function (error) {
         console.log(error);
@@ -81,6 +87,9 @@ const [isError, setIsError] = useState(false);
     },
   });
   const classes = useStyles()
+   if (authTokens) {
+     return < Redirect to='/'/>
+    }
   return (
     <div className={classes.formContainer}>
       <div className={classes.mainHeading}>
@@ -156,21 +165,21 @@ const [isError, setIsError] = useState(false);
       <div className={classes.orHeading}><p>or</p></div>
         <div className={classes.googleFbSignup}>
         <div className={classes.googleSignup}>
-            {/* <Button className={classes.googleSignIn} color='' size="lg" active>Google</Button> */}
-            <GoogleLogin
+            <Button className={classes.googleSignIn} color='' size="lg" active>Google</Button>
+            {/* <GoogleLogin
               clientId="238382110570-d40rv5houg71vol5e0j5omtr4811m426.apps.googleusercontent.com" //CLIENTID NOT CREATED YET
               buttonText="SIGNUP WITH GOOGLE"
               onSuccess={responseGoogle}
               onFailure={responseGoogle}
-          />
+          /> */}
         </div>
         <div className={classes.fbSignup}>
-            {/* <Button className={classes.fbSignIn} color='' size="lg" active>Facebook</Button> */}
-            <FacebookLogin
+            <Button className={classes.fbSignIn} color='' size="lg" active>Facebook</Button>
+            {/* <FacebookLogin
               appId="612523992916583" //APP ID NOT CREATED YET
               fields="name,email,picture"
               callback={responseFacebook}
-            />
+            /> */}
         </div>
       </div>
     </div>  

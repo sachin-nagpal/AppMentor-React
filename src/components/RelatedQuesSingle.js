@@ -1,13 +1,11 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { getData } from '../helpers/getSingleQuestions';
 
-export default function RelatedQuesSingle({ques,getQuestionsData}) {
-    function getDataFromBackend(){
-        getQuestionsData(ques.slug)
-    }
+export default function RelatedQuesSingle({ques}) {
     return (
         <div>
-            <Link  to={{ pathname: `/singlequestion/${ques.slug}`, state: { title: 'Hero Detail'} }} onClick={getDataFromBackend}>{ques.title}</Link>
+            <Link  to={{ pathname: `/singlequestion/${ques.slug}`, state: { title: 'Hero Detail'} }} >{ques.title}</Link>
         </div>
     )
 }

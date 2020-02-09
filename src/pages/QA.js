@@ -1,13 +1,25 @@
 import React from 'react';
 // import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 import QAheader from '../components/QAheader';
 import Answers from '../components/Answers';
 import RelatedQues from '../components/RelatedQues';
+import { getData } from '../helpers/getSingleQuestions';
 
 import uuid from 'uuid';
 
-const QA = ({quesResponse,getQuestionsData}) => {
+const QA = ({ match }) => {
+  const [quesResponse, setQuesResponse] = React.useState({});
+  const handleChangeState = (res) => {
+    setQuesResponse(res);
+  }
+
+  React.useEffect(() => {
+    console.log('RE-Rendered');
+    getData(match.params.slug, handleChangeState)
+  }, [match.params.slug]);
+
+
   return (
     <div style={{backgroundColor:"#f5f5f5"}}>
           <div>
@@ -23,7 +35,7 @@ const QA = ({quesResponse,getQuestionsData}) => {
                 </div>
               </div>
               <div className="col-md-4">
-                <RelatedQues relatedQ = {quesResponse.relatedquestions} getQuestionsData={getQuestionsData}/>
+                <RelatedQues relatedQ = {quesResponse.relatedquestions} getQuestionsData={getData} handleChangeState={handleChangeState}/>
               </div>
             </div>
           </div>

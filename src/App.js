@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import SignupLoginPage from './pages/SignupLoginPage';
 import PrivateRoutes from './components/PrivateRoutes';
 import SingleQuestionPage from './pages/SingleQuestionPage';
+import QA from './pages/QA';
 import Questions from './pages/Questions';
 import { CookiesProvider } from 'react-cookie';
 import axios from 'axios';
@@ -48,6 +49,7 @@ function App(props) {
      localStorage.setItem("userId", JSON.stringify(data));
      setAuthTokens(data);
    }
+   
       return (
           <>
         <UserLoginStateContextProvider>
@@ -58,7 +60,7 @@ function App(props) {
                   <Route exact path='/' render={(routeProps) => <Home {...routeProps}/>}/>
                     {/* <Route exact path='/profile' render={(routeProps)=><Profile {...routeProps} user={this.state.user}/>}/> */}
                     <Route exact path='/allquestions' render={(routeProps)=><Questions {...routeProps} user={user}/>}/>
-                    <Route exact path='/singlequestion/:slug' render={(routeProps)=><SingleQuestionPage {...routeProps} user={user}/>}/>
+                    <Route exact path='/singlequestion/:slug' render={(routeProps)=><QA {...routeProps} user={user}/>}/>
                     <Route exact path='/signup-login' render={(routeProps)=><SignupLoginPage {...routeProps} user={user}/>}/>
                     <PrivateRoutes path='/profile' component={Profile}/>/>
                     <Route path='*' exact={true} component={NotFound} />

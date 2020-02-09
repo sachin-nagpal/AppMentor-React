@@ -1,11 +1,8 @@
 import React, { useState, useEffect,useContext } from 'react';
-// import './App.css';
 import SingleQuestion from '../components/SingleQuestion';
 import '../styles/Questions.css';
-// import '../styles/css';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
-
+import uuid from 'uuid';
 
 //user context
 import {UserLoginState} from '../context/UserLoginState';
@@ -82,7 +79,7 @@ const Questions = (props) => {
             <div className="row">
                 <div className="col-md-8">
                   {quesResponse.map(quest=>(
-                    <SingleQuestion quesData={quest}/>
+                    <SingleQuestion quesData={quest} key={uuid()}/>
 
                   ))}
                 </div>

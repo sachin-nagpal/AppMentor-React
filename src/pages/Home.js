@@ -1,9 +1,14 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
+import axios from 'axios';
+import VerticalSlider from '../components/Home/VerticalSlider';
+const Home = () =>{
+    useEffect(() => {
+        
+    }, [])
+    return <div>
+        <VerticalSlider/>
+    </div>
 
-class Home extends Component {
-    render() {
-        return <div>Home</div>
-    }
 }
 
 export default Home;

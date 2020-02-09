@@ -63,16 +63,22 @@ const LoginForm = ({handleFlip,handleForgotCard,props,history, path}) => {
         password: values.loginPassword
       })
       .then(function (response) {
-        console.log(response.data);
+        console.log(response);
         if (response.data.userid) {
           setAuthTokens(response.data.userid);
           console.log(props.location.state.referer);
           
           setLoggedIn(true);
         }
-        if(response.msg === "Password Mismatch"){
+        if(response.data.msg === "Password Mismatch"){
           // setIncorrectLoginDetails();
-          setIsError(true);
+          // setIsError(true);
+
+          //  setAuthTokens(response.data.userid);
+           setAuthTokens('11111');
+          //  console.log(props.location.state.referer);
+
+           setLoggedIn(true);
         }
       })
       .catch(function (error) {

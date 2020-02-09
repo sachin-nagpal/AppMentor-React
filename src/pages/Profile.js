@@ -13,7 +13,7 @@ import axios from 'axios';
 const useStyles = createUseStyles({
     profile: {
         backgroundColor: '#f5f5f5',
-        height: '100%',
+        // height: '100%',
         margin: {
             // jss-plugin-expand gives more readable syntax
             top: 4, // jss-plugin-default-unit makes this 5px
@@ -81,10 +81,10 @@ function Profile(props) {
                             <BannerTabs style={{tabFontColor: '#295caa', bgCol: '#416aa6'}} user={user}/>
                         </div>  
                     </Col>  
-                    <Col xs="12" sm="12" md="3">
+                    <Col xs="12" sm="12" md="3" className='m-0 p-0'>
                         <div className={classes.profileExtra}>
                             <ProfilePageServices/>
-                            <ProfieStats />
+                            {/* <ProfieStats /> */}
                             <SimilarProfiles/>
                         </div>
                     </Col>    
