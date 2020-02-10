@@ -33,6 +33,8 @@ const Questions = (props) => {
 
   const [quesResponse, setResponse] = useState([]);
   const [relatedQuestions,setRelatedQuestions] = useState([]);
+  const [tagTopics,setTagTopics] = useState([]);
+  const [findalltopics,setFindalltopics] = useState([]);
 
   const [isAddingQuestion, setIsAddingQuestion] = useState(false);
 
@@ -43,12 +45,17 @@ const Questions = (props) => {
   }
 
   useEffect(() => {
+    let isCancelled = false;
         axios.get('http://localhost/MyApplicationMentor/getallquestion')
           .then(function (response) {
             // handle success
+            if (!isCancelled) {
             console.log(response.data);
             setResponse(response.data.findallquestions);
             setRelatedQuestions(response.data.relatedquestions);
+            setTagTopics(response.data.findtagtopics);
+            setFindalltopics(response.data.findalltopics);
+            }
           })
           .catch(function (error) {
             // handle error
@@ -57,11 +64,15 @@ const Questions = (props) => {
           .finally(function () {
             // always executed
           });
+
+    return () => {
+      isCancelled = true;
+    }; 
   }, [])
 
+  // {isCancelled && <h1>Waiting...</h1>}
   return (
     <div>
-
         <div className="questions-header">
            <div className="w-50 m-auto py-3">
             <InputGroup>
@@ -86,7 +97,7 @@ const Questions = (props) => {
           <div><Link to='/signup-login'><Button outline color="primary">Login</Button>{' '}</Link></div>
         }
         </div>
-        {authTokens && <AddQuestionPop isAddingQuestion={isAddingQuestion} toggle={handleAddingQuestion}/>}
+        {authTokens && <AddQuestionPop isAddingQuestion={isAddingQuestion} toggle={handleAddingQuestion} findalltopics={findalltopics} tagTopics={tagTopics}/>}
         <div className="container mt-5">
             <div className="row">
                 <div className="col-md-8">

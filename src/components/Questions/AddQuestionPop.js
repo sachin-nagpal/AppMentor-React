@@ -1,15 +1,9 @@
-import React,{useState,useContext} from 'react';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter, FormGroup, Input,Label } from 'reactstrap';
+import React,{useState,useContext,useEffect,useRef} from 'react';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter, FormGroup, Input,Label,Badge} from 'reactstrap';
 import Select from 'react-select';
 import { createUseStyles } from 'react-jss';
 //Context
 import { useAuth } from "../../context/auth";
-
-const options = [
-    { value: 'chocolate', label: 'Chocolate' },
-    { value: 'strawberry', label: 'Strawberry' },
-    { value: 'vanilla', label: 'Vanilla' },
-  ];
   
 const useStyles = createUseStyles({
     modalMain:{
@@ -20,20 +14,29 @@ const AddQuestionPop = (props) => {
     const { userName } = useAuth();
     const classes = useStyles();
     const closeBtn = <button className="close" onClick={props.toggle}>&times;</button>;
-    const [selectedOption,sertSelectedOption] = useState(null);
+    const [selectedOption,setSelectedOption] = useState([]);
     const [questionTitle,setQuestionTitle] = useState('');
+    const [textAreaval,setTextAreaVal] = React.useState('');
+    // const [options,setOptions] = useState([]);
+    const optionVal = props.findalltopics.map(topic=>{
+        return {value: topic.slug,label: topic.name, id: topic.id}
+      })
+    
+    const options = optionVal;
     const handleChange = selectedOption => {
-        sertSelectedOption(selectedOption)
+        setSelectedOption(selectedOption)
       };
       const handleAddQuestion = () =>{
           alert("addeinf")
+          props.toggle()
       }
-      const handleTextareaChange =(e)=>{
-        alert('oo')
-        console.log(e);
-        
+      const handleTextareaChange =(evt)=>{
+        // let val = evt.target.val
+        setTextAreaVal(evt.target.value);
       }
-    
+      const handleBadgeChanges = (data)=>{
+        setSelectedOption([...selectedOption,{value: data.value,label: data.name, id: data.id}])
+      }
       return (
       <div>
         {/* <Button color="danger" onClick={toggle}>{buttonLabel}</Button> */}
@@ -42,7 +45,7 @@ const AddQuestionPop = (props) => {
             <h1>{userName}</h1>
           <ModalBody>
           <FormGroup>
-            <Input type="textarea" name="text" className="addQuestionTextArea" rows="8" placeholder='Select your Question with "What","How","Why,etc"' onChange={()=>handleTextareaChange(this)}/>
+            <Input type="textarea" value={textAreaval} name="text" className="addQuestionTextArea" rows="8" placeholder='Select your Question with "What","How","Why,etc"' onChange={handleTextareaChange}/>
         </FormGroup>
         <FormGroup>
         <Label for="exampleSelectMulti">Tabs</Label>
@@ -53,13 +56,23 @@ const AddQuestionPop = (props) => {
             isMulti={true}
             />
       </FormGroup>
+      {/* onClick={()=>setSelectedOption([...selectedOption,{value: this.value,label: this.name, id: this.id}])} */}
+      <div>
+      {props.tagTopics.map(topic=>(
+        <Badges value={topic.slug} label={topic.name} id={topic.id} handleBadgeChanges={handleBadgeChanges}/>
+      ))}
+      </div>
+        {/* <Button onClick={()=>setSelectedOption([...selectedOption,{value: 'test',label: 'label', id: '111'}])}/> */}
           </ModalBody>
           <ModalFooter>
             <Button color="secondary" onClick={props.toggle}>Cancel</Button>
-            <Button color="primary" onClick={props.toggle} onClick={handleAddQuestion}>Add Question</Button>{' '}
+            <Button color="primary" onClick={handleAddQuestion}>Add Question</Button>{' '}
           </ModalFooter>
         </Modal>
       </div>)
 }
 
+const Badges = (props)=>{
+  return <Badge onClick={()=>props.handleBadgeChanges(props)} color="primary">{props.label}</Badge>
+}
 export default AddQuestionPop;

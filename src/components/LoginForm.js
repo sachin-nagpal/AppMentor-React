@@ -48,10 +48,11 @@ const LoginForm = ({handleFlip,handleForgotCard,props,history, path}) => {
       
   }
   const referer = '/';
-  const { setAuthTokens,setUserName } = useAuth();
+  const {authTokens, setAuthTokens,setUserName } = useAuth();
   const [isLoggedIn, setLoggedIn] = useState(false);
   const [isError, setIsError] = useState(false);
   const {setName,setEmail} = useContext(UserLoginState);
+  const [isLoading] = useState(false);
   const handleUseInfor = (name)=>{
     setName(name)
   }
@@ -78,23 +79,18 @@ const LoginForm = ({handleFlip,handleForgotCard,props,history, path}) => {
         if(response.data.msg === "Password Mismatch"){
           // setIncorrectLoginDetails();
           setIsError(true);
-
-          // //  setAuthTokens(response.data.userid);
-          //  setAuthTokens('11111');
-          // //  console.log(props.location.state.referer);
-
-           setLoggedIn(true);
         }
       })
       .catch(function (error) {
         console.log(error);
         setIsError(true);
       });
+      return () => {
+    }; 
     },
   });
   const classes = useStyles();
-  const {isUserLogin,setIsUserLogin} = useContext(UserLoginState);
-    if (isLoggedIn) {
+    if (authTokens && !isLoading) {
     return <Redirect to={referer} />;
   }
   return (
