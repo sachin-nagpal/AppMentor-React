@@ -1,11 +1,12 @@
 import React, { useState, useEffect,useContext } from 'react';
 import SingleQuestion from '../components/SingleQuestion';
 import '../styles/Questions.css';
+import {Link} from 'react-router-dom'
 import axios from 'axios';
 import uuid from 'uuid';
 
 //user context
-import {UserLoginState} from '../context/UserLoginState';
+import { useAuth } from "../context/auth";
 
 
 import RelatedQues from '../components/RelatedQues';
@@ -19,6 +20,7 @@ import {
   DropdownMenu,
   DropdownItem
  } from 'reactstrap';
+import  AddQuestionPop  from '../components/Questions/AddQuestionPop';
 
 const Questions = (props) => {
 
@@ -32,7 +34,13 @@ const Questions = (props) => {
   const [quesResponse, setResponse] = useState([]);
   const [relatedQuestions,setRelatedQuestions] = useState([]);
 
-  const {userInfo} = useContext(UserLoginState);
+  const [isAddingQuestion, setIsAddingQuestion] = useState(false);
+
+  const { authTokens } = useAuth();
+
+  function handleAddingQuestion(){
+    setIsAddingQuestion(!isAddingQuestion)
+  }
 
   useEffect(() => {
         axios.get('http://localhost/MyApplicationMentor/getallquestion')
@@ -72,9 +80,13 @@ const Questions = (props) => {
               <Input placeholder="Search Questions"/>
             </InputGroup>
            </div>
-        <div>Add Questions</div>
+           {authTokens ?
+          <div><Button outline color="primary" onClick={handleAddingQuestion}>Add Questions</Button>{' '}</div>
+          :
+          <div><Link to='/signup-login'><Button outline color="primary">Login</Button>{' '}</Link></div>
+        }
         </div>
-      
+        {authTokens && <AddQuestionPop isAddingQuestion={isAddingQuestion} toggle={handleAddingQuestion}/>}
         <div className="container mt-5">
             <div className="row">
                 <div className="col-md-8">

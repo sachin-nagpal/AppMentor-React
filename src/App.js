@@ -21,7 +21,7 @@ import Profile from './pages/Profile';
 import NotFound from './pages/NotFound';
 
 function App(props) {
-  const [user, setUser] = useState({});
+  const [userName, setUserName] = useState('');
   const [authTokens, setAuthTokens] = useState();
   
   useEffect(() => {
@@ -33,35 +33,34 @@ function App(props) {
     //   })
     // })
 
-      axios.get(`https://randomuser.me/api/`)
-        .then(res => {
-          const user = res.data.results;
-          setUser(user[0]);
-        })
+      // axios.get(`https://randomuser.me/api/`)
+      //   .then(res => {
+      //     const user = res.data.results;
+      //     setUser(user[0]);
+      //   })
   },[])
-  // async componentDidMount() {
-  //   //  axios.get('').then(function (response) {
-  //   //   this.setState = {user:response.data};
-  //   //  }.bind(this));
-  
-  // }
+
    const setTokens = (data) => {
-     localStorage.setItem("userId", JSON.stringify(data));
+     localStorage.setItem("userId", data);
      setAuthTokens(data);
+   }
+   const setUserNameContext = (name)=>{
+    localStorage.setItem("userName", JSON.stringify(name));
+    setUserName(name);
    }
    
       return (
           <>
         <UserLoginStateContextProvider>
-        <AuthContext.Provider value={{ authTokens, setAuthTokens: setTokens }}>
+        <AuthContext.Provider value={{ authTokens, setAuthTokens: setTokens,setUserName: setUserNameContext,userName }}>
           <Navbar />
             <Route>
                 <Switch>
                   <Route exact path='/' render={(routeProps) => <Home {...routeProps}/>}/>
                     {/* <Route exact path='/profile' render={(routeProps)=><Profile {...routeProps} user={this.state.user}/>}/> */}
-                    <Route exact path='/allquestions' render={(routeProps)=><Questions {...routeProps} user={user}/>}/>
-                    <Route exact path='/singlequestion/:slug' render={(routeProps)=><QA {...routeProps} user={user}/>}/>
-                    <Route exact path='/signup-login' render={(routeProps)=><SignupLoginPage {...routeProps} user={user}/>}/>
+                    <Route exact path='/allquestions' render={(routeProps)=><Questions {...routeProps} />}/>
+                    <Route exact path='/singlequestion/:slug' render={(routeProps)=><QA {...routeProps} />}/>
+                    <Route exact path='/signup-login' render={(routeProps)=><SignupLoginPage {...routeProps} />}/>
                     <PrivateRoutes path='/profile' component={Profile}/>/>
                     <Route path='*' exact={true} component={NotFound} />
                   </Switch>

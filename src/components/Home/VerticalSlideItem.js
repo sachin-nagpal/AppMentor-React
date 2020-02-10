@@ -2,7 +2,9 @@ import React from 'react';
 import { createUseStyles } from 'react-jss';
 import { Container, Row, Col } from 'reactstrap';
 import { Button } from 'reactstrap';
-import Badge from './Badge';
+// import Badge from './Badge';
+import { Badge } from 'reactstrap';
+import uuid from 'uuid';
 
 const useStyles = createUseStyles({
     verticalSlideItem: st =>({
@@ -38,7 +40,7 @@ function VerticalSlideItem({st,data}) {
                         </div>
                         <div className={classes.quesTags}>
                             {data.tags.map(tag => (
-                                <Badge/>
+                               <Badge href="#" color="primary" key={uuid()}>MIM</Badge>
                             ))}
                         </div>
                     </Col>

@@ -4,14 +4,15 @@ import { Col, Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap
 import useStyles from '../styles/LoginComponentStyle'
 import useToggleState from '../hooks/useToggleState';
 import { Redirect } from 'react-router-dom';
+
+//Context
+import {UserLoginState} from '../context/UserLoginState';
 import { useAuth } from "../context/auth";
-import { withRouter } from 'react-router-dom'
+
+
+import { withRouter } from 'react-router-dom';
 
 import axios from 'axios';
-
-//user context
-import {UserLoginState} from '../context/UserLoginState';
-
 //Set Cookie
 import { useCookies } from 'react-cookie';
 
@@ -47,9 +48,13 @@ const LoginForm = ({handleFlip,handleForgotCard,props,history, path}) => {
       
   }
   const referer = '/';
-  const { setAuthTokens } = useAuth();
+  const { setAuthTokens,setUserName } = useAuth();
   const [isLoggedIn, setLoggedIn] = useState(false);
   const [isError, setIsError] = useState(false);
+  const {setName,setEmail} = useContext(UserLoginState);
+  const handleUseInfor = (name)=>{
+    setName(name)
+  }
   const formik = useFormik({
     initialValues: {
       loginPassword: '',
@@ -64,19 +69,19 @@ const LoginForm = ({handleFlip,handleForgotCard,props,history, path}) => {
       })
       .then(function (response) {
         console.log(response);
-        if (response.data.userid) {
-          setAuthTokens(response.data.userid);
-          console.log(props.location.state.referer);
-          
+        if (response.data.unique) {
+          setAuthTokens(response.data.unique);
+          // console.log(props.location.state.referer);
+          setUserName(response.data.name)
           setLoggedIn(true);
         }
         if(response.data.msg === "Password Mismatch"){
           // setIncorrectLoginDetails();
-          // setIsError(true);
+          setIsError(true);
 
-          //  setAuthTokens(response.data.userid);
-           setAuthTokens('11111');
-          //  console.log(props.location.state.referer);
+          // //  setAuthTokens(response.data.userid);
+          //  setAuthTokens('11111');
+          // //  console.log(props.location.state.referer);
 
            setLoggedIn(true);
         }

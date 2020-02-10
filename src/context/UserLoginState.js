@@ -8,7 +8,7 @@ function UserLoginStateContextProvider(props) {
     const [isUserLogin, setIsUserLogin] = useToggleState(false);
     const [userName,setUserName] = useState('');
     const [userEmail,setUserEmail] = useState('');
-    const [cookies, setCookie, removeCookie] = useCookies(['cookie-name']);
+    // const [cookies, setCookie, removeCookie] = useCookies(['cookie-name']);
     if(!isUserLogin){
         
     }
