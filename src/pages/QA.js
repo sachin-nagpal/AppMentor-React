@@ -5,16 +5,20 @@ import QAheader from '../components/QAheader';
 import Answers from '../components/Answers';
 import RelatedQues from '../components/RelatedQues';
 import { getData } from '../helpers/getSingleQuestions';
+import AnswerEditor from '../components/Answers/AnswerEditor';
+
 
 import uuid from 'uuid';
 
-const QA = ({ match }) => {
+const QA = ({ match,location }) => {
   const [quesResponse, setQuesResponse] = React.useState({});
   const handleChangeState = (res) => {
     setQuesResponse(res);
   }
 
   React.useEffect(() => {
+    console.log(location);
+    
     console.log('RE-Rendered');
     getData(match.params.slug, handleChangeState)
   }, [match.params.slug]);
@@ -25,6 +29,7 @@ const QA = ({ match }) => {
           <div>
               <QAheader quesResponse={quesResponse}/>
           </div>
+          {location.query && <AnswerEditor/>}
           <div className="container mt-4">
             <div className="row">
               <div className="col-md-8">

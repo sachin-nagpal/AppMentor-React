@@ -21,8 +21,8 @@ import Profile from './pages/Profile';
 import NotFound from './pages/NotFound';
 
 function App(props) {
-  const [userName, setUserName] = useState('');
-  const [authTokens, setAuthTokens] = useState();
+  const [userName, setUserName] = useState(localStorage.getItem('userName') ? localStorage.getItem('userName') : '');
+  const [authTokens, setAuthTokens] = useState(localStorage.getItem('userId') ? localStorage.getItem('userId') : '');
   
   useEffect(() => {
     // (()=>{async () => {
@@ -45,7 +45,7 @@ function App(props) {
      setAuthTokens(data);
    }
    const setUserNameContext = (name)=>{
-    localStorage.setItem("userName", JSON.stringify(name));
+    localStorage.setItem("userName", name);
     setUserName(name);
    }
    

@@ -57,7 +57,7 @@ const SignupForm = ({handleFlip}) => {
   }
   const [isLoggedIn, setLoggedIn] = useState(false);
   const [isError, setIsError] = useState(false);
-  const { authTokens, setAuthTokens } = useAuth();
+  const { authTokens, setAuthTokens, setUserName } = useAuth();
   const formik = useFormik({
     initialValues: {
       firstName: '',
@@ -78,7 +78,9 @@ const SignupForm = ({handleFlip}) => {
       .then(function (response) {
         console.log(response);
         if (response.data.msg) {
-          setAuthTokens('123456')
+          // setAuthTokens('123456')
+          setUserName('');
+          setAuthTokens('');
         }
       })
       .catch(function (error) {

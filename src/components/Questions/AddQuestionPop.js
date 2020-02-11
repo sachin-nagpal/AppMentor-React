@@ -2,6 +2,7 @@ import React,{useState,useContext,useEffect,useRef} from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, FormGroup, Input,Label,Badge} from 'reactstrap';
 import Select from 'react-select';
 import { createUseStyles } from 'react-jss';
+import axios from 'axios';
 //Context
 import { useAuth } from "../../context/auth";
   
@@ -11,12 +12,13 @@ const useStyles = createUseStyles({
     }
 })
 const AddQuestionPop = (props) => {
-    const { userName } = useAuth();
+    const { userName,authTokens } = useAuth();
     const classes = useStyles();
     const closeBtn = <button className="close" onClick={props.toggle}>&times;</button>;
     const [selectedOption,setSelectedOption] = useState([]);
     const [questionTitle,setQuestionTitle] = useState('');
     const [textAreaval,setTextAreaVal] = React.useState('');
+    const [isReRender,setIsReRender] = useState(false);
     // const [options,setOptions] = useState([]);
     const optionVal = props.findalltopics.map(topic=>{
         return {value: topic.slug,label: topic.name, id: topic.id}
@@ -26,16 +28,34 @@ const AddQuestionPop = (props) => {
     const handleChange = selectedOption => {
         setSelectedOption(selectedOption)
       };
+     
       const handleAddQuestion = () =>{
-          alert("addeinf")
-          props.toggle()
+        const ids = selectedOption.map(id=>id.id);        
+          props.toggle();
+          axios.post('http://localhost/MyApplicationMentor/addquestion',{
+            unique: authTokens,
+            title: textAreaval,
+            topics: ids
+          })
+              .then(function (response) {
+                // handle success
+                setIsReRender(!isReRender);
+                console.log(response);
+              })
+              .catch(function (error) {
+                // handle error
+                console.log(error);
+              })
+              .finally(function () {
+                // always executed
+              });
       }
       const handleTextareaChange =(evt)=>{
         // let val = evt.target.val
         setTextAreaVal(evt.target.value);
       }
       const handleBadgeChanges = (data)=>{
-        setSelectedOption([...selectedOption,{value: data.value,label: data.name, id: data.id}])
+        setSelectedOption([...selectedOption,{value: data.value,label: data.label, id: data.id}])
       }
       return (
       <div>
@@ -59,7 +79,7 @@ const AddQuestionPop = (props) => {
       {/* onClick={()=>setSelectedOption([...selectedOption,{value: this.value,label: this.name, id: this.id}])} */}
       <div>
       {props.tagTopics.map(topic=>(
-        <Badges value={topic.slug} label={topic.name} id={topic.id} handleBadgeChanges={handleBadgeChanges}/>
+        <Badges data={{value:topic.slug, label:topic.name, id:topic.id}} handleBadgeChanges={handleBadgeChanges}/>
       ))}
       </div>
         {/* <Button onClick={()=>setSelectedOption([...selectedOption,{value: 'test',label: 'label', id: '111'}])}/> */}
@@ -73,6 +93,6 @@ const AddQuestionPop = (props) => {
 }
 
 const Badges = (props)=>{
-  return <Badge onClick={()=>props.handleBadgeChanges(props)} color="primary">{props.label}</Badge>
+  return <Badge onClick={()=>props.handleBadgeChanges(props.data)} color="primary">{props.data.label}</Badge>
 }
 export default AddQuestionPop;

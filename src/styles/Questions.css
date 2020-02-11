@@ -35,7 +35,7 @@ body{
 .questions__answers-about{
     display: flex;
     justify-content: space-evenly;
-    width: 130px;
+    width: 170px;
     align-items: center;
     color: #9c9c9c;
     font-family: Roboto;

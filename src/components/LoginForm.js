@@ -47,7 +47,7 @@ const LoginForm = ({handleFlip,handleForgotCard,props,history, path}) => {
       console.log(e.target);
       
   }
-  const referer = '/';
+  const referer = '/allquestions';
   const {authTokens, setAuthTokens,setUserName } = useAuth();
   const [isLoggedIn, setLoggedIn] = useState(false);
   const [isError, setIsError] = useState(false);

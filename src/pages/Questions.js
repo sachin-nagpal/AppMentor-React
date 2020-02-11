@@ -39,6 +39,7 @@ const Questions = (props) => {
   const [isAddingQuestion, setIsAddingQuestion] = useState(false);
 
   const { authTokens } = useAuth();
+  
 
   function handleAddingQuestion(){
     setIsAddingQuestion(!isAddingQuestion)
@@ -69,6 +70,30 @@ const Questions = (props) => {
       isCancelled = true;
     }; 
   }, [])
+
+  const getTagData =(urlName) =>{
+    // http://localhost/MyApplicationMentor/singletags/analytics
+    // alert('yy')
+    let isCancelled = false;
+    axios.get(`http://localhost/MyApplicationMentor/singletags/${urlName}`)
+          .then(function (response) {
+            // handle success
+            if (!isCancelled) {
+            console.log(response.data);
+            setResponse(response.data.findallquestions);
+            setRelatedQuestions(response.data.relatedquestions);
+            setTagTopics(response.data.findtagtopics);
+            setFindalltopics(response.data.findalltopics);
+            }
+          })
+          .catch(function (error) {
+            // handle error
+            console.log(error);
+          })
+          .finally(function () {
+            // always executed
+          });
+  }
 
   // {isCancelled && <h1>Waiting...</h1>}
   return (
@@ -102,7 +127,7 @@ const Questions = (props) => {
             <div className="row">
                 <div className="col-md-8">
                   {quesResponse.map(quest=>(
-                    <SingleQuestion quesData={quest} key={uuid()}/>
+                    <SingleQuestion quesData={quest} key={uuid()} getTagData={getTagData}/>
 
                   ))}
                 </div>
