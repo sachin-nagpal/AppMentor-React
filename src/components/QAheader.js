@@ -4,7 +4,7 @@ import image from '../images/image.jpeg';
 import edit from '../images/edit.png';
 import share from '../images/share.png';
 
-const QAheader = ({quesResponse}) => {
+const QAheader = ({quesResponse,isEditing,setIsEditing}) => {
     return(
         <div>
         { quesResponse.findquestion &&
@@ -31,7 +31,7 @@ const QAheader = ({quesResponse}) => {
                         </div>
 
                         <div>
-                            <button className="QAheader-btn">Add an Answer</button>
+                            <button className="QAheader-btn" onClick={()=>setIsEditing(!isEditing)}>{!isEditing ? 'Add an Answer' : 'Close Editor' }</button>
                         </div>
                     </div>
                 </div>

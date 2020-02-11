@@ -24,12 +24,13 @@ export default function SingleQuestion({quesData,getTagData}) {
 
             {quesData.count > 0 ?
              <div className="questions__answers-container" style={{cursor: 'pointer'}}>
-                <div className="answers-triangle"></div>
+                        <div className="answers-triangle"></div>
+                        <Link to={{ pathname: `/singlequestion/${quesData.slug}` }} style={{textDecoration: 'none'}}>
                     <div className="questions__answers" >
                             {quesData.answer && quesData.answer.text.slice(0,200)}
                             {quesData.answer.text.length > 200 &&
                             <>
-                            ...<Link to={{ pathname: `/singlequestion/${quesData.slug}` }}>read more</Link>
+                            ...read more
                             </>
                             }
                             <div className="user-about-container">
@@ -41,9 +42,10 @@ export default function SingleQuestion({quesData,getTagData}) {
                                     </div>
                                 </div>
                         </div>
-                    </div>
+                            </div>
+                            </Link>
                 </div>
-            : <div>Be the first to <Link to={{ pathname: `/singlequestion/${quesData.slug}` , query: { isEditing: true } }}>answer</Link>.</div>}
+            : <div>Be the first to <Link to={{ pathname: `/singlequestion/${quesData.slug}` , isEditing: true }}>answer</Link>.</div>}
             
         </div>
         </div>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 // import './App.css';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import QAheader from '../components/QAheader';
@@ -23,16 +23,18 @@ const QA = ({ match,location }) => {
     getData(match.params.slug, handleChangeState)
   }, [match.params.slug]);
 
-
+  const [isEditing, setIsEditing] = useState(location.isEditing || false);
   return (
     <div style={{backgroundColor:"#f5f5f5"}}>
           <div>
-              <QAheader quesResponse={quesResponse}/>
+          <QAheader quesResponse={quesResponse} isEditing={isEditing} setIsEditing={setIsEditing}/>
           </div>
-          {location.query && <AnswerEditor/>}
           <div className="container mt-4">
             <div className="row">
               <div className="col-md-8">
+          {
+            isEditing && < AnswerEditor />
+          }
                 <div className="">
                   {quesResponse.findallanswers && quesResponse.findallanswers.map(answers=>(
                     <Answers answers={answers} key={uuid()}/>

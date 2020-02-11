@@ -1,0 +1,13 @@
+div.DraftEditor-root {
+    /* border: 1px solid #000;
+    background-color: beige; */
+    min-height: 200px;
+    padding: 0 1rem;
+}
+div.DraftEditor-root::placeholder{
+}
+
+div.DraftEditor-editorContainer,
+div.public-DraftEditor-content {
+    height: 100%;
+}
