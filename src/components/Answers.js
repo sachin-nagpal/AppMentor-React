@@ -6,32 +6,23 @@ import call from '../images/call.png';
 import comment from '../images/comment.png';
 import shareWhite from '../images/shareWhite.png';
 import share from '../images/share.png';
+import parse from 'html-react-parser';
 
 import UpvoteBtn from './UpvoteBtn';
 // import Moment from 'react-moment';
-const moment = require('moment');
-const Answers = ({answers}) => {
-    
+const Answers = ({answers,handleReload}) => {
+    const [clickedCount,setClickedCount] = useState('');
     const [time,setTime] = useState(0);
-    const [clicked,isClicked] = useState(false);
-    const [clickedCount,setClickedCount] = useState(0);
     useEffect(() => {
         if(answers.findallanswers){
-            setTime(moment(answers.created_at,"MM-DD-YYYY"))
-            console.log(time);
-            setClickedCount(answers.findallanswers.upvotes)
+            setClickedCount(answers.findallanswers.upvotes);
         }
     }, []);
 
-    const handleClick=()=>{
-        isClicked(true);
-        const val = clickedCount;
-        if(!clicked){
-            setClickedCount(val+1);
-        }
-        else{
-            setClickedCount(clickedCount)
-        } 
+    const handleUpvote=()=>{
+      alert('Clicked');
+      console.log(answers.upvotes);
+      handleReload();
     }
     return(
         <div>
@@ -60,7 +51,7 @@ const Answers = ({answers}) => {
                 </div>
 
                 <div className="ans-text-area">
-                    {answers.answer}
+                    {parse(answers.answer)}
                 </div> 
 
                 <div className="d-flex align-items-center">
@@ -68,7 +59,7 @@ const Answers = ({answers}) => {
                         {/* <div className="upvote-triangle" onClick={handleClick}>
                             <div style={{color:"#959595", marginLeft:"20px"}}>{clickedCount}</div>
                         </div> */}
-                        <UpvoteBtn upvotes={answers.upvotes} handleClick={handleClick} clickedCount={clickedCount}/>
+                        <UpvoteBtn upvotes={answers.upvotes} handleUpvote={handleUpvote}/>
                     </div>
                     <img src={comment} alt="" className="ans-btn-img"></img><span className="comment-share-text">Comment</span>
                     <img src={shareWhite} alt="" className="ans-btn-img"></img><span className="comment-share-text">Share</span>

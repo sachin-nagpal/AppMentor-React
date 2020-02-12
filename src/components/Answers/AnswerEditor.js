@@ -3,7 +3,7 @@ import { EditorState, convertToRaw } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import '../../styles/AnswersEditor.css'
-
+import {Button} from 'reactstrap';
 // Testing
 import draftToHtml from 'draftjs-to-html';
 // import htmlToDraft from 'html-to-draftjs';
@@ -17,8 +17,8 @@ class AnswerEditor extends Component {
 
 
  onEditorStateChange = (editorState)=>{
-    this.setState({
-      editorState
+   this.setState({
+     editorState
     });
   };
 
@@ -57,10 +57,11 @@ class AnswerEditor extends Component {
              },
           }}
         />
-        {/* <textarea
+        <textarea
           disabled
           value={draftToHtml(convertToRaw(editorState.getCurrentContent()))}
-        /> */}
+        />
+        <Button onClick={()=>this.props.handlePostAnswer(editorState.getCurrentContent())}>Submit</Button>
       </div>
     );
   }

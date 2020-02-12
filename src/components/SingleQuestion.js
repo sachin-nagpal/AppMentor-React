@@ -4,6 +4,8 @@ import img from '../images/image.jpeg';
 import ShowMoreText from './ShowMoreText';
 import {Link} from 'react-router-dom';
 import uuid from 'uuid';
+import parse from 'html-react-parser';
+
 export default function SingleQuestion({quesData,getTagData}) {
     // console.log(quesData)
 
@@ -27,7 +29,7 @@ export default function SingleQuestion({quesData,getTagData}) {
                         <div className="answers-triangle"></div>
                         <Link to={{ pathname: `/singlequestion/${quesData.slug}` }} style={{textDecoration: 'none'}}>
                     <div className="questions__answers" >
-                            {quesData.answer && quesData.answer.text.slice(0,200)}
+                            {quesData.answer && parse(quesData.answer.text)}
                             {quesData.answer.text.length > 200 &&
                             <>
                             ...read more
