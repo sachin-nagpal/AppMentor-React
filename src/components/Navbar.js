@@ -48,11 +48,13 @@ const NavbarComponent = (props) => {
      const toggle = () => setIsOpen(!isOpen);
      
 
-     const { authTokens, setAuthTokens } = useAuth();
+     const { authTokens, setAuthTokens,setUserName } = useAuth();
 
      function handleUserLogout(){
         //  setIsLogout(isLogout);
-         setAuthTokens();
+        //  setAuthTokens(null);
+        //  setUserName(null);
+         localStorage.clear()
      }
         return (
             <div>

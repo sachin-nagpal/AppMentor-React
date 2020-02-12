@@ -75,6 +75,9 @@ const LoginForm = ({handleFlip,handleForgotCard,props,history, path}) => {
           // console.log(props.location.state.referer);
           setUserName(response.data.name)
           setLoggedIn(true);
+          if (!response.data.image) {
+            
+          }
         }
         if(response.data.msg === "Password Mismatch"){
           // setIncorrectLoginDetails();

@@ -59,6 +59,7 @@ function App(props) {
                   <Route exact path='/' render={(routeProps) => <Home {...routeProps}/>}/>
                     {/* <Route exact path='/profile' render={(routeProps)=><Profile {...routeProps} user={this.state.user}/>}/> */}
                     <Route exact path='/allquestions' render={(routeProps)=><Questions {...routeProps} />}/>
+                    <Route exact path='/allquestions/:tag' render={(routeProps)=><Questions {...routeProps} />}/>
                     <Route exact path='/singlequestion/:slug' render={(routeProps)=><QA {...routeProps} />}/>
                     <Route exact path='/signup-login' render={(routeProps)=><SignupLoginPage {...routeProps} />}/>
                     <PrivateRoutes path='/profile' component={Profile}/>/>
