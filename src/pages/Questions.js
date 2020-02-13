@@ -2,8 +2,9 @@ import React, { useState, useEffect,useContext } from 'react';
 import SingleQuestion from '../components/SingleQuestion';
 import '../styles/Questions.css';
 import {Link} from 'react-router-dom'
-import axios from 'axios';
 import uuid from 'uuid';
+
+import AxiosRequest from '../helpers/AxiosRequests';
 
 
 //user context
@@ -36,7 +37,7 @@ const Questions = (props) => {
   const [relatedQuestions,setRelatedQuestions] = useState([]);
   const [tagTopics,setTagTopics] = useState([]);
   const [findalltopics,setFindalltopics] = useState([]);
-
+  const [url,setUrl] = useState('');
   const [isAddingQuestion, setIsAddingQuestion] = useState(false);
 
   const { authTokens } = useAuth();
@@ -48,52 +49,37 @@ const Questions = (props) => {
 
   useEffect(() => {
     let isCancelled = false;
-        axios.get('http://localhost/MyApplicationMentor/getallquestion')
-          .then(function (response) {
-            // handle success
-            if (!isCancelled) {
+    let url = props.match.params.tag ? `http://localhost/MyApplicationMentor/singletags/${props.match.params.tag}` : `http://localhost/MyApplicationMentor/getallquestion`;
+    console.log(url);
+    
+    // let url = match
+        (async function () {
+          const response = await AxiosRequest().get(url);
+          // console.log(response);
+          if (!isCancelled) {
             console.log(response.data);
             setResponse(response.data.findallquestions);
             setRelatedQuestions(response.data.relatedquestions);
             setTagTopics(response.data.findtagtopics);
             setFindalltopics(response.data.findalltopics);
             }
-          })
-          .catch(function (error) {
-            // handle error
-            console.log(error);
-          })
-          .finally(function () {
-            // always executed
-          });
+        })();
 
     return () => {
       isCancelled = true;
     }; 
-  }, [])
+  }, [props.match.url])
 
   const getTagData =(urlName) =>{
     // http://localhost/MyApplicationMentor/singletags/analytics
-    // alert('yy')
-    let isCancelled = false;
-    axios.get(`http://localhost/MyApplicationMentor/singletags/${urlName}`)
-          .then(function (response) {
-            // handle success
-            if (!isCancelled) {
-            console.log(response.data);
-            setResponse(response.data.findallquestions);
-            setRelatedQuestions(response.data.relatedquestions);
-            setTagTopics(response.data.findtagtopics);
-            setFindalltopics(response.data.findalltopics);
-            }
-          })
-          .catch(function (error) {
-            // handle error
-            console.log(error);
-          })
-          .finally(function () {
-            // always executed
-          });
+    (async function () {
+      const response = await AxiosRequest().get(`${process.env.REACT_APP_API_HOST_URL}/singletags/${urlName}`);
+      console.log(response);
+        setResponse(response.data.findallquestions);
+        setRelatedQuestions(response.data.relatedquestions);
+        setTagTopics(response.data.findtagtopics);
+        setFindalltopics(response.data.findalltopics);
+    })();
   }
 
   // {isCancelled && <h1>Waiting...</h1>}
@@ -135,7 +121,7 @@ const Questions = (props) => {
 
                 <div className="col-md-4">
                     <div style={{backgroundColor:"#ffffff"}}>
-                      {/* <RelatedQues relatedQ = {relatedQuestions}/> */}
+                      <RelatedQues relatedQ = {relatedQuestions}/>
                     </div>
                   </div>            
             </div>

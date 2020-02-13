@@ -1,7 +1,7 @@
 import React,{useState} from 'react';
 // import './App.css';
 // import 'bootstrap/dist/css/bootstrap.min.css';
-import axios from 'axios';
+import AxiosRequest from '../helpers/AxiosRequests';
 import QAheader from '../components/QAheader';
 import Answers from '../components/Answers';
 import RelatedQues from '../components/RelatedQues';
@@ -23,7 +23,7 @@ const QA = ({ match,location }) => {
   const [isReload, setIsReload] = useState(false);
 
   React.useEffect(() => {
-    console.log(location);
+    // console.log(quesResponse);
     
     console.log('RE-Rendered');
     getData(match.params.slug, handleChangeState)
@@ -31,18 +31,32 @@ const QA = ({ match,location }) => {
 
   const handlePostAnswer = (editorState) =>{
     const answer = draftToHtml(convertToRaw(editorState));
-    axios.post('http://localhost/MyApplicationMentor/postanswer', {
-      qid: quesResponse.findquestion.id,
-      token: authTokens,
-      answer: answer
-    })
-    .then(function (response) {
-      console.log(response);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-    console.log(draftToHtml(convertToRaw(editorState)))
+  //   axios.post('http://localhost/MyApplicationMentor/postanswer', {
+  //     qid: quesResponse.findquestion.id,
+  //     token: authTokens,
+  //     answer: answer
+  //   })
+  //   .then(function (response) {
+  //     console.log(response);
+  //   })
+  //   .catch(function (error) {
+  //     console.log(error);
+  //   });
+  //   console.log(draftToHtml(convertToRaw(editorState)))
+
+  (async function () {
+    const response = await AxiosRequest().post('http://localhost/MyApplicationMentor/postanswer', {
+          qid: quesResponse.findquestion[0].id,
+          token: authTokens,
+          answer: answer
+        });
+    console.log(response);
+      // setResponse(response.data.findallquestions);
+      // setRelatedQuestions(response.data.relatedquestions);
+      // setTagTopics(response.data.findtagtopics);
+      // setFindalltopics(response.data.findalltopics);
+  })();
+  
   }
   
   const handleReload = () =>{
@@ -54,7 +68,7 @@ const QA = ({ match,location }) => {
   return (
     <div style={{backgroundColor:"#f5f5f5"}}>
           <div>
-          <QAheader quesResponse={quesResponse} isEditing={isEditing} setIsEditing={setIsEditing}/>
+          <QAheader quesResponse={quesResponse} isEditing={isEditing} setIsEditing={setIsEditing} answerCount={quesResponse.answercount} getData={getData} handleChangeState={handleChangeState}/>
           </div>
           <div className="container mt-4">
             <div className="row">

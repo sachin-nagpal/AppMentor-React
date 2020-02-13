@@ -7,22 +7,41 @@ import comment from '../images/comment.png';
 import shareWhite from '../images/shareWhite.png';
 import share from '../images/share.png';
 import parse from 'html-react-parser';
+import AxiosRequests from '../helpers/AxiosRequests';
+// Context
+import { useAuth } from "../context/auth";
 
 import UpvoteBtn from './UpvoteBtn';
 // import Moment from 'react-moment';
 const Answers = ({answers,handleReload}) => {
     const [clickedCount,setClickedCount] = useState('');
     const [time,setTime] = useState(0);
+    const { authTokens } = useAuth();
+    const [upvotes,setUpvotes] = useState(answers.upvotes);
     useEffect(() => {
         if(answers.findallanswers){
             setClickedCount(answers.findallanswers.upvotes);
         }
     }, []);
 
-    const handleUpvote=()=>{
-      alert('Clicked');
-      console.log(answers.upvotes);
-      handleReload();
+    const handleUpvote= async ()=>{
+    //   alert('Clicked');
+     let vote = upvotes;
+      const response = await AxiosRequests().post(`${process.env.REACT_APP_API_HOST_URL}/upvoteans`,{
+          ans_id: answers.id,
+          token: authTokens
+            })
+            console.log(response);
+            if(response.data.vote === 'up'){
+                setUpvotes(vote+1);
+            }
+            if(response.data.vote === 'down'){
+                setUpvotes(vote-1);
+            }
+            // else{
+            //     alert('Network Error')
+            // }
+    //   handleReload();
     }
     return(
         <div>
@@ -35,7 +54,7 @@ const Answers = ({answers,handleReload}) => {
                         <div>
                             <div className="ans-user-name">{answers.fname} {answers.lname}</div>
                             <div className="ans-user-about">Founder at MiM-Essay.com , MiM Grad- ESCP Europe</div>
-                            <div className="ans-date">Answered on 02 December 2019</div>
+                            <div className="ans-date">{answers.created_at}</div>
                         </div>
                     </div>
                     <div>
@@ -59,7 +78,7 @@ const Answers = ({answers,handleReload}) => {
                         {/* <div className="upvote-triangle" onClick={handleClick}>
                             <div style={{color:"#959595", marginLeft:"20px"}}>{clickedCount}</div>
                         </div> */}
-                        <UpvoteBtn upvotes={answers.upvotes} handleUpvote={handleUpvote}/>
+                        <UpvoteBtn upvotes={upvotes} handleUpvote={handleUpvote}/>
                     </div>
                     <img src={comment} alt="" className="ans-btn-img"></img><span className="comment-share-text">Comment</span>
                     <img src={shareWhite} alt="" className="ans-btn-img"></img><span className="comment-share-text">Share</span>

@@ -6,6 +6,9 @@ import {Link} from 'react-router-dom';
 import uuid from 'uuid';
 import parse from 'html-react-parser';
 
+import AskedByStrip from '../components/Misc/AskedByStrip';
+
+
 export default function SingleQuestion({quesData,getTagData}) {
     // console.log(quesData)
 
@@ -14,15 +17,16 @@ export default function SingleQuestion({quesData,getTagData}) {
         <div className="mb-5">
             <div>
             <div className="d-flex">
-            <div className="asked-by">Asked by</div>
+            {/* <div className="asked-by">Asked by</div>
             <div className="asked-by-name">{quesData.fname}</div>
             <div className="asked-by"> in </div>
-            <div className="asked-by-name">{quesData.topics.map((topic,i)=>(<span key={uuid()} onClick={()=>getTagData(topic.slug)} style={{cursor: 'pointer'}}>{topic.name}, </span>))}</div>
+            <div className="asked-by-name">{quesData.topics.map((topic,i)=>(<span key={uuid()} onClick={()=>getTagData(topic.slug)} style={{cursor: 'pointer'}}>{topic.name}, </span>))}</div> */}
+            <AskedByStrip name={`${quesData.fname} ${quesData.lname}`} tags={quesData.topics} getTagData={getTagData} url={`/allquestions/`}/>
             </div>
 
             <div className="questions__questions">{quesData.title}</div>
 
-        <div className="questions__answers-about"><img src={edit} height="20px" width="20px"/> {quesData.count} <div style={{height:"5px", width:"5px", borderRadius:"50%", backgroundColor: "#c4c4c4"}}></div>{quesData.created_at}</div>
+        <div className="questions__answers-about"><img src={edit} height="15px" width="15px"/><span> {quesData.count} </span><div style={{height:"5px", width:"5px", borderRadius:"50%", backgroundColor: "#c4c4c4"}}></div>{quesData.created_at}</div>
 
             {quesData.count > 0 ?
              <div className="questions__answers-container" style={{cursor: 'pointer'}}>

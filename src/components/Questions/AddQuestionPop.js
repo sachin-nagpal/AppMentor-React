@@ -2,7 +2,9 @@ import React,{useState,useContext,useEffect,useRef} from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, FormGroup, Input,Label,Badge} from 'reactstrap';
 import Select from 'react-select';
 import { createUseStyles } from 'react-jss';
-import axios from 'axios';
+import AxiosRequest from '../../helpers/AxiosRequests';
+import { Tooltip } from 'reactstrap';
+
 //Context
 import { useAuth } from "../../context/auth";
   
@@ -26,37 +28,54 @@ const AddQuestionPop = (props) => {
     
     const options = optionVal;
     const handleChange = selectedOption => {
+      if(selectedOption && selectedOption.length > 0 ){
+        setIsDisabled(false);
+      }
+      else{
+        setIsDisabled(true);
+      }
         setSelectedOption(selectedOption)
       };
      
       const handleAddQuestion = () =>{
         const ids = selectedOption.map(id=>id.id);        
           props.toggle();
-          axios.post('http://localhost/MyApplicationMentor/addquestion',{
-            unique: authTokens,
-            title: textAreaval,
-            topics: ids
-          })
-              .then(function (response) {
-                // handle success
+            (async function () {
+              const response = await AxiosRequest().post(`${process.env.REACT_APP_API_HOST_URL}/addquestion`,{unique: authTokens,
+                title: textAreaval,
+                topics: ids});
                 setIsReRender(!isReRender);
                 console.log(response);
-              })
-              .catch(function (error) {
-                // handle error
-                console.log(error);
-              })
-              .finally(function () {
-                // always executed
-              });
+            })();
       }
+    // Question Text
       const handleTextareaChange =(evt)=>{
-        // let val = evt.target.val
         setTextAreaVal(evt.target.value);
       }
       const handleBadgeChanges = (data)=>{
+        if(selectedOption){
+          if(selectedOption && selectedOption.length > 0 ){
+            setIsDisabled(false);
+          }
+          else{
+            setIsDisabled(true);
+          }
+        const allSelectedVals = selectedOption.map(selected => {
+          return selected.value;
+        })
+      
+        if(allSelectedVals.includes(data.value)){
+          return;
+        }
         setSelectedOption([...selectedOption,{value: data.value,label: data.label, id: data.id}])
       }
+      else{
+        setSelectedOption([...[],{value: data.value,label: data.label, id: data.id}])
+      }
+        
+        console.log(selectedOption);
+      }
+      const [isDisbled,setIsDisabled] = useState(true)      
       return (
       <div>
         {/* <Button color="danger" onClick={toggle}>{buttonLabel}</Button> */}
@@ -79,14 +98,18 @@ const AddQuestionPop = (props) => {
       {/* onClick={()=>setSelectedOption([...selectedOption,{value: this.value,label: this.name, id: this.id}])} */}
       <div>
       {props.tagTopics.map(topic=>(
-        <Badges data={{value:topic.slug, label:topic.name, id:topic.id}} handleBadgeChanges={handleBadgeChanges}/>
+        <span id={topic.id}>
+        <Badges data={{value:topic.slug, label:topic.name, id:topic.id}} handleBadgeChanges={handleBadgeChanges} />
+        </span>
       ))}
       </div>
         {/* <Button onClick={()=>setSelectedOption([...selectedOption,{value: 'test',label: 'label', id: '111'}])}/> */}
           </ModalBody>
           <ModalFooter>
             <Button color="secondary" onClick={props.toggle}>Cancel</Button>
-            <Button color="primary" onClick={handleAddQuestion}>Add Question</Button>{' '}
+            <Button color="primary" onClick={handleAddQuestion} disabled={isDisbled} id="addBtn">
+              Add Question
+            </Button>{' '}
           </ModalFooter>
         </Modal>
       </div>)
