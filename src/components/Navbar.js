@@ -73,7 +73,7 @@ const NavbarComponent = (props) => {
                                 <NavLink href="https://github.com/reactstrap/reactstrap" className="nav-links"><strong>Explore</strong></NavLink>
                             </NavItem>
                             <NavItem className="mr-5">
-                                <NavLink to="/answers" tag={Link} className="nav-links"><strong>Answers</strong></NavLink>
+                                <NavLink to="/allquestions" tag={Link} className="nav-links"><strong>Answers</strong></NavLink>
                             </NavItem>
                             <NavItem className="mr-5">
                                 {!isUserLogin ? <NavLink to="/signup-login" tag={Link} className="nav-links"><strong>Blogs</strong></NavLink> : <button>Log out</button>}
@@ -83,12 +83,12 @@ const NavbarComponent = (props) => {
                                 Login
                                </Link>       
                             </NavItem>
-                        <NavItem>
-                            <NavLink to="/allquestions" tag={Link}>Questions</NavLink>
-                        </NavItem>
-                        <NavItem>
-                            {!authTokens ? <NavLink to="/signup-login" tag={Link}>Signup/Login</NavLink> : <Button onClick={handleUserLogout}>Log out</Button>}
-                        </NavItem>
+                            {/* <NavItem>
+                                <NavLink to="/allquestions" tag={Link}>Questions</NavLink>
+                            </NavItem>
+                            <NavItem>
+                                {!authTokens ? <NavLink to="/signup-login" tag={Link}>Signup/Login</NavLink> : <Button onClick={handleUserLogout}>Log out</Button>}
+                            </NavItem> */}
                     </Nav>
                     </Collapse>
                 </Navbar>

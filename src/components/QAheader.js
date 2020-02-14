@@ -9,7 +9,7 @@ const QAheader = ({quesResponse}) => {
         <div>
         { quesResponse.findquestion &&
             <div className="bg-white">
-                <div className="QAheader-inside-container">
+                <div className="QAheader-inside-container container">
                     <div className="d-flex">
                         <div>
                             <span className="asked-by"><img src={image} style={{height:"30px", width:"30px", borderRadius:"50%", marginRight:"10px"}}></img>Asked by</span> 

@@ -73,7 +73,6 @@ function Profile(props) {
   }, [])
     return (
         <div className={classes.profile}>
-            <h1>{name}</h1>
             <Container> 
                 < Row >
                     <Col xs="12" sm="12" md="8">

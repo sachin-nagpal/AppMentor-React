@@ -6,7 +6,6 @@ import call from '../images/call.png';
 import comment from '../images/comment.png';
 import shareWhite from '../images/shareWhite.png';
 import share from '../images/share.png';
-
 import UpvoteBtn from './UpvoteBtn';
 const Answers = ({answers}) => {
     
@@ -30,6 +29,7 @@ const Answers = ({answers}) => {
             setClickedCount(clickedCount)
         } 
     }
+
     return(
         <div>
             <div className="answers-container">

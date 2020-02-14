@@ -2,6 +2,7 @@ import React from 'react';
 // import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import QAheader from '../components/QAheader';
+import MyEditor from '../components/DraftEditor';
 import Answers from '../components/Answers';
 import RelatedQues from '../components/RelatedQues';
 
@@ -13,6 +14,8 @@ const QA = ({quesResponse,getQuestionsData}) => {
           <div>
               <QAheader quesResponse={quesResponse}/>
           </div>
+
+          <MyEditor/>
           <div className="container mt-4">
             <div className="row">
               <div className="col-md-8">

@@ -1,0 +1,57 @@
+.card-container{
+    border-radius: 12px;
+    box-shadow: -1px 1px 10px 1px rgba(119, 119, 119, 0.75);
+    margin: 3.8rem 1rem 0rem;
+    padding: 0rem 0.7rem;
+}
+
+.inner{
+    position: relative;
+    top: -2rem;
+}
+
+.blog-title{
+    margin-top:1.5rem;
+    font-size: 1.5rem;
+    color: #333030;
+    font-family: Merriweather;
+}
+
+.time-date-row{
+    margin: 0.2rem 0rem 0.8rem;
+    display: flex;
+    align-items: center;
+}
+
+.blog-img{
+    border-radius: 12px;
+    width: 100%;
+    margin: auto;
+    height: 16rem;
+}
+
+.blog-sm-img{
+    height: 1.1rem;
+    width: 1.1rem;
+}
+
+.date{
+    color: #999797;
+    font-size: 1.2rem;
+    color: #999797;
+    font-size: 1.2rem;
+    margin: 0px 7px;
+}
+
+.blog-dot{
+    height: 0.5rem;
+    background-color: #999797;
+    width: 0.5rem;
+    border-radius: 50%;
+    margin-right: 7px;
+}
+
+.blog-detail{
+    font-family: Merriweather;
+    padding: 0.5rem 0rem 1rem;
+}

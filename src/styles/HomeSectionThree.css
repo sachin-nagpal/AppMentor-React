@@ -1,0 +1,26 @@
+.trending-topics-container{
+    padding: 40px 0px;
+}
+
+.trending-topics{
+    margin: 30px 0px;
+}
+
+.common{
+    font-family: "Merriweather - Regular";
+    font-size: 36px;
+    font-weight: 400;
+}
+
+.degree-card{
+    border-radius: 12px;
+    height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+a:hover{
+    text-decoration: none;
+}

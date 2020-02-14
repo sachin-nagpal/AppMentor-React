@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css?family=Merriweather&display=swap');
+
+.common-sec-one{
+    font-family: 'Merriweather', serif;
+    font-weight: 400;
+}
+
+.section-one-container{
+    width: 90%;
+    margin: auto;
+    padding-bottom: 50px;
+}
+
+.home-left-one{
+    margin-top: 3rem;
+}
+
+.home-left-two{
+    margin-top: 4rem;
+}
+
+.heading-one{
+    color: #416aa6;
+    font-size: 3rem;
+}
+
+.heading-two-bg{
+    background-image: url('../images/bg-stroke.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: #ffffff;
+    width: 45rem;
+}
+
+.heading-two{
+    margin-left: 3rem;
+    color: #ffffff;
+    font-size: 2.5rem;
+}
+
+.heading-three{
+    color: #416aa6;
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.home-search{
+    margin-top: 1.3rem;
+    padding: 5px 5px 5px 15px;
+    box-shadow: 0 0 10px 1px rgba(65, 106, 166, 0.75);
+    background-color: #ffffff;
+    border-radius: 7px;
+    display: flex;
+    justify-content: space-between;
+    width: 45rem;
+}
+
+input{
+    border: none;
+    width: 85%;
+    width: 82%;
+}
+
+input:focus{
+    border: none;
+    outline: none;
+}
+
+.search-btn{
+    width: 18%;
+    outline: none;
+    border: none;
+    border-radius: 7px;
+    box-shadow: 0 0 10px 1px rgba(189, 189, 189, 0.75);
+    background-color: #416aa6;
+    color: #ffffff;
+    font-family: Merriweather;
+    font-size: 1.75rem;
+    font-weight: 400;
+    letter-spacing: 0.75px;
+}
+
+.search-btn:focus{
+    outline: none;
+}
+
+::placeholder { 
+    opacity: 1;
+    color: #9bb5db;
+    font-size: 22px;
+    font-weight: 400;
+  }
