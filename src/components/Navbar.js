@@ -78,35 +78,28 @@ const NavbarComponent = (props) => {
                             <NavItem className="mr-5">
                                 <NavLink to="/allquestions" tag={Link} className="nav-links"><strong>Answers</strong></NavLink>
                             </NavItem>
-                            <NavItem className="mr-5">
+                            {/* <NavItem className="mr-5">
                                 {!isUserLogin ? <NavLink to="/signup-login" tag={Link} className="nav-links"><strong>Blogs</strong></NavLink> : <button>Log out</button>}
-                            </NavItem>
+                            </NavItem> */}
                             <NavItem>
+                            {!authTokens ? 
                                <Link to="/signup-login" className="login-btn mr-5">
                                 Login
-                               </Link>       
+                               </Link>     
+                               : <Button onClick={handleUserLogout}>Log out</Button>}  
                             </NavItem>
-<<<<<<< HEAD
-                        {/* <NavItem>
-                            <NavLink href="https://github.com/reactstrap/reactstrap">GitHub</NavLink>
-                        </NavItem> */}
+{/*                        
                         <NavItem>
                             <NavLink to="/allquestions" tag={Link}>Questions</NavLink>
                         </NavItem>
                         <NavItem>
                             {!authTokens ? <NavLink to="/signup-login" tag={Link}>Signup/Login</NavLink> : <Button onClick={handleUserLogout}>Log out</Button>}
                         </NavItem>
-                   
+                    */}
+                    {/* <NavItem>
+                        {!authTokens ? <NavLink to="/signup-login" tag={Link}>Signup/Login</NavLink> : <Button onClick={handleUserLogout}>Log out</Button>}
+                    </NavItem> */}
                         </Nav>
-=======
-                            {/* <NavItem>
-                                <NavLink to="/allquestions" tag={Link}>Questions</NavLink>
-                            </NavItem>
-                            <NavItem>
-                                {!authTokens ? <NavLink to="/signup-login" tag={Link}>Signup/Login</NavLink> : <Button onClick={handleUserLogout}>Log out</Button>}
-                            </NavItem> */}
-                    </Nav>
->>>>>>> 26c826d636a4453c77a4e63668886eab63f2cb9c
                     </Collapse>
                 </Navbar>
             </div>
