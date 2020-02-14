@@ -19,6 +19,7 @@ import { AuthContext } from "./context/auth";
 import Home from './pages/Home';
 import Profile from './pages/Profile';
 import NotFound from './pages/NotFound';
+import LoginForm from './components/LoginForm';
 
 function App(props) {
 
