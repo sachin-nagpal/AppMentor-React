@@ -31,19 +31,6 @@ const QA = ({ match,location }) => {
 
   const handlePostAnswer = (editorState) =>{
     const answer = draftToHtml(convertToRaw(editorState));
-  //   axios.post('http://localhost/MyApplicationMentor/postanswer', {
-  //     qid: quesResponse.findquestion.id,
-  //     token: authTokens,
-  //     answer: answer
-  //   })
-  //   .then(function (response) {
-  //     console.log(response);
-  //   })
-  //   .catch(function (error) {
-  //     console.log(error);
-  //   });
-  //   console.log(draftToHtml(convertToRaw(editorState)))
-
   (async function () {
     const response = await AxiosRequest().post('http://localhost/MyApplicationMentor/postanswer', {
           qid: quesResponse.findquestion[0].id,
@@ -55,6 +42,8 @@ const QA = ({ match,location }) => {
       // setRelatedQuestions(response.data.relatedquestions);
       // setTagTopics(response.data.findtagtopics);
       // setFindalltopics(response.data.findalltopics);
+      setIsEditing(false);
+      setIsReload(!isReload);
   })();
   
   }
@@ -74,7 +63,7 @@ const QA = ({ match,location }) => {
             <div className="row">
               <div className="col-md-8">
           {
-            isEditing && < AnswerEditor handlePostAnswer={handlePostAnswer} setIsReload={setIsReload} setIsReload/>
+            isEditing && < AnswerEditor handlePostAnswer={handlePostAnswer} setIsReload={setIsReload}/>
           }
                 <div className="">
                   {quesResponse.findallanswers && quesResponse.findallanswers.map(answers=>(

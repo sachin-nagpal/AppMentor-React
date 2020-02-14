@@ -52,8 +52,9 @@ const NavbarComponent = (props) => {
 
      function handleUserLogout(){
         //  setIsLogout(isLogout);
-        setUserName();
-         setAuthTokens();
+        setUserName(null);
+         setAuthTokens(null);
+         localStorage.clear();
      }
         return (
             <div>

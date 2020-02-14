@@ -21,8 +21,9 @@ import Profile from './pages/Profile';
 import NotFound from './pages/NotFound';
 
 function App(props) {
-  const [userName, setUserName] = useState(localStorage.getItem('userName') ? localStorage.getItem('userName') : '');
-  const [authTokens, setAuthTokens] = useState(localStorage.getItem('userId') ? localStorage.getItem('userId') : '');
+
+  const [userName, setUserName] = useState(localStorage.getItem('userName') ? localStorage.getItem('userName') : null);
+  const [authTokens, setAuthTokens] = useState(localStorage.getItem('userId') ? localStorage.getItem('userId') : null);
   
   useEffect(() => {
     // (()=>{async () => {

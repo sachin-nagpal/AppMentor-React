@@ -21,7 +21,6 @@ class AnswerEditor extends Component {
      editorState
     });
   };
-
   render() {
     const { editorState } = this.state;
     return (
@@ -57,10 +56,10 @@ class AnswerEditor extends Component {
              },
           }}
         />
-        <textarea
+        {/* <textarea
           disabled
           value={draftToHtml(convertToRaw(editorState.getCurrentContent()))}
-        />
+        /> */}
         <Button onClick={()=>this.props.handlePostAnswer(editorState.getCurrentContent())}>Submit</Button>
       </div>
     );

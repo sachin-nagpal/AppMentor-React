@@ -26,14 +26,14 @@ const Answers = ({answers,handleReload}) => {
 
     const handleUpvote= async ()=>{
     //   alert('Clicked');
-     let vote = upvotes;
-      const response = await AxiosRequests().post(`${process.env.REACT_APP_API_HOST_URL}/upvoteans`,{
-          ans_id: answers.id,
-          token: authTokens
-            })
-            console.log(response);
-            if(response.data.vote === 'up'){
-                setUpvotes(vote+1);
+    let vote = upvotes;
+    const response = await AxiosRequests().post(`${process.env.REACT_APP_API_HOST_URL}/upvoteans`,{
+        ans_id: answers.id,
+        token: authTokens
+    })
+    console.log(response);
+        if(response.data.vote === 'up'){
+            setUpvotes(vote+1);
             }
             if(response.data.vote === 'down'){
                 setUpvotes(vote-1);

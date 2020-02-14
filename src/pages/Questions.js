@@ -39,7 +39,7 @@ const Questions = (props) => {
   const [findalltopics,setFindalltopics] = useState([]);
   const [url,setUrl] = useState('');
   const [isAddingQuestion, setIsAddingQuestion] = useState(false);
-
+  const [isReload,setIsReload] = useState(false);
   const { authTokens } = useAuth();
   
 
@@ -68,7 +68,7 @@ const Questions = (props) => {
     return () => {
       isCancelled = true;
     }; 
-  }, [props.match.url])
+  }, [props.match.url,isReload])
 
   const getTagData =(urlName) =>{
     // http://localhost/MyApplicationMentor/singletags/analytics
@@ -109,7 +109,7 @@ const Questions = (props) => {
           <div><Link to='/signup-login'><Button outline color="primary">Login</Button>{' '}</Link></div>
         }
         </div>
-        {authTokens && <AddQuestionPop isAddingQuestion={isAddingQuestion} toggle={handleAddingQuestion} findalltopics={findalltopics} tagTopics={tagTopics}/>}
+        {authTokens && <AddQuestionPop isAddingQuestion={isAddingQuestion} toggle={handleAddingQuestion} findalltopics={findalltopics} tagTopics={tagTopics} setIsReload={setIsReload} isReload={isReload}/>}
         <div className="container mt-5">
             <div className="row">
                 <div className="col-md-8">

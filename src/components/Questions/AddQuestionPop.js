@@ -46,6 +46,7 @@ const AddQuestionPop = (props) => {
                 topics: ids});
                 setIsReRender(!isReRender);
                 console.log(response);
+                props.setIsReload(!props.isReload);
             })();
       }
     // Question Text
@@ -53,13 +54,14 @@ const AddQuestionPop = (props) => {
         setTextAreaVal(evt.target.value);
       }
       const handleBadgeChanges = (data)=>{
+        console.log("badge Change")
         if(selectedOption){
-          if(selectedOption && selectedOption.length > 0 ){
-            setIsDisabled(false);
-          }
-          else{
-            setIsDisabled(true);
-          }
+          // if(selectedOption.length > 0 ){
+          //   setIsDisabled(false);
+          // }
+          // else{
+          //   setIsDisabled(true);
+          // }
         const allSelectedVals = selectedOption.map(selected => {
           return selected.value;
         })
@@ -70,7 +72,7 @@ const AddQuestionPop = (props) => {
         setSelectedOption([...selectedOption,{value: data.value,label: data.label, id: data.id}])
       }
       else{
-        setSelectedOption([...[],{value: data.value,label: data.label, id: data.id}])
+          setSelectedOption([...[],{value: data.value,label: data.label, id: data.id}])
       }
         
         console.log(selectedOption);
