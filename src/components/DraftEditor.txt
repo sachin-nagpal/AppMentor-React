@@ -1,0 +1,14 @@
+import {Editor, EditorState} from 'draft-js';
+
+import UpvoteBtn from './UpvoteBtn';
+const Answers = ({answers}) => {
+    const [editorState, setEditorState] = React.useState(
+        EditorState.createEmpty(),
+        );
+   
+    <div className="bg-white my-4">
+        <Editor editorState={editorState} onChange={setEditorState} />
+    </div>
+}
+
+export default Editor;

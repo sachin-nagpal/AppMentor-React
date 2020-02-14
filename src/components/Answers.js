@@ -43,6 +43,7 @@ const Answers = ({answers,handleReload}) => {
             // }
     //   handleReload();
     }
+
     return(
         <div>
             <div className="answers-container">

@@ -5,6 +5,9 @@ import handleBigText from '../helpers/shortTextLength';
 
 
 const useStyles = createUseStyles({
+    aboutTextContr:{
+        color:'#686767'
+    },
     readMore:btnCol=>({
         color: btnCol,
         fontSize: '1rem',
@@ -12,8 +15,8 @@ const useStyles = createUseStyles({
         cursor: 'pointer'
     })
 })
-export default function ShowMoreText({text,length,btnText,btnCol}) {
-    const classes = useStyles(btnCol);
+export default function ShowMoreText({text,length,btnText,btnCol,textColor}) {
+    const classes = useStyles(btnCol,textColor);
     const [isReadMoreExpand, setIsReadMoreExpand] = useToggleState(false);
     return (
         <div>

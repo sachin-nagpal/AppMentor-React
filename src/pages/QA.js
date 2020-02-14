@@ -3,6 +3,7 @@ import React,{useState} from 'react';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import AxiosRequest from '../helpers/AxiosRequests';
 import QAheader from '../components/QAheader';
+import MyEditor from '../components/DraftEditor';
 import Answers from '../components/Answers';
 import RelatedQues from '../components/RelatedQues';
 import { getData } from '../helpers/getSingleQuestions';
@@ -59,6 +60,8 @@ const QA = ({ match,location }) => {
           <div>
           <QAheader quesResponse={quesResponse} isEditing={isEditing} setIsEditing={setIsEditing} answerCount={quesResponse.answercount} getData={getData} handleChangeState={handleChangeState}/>
           </div>
+
+          <MyEditor/>
           <div className="container mt-4">
             <div className="row">
               <div className="col-md-8">
