@@ -4,7 +4,7 @@ import LoginForm from '../components/LoginForm';
 import ForgotPasswordSignin from '../components/ForgetPassSignin';
 import { createUseStyles } from 'react-jss';
 import '../styles/cardFlip.css';
-
+import SnackBar from '../components/Misc/SnackBar';
 import SignUpLoginCrousel from '../components/SignUpLoginCrousel';
 
 import {
@@ -13,6 +13,10 @@ import {
   
 
 const useStyles = createUseStyles({
+  signupLoginWrapPage: {
+    width: '100%',
+    height: 'calc(100% - 71px)'
+  },
     signUpPageContainer:{
         maxWidth: '60rem',
         margin: 'auto',
@@ -46,9 +50,15 @@ const SignupLoginPage = ({items,itemsBgCol}) => {
   const handleForgot = ()=>{
     setForgotPassShow(!isForgotPassShow);
   }
-
+  const [isSnackbarOpen, setIsSnackbarOpen] = useState(false);
+  const handlePopup = (val) => {
+    setIsSnackbarOpen(val);
+    if (val) {
+      setTimeout(function () { setIsSnackbarOpen(false); }, 5000);
+    }
+  }
   return (
-      // <div className={classes.signupLoginWrapPage}>
+      <div className={classes.signupLoginWrapPage}>
         <div className={classes.signUpPageContainer}>
          <Container>
             <Row className={classes.colRow}>
@@ -70,7 +80,7 @@ const SignupLoginPage = ({items,itemsBgCol}) => {
                           {isForgotPassShow && 
                           <>
                             <div className='slide-card-inside-front'>
-                              <LoginForm handleFlip={handleFlipCard} handleForgotCard={handleForgot}/>
+                              <LoginForm handleFlip={handleFlipCard} handleForgotCard={handleForgot} handlePopup={handlePopup}/>
                             </div>
                           </>  
                           }                        
@@ -83,9 +93,10 @@ const SignupLoginPage = ({items,itemsBgCol}) => {
                     </div>
                 </Col>
             </Row>
+          <SnackBar isOpen={isSnackbarOpen} text="The username or password entered is incorrect." handlePopup={handlePopup}/>
          </Container>    
-        </div>
-    //  </div> 
+      </div>
+       </div> 
     )
 }
 

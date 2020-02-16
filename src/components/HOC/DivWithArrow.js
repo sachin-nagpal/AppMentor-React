@@ -1,22 +1,23 @@
 import React from 'react';
 import {createUseStyles} from 'react-jss';
-import '../../styles/Questions.css'
 
 const useStyles = createUseStyles({
     divWithArrowContainer:styles=>({
         border: `1px solid ${styles.borderCol}`,
         backgroundColor: styles.bgCol,
         cursor: 'pointer',
-        transition: 'background-color 0.1s',
+        // transition: 'background 0.1s',
         position: 'relative',
-        marginTop: '6px',
+        marginTop: styles.marginTop,
+        maxHeight: styles.heigth,
+        borderRadius: '0.625rem',
+        padding: '0.625rem 0.9375rem',
         '&:hover':{
-            backgroundColor: '#ffffff',
+            background: '#ffffff',
         },
         '&:hover .answersTriangle':{
-            backgroundColor: '#ffffff',
+            background: '#ffffff',
         },
-
         '& .answersTriangle':styles=>({
             borderTop: `1px solid ${styles.borderCol}`,
             borderLeft: `1px solid ${styles.borderCol}`,

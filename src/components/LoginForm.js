@@ -1,4 +1,4 @@
-import React,{useContext,useState} from 'react';
+import React,{useState} from 'react';
 import { useFormik } from 'formik';
 import { Col, Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import useStyles from '../styles/LoginComponentStyle'
@@ -6,20 +6,15 @@ import useToggleState from '../hooks/useToggleState';
 import { Redirect } from 'react-router-dom';
 
 //Context
-import {UserLoginState} from '../context/UserLoginState';
 import { useAuth } from "../context/auth";
 
 
 import { withRouter } from 'react-router-dom';
 
 import axios from 'axios';
-//Set Cookie
-import { useCookies } from 'react-cookie';
-
 
 import PersonHead from '../images/personHead.png'
 import LockIcon from '../images/LockIcon.png'
-
 
 // A custom validation function. This must return an object
 // which keys are symmetrical to our values/initialValues
@@ -40,22 +35,13 @@ const validate = values => {
   return errors;
 };
 
-const LoginForm = ({handleFlip,handleForgotCard,props,history, path}) => {
+const LoginForm = ({handleFlip,handleForgotCard,props,history, path,handlePopup}) => {
   // Pass the useFormik() hook initial form values and a submit function that will
   // be called when the form is submitted
-  const handleClick=(e)=>{
-      console.log(e.target);
-      
-  }
   const referer = '/allquestions';
   const {authTokens, setAuthTokens,setUserName } = useAuth();
-  const [isLoggedIn, setLoggedIn] = useState(false);
-  const [isError, setIsError] = useState(false);
-  const {setName,setEmail} = useContext(UserLoginState);
   const [isLoading] = useState(false);
-  const handleUseInfor = (name)=>{
-    setName(name)
-  }
+
   const formik = useFormik({
     initialValues: {
       loginPassword: '',
@@ -63,27 +49,25 @@ const LoginForm = ({handleFlip,handleForgotCard,props,history, path}) => {
     },
     validate,
     onSubmit: values => {
-      alert(JSON.stringify(values, null, 2));
+      // alert(JSON.stringify(values, null, 2));
       axios.post(`${process.env.REACT_APP_API_HOST_URL}/userlogin`, {
         email: values.loginEmail,
         password: values.loginPassword
       })
       .then(function (response) {
-        console.log(response);
+        if (response.data.msg && (response.data.msg).replace(/[\s+]/g, '').toLowerCase() === 'passwordmismatch') {
+          console.log((response.data.msg).replace(/[\s+]/g,'').toLowerCase());
+          handlePopup(true);
+        }
         if (response.data.unique) {
           setAuthTokens(response.data.unique);
           // console.log(props.location.state.referer);
-          setUserName(response.data.name)
-          setLoggedIn(true);
-        }
-        if(response.data.msg === "Password Mismatch"){
-          // setIncorrectLoginDetails();
-          setIsError(true);
+          setUserName(response.data.name);
+          handlePopup(false);
         }
       })
       .catch(function (error) {
         console.log(error);
-        setIsError(true);
       });
       return () => {
     }; 
@@ -93,11 +77,12 @@ const LoginForm = ({handleFlip,handleForgotCard,props,history, path}) => {
     if (authTokens && !isLoading) {
     return <Redirect to={referer} />;
   }
+  
   return (
     <div className={classes.formContainer}>
-      <div className={classes.mainHeading}>
-        <p>Sign In</p>
-      </div>
+        <div className={classes.mainHeading}>
+          <p>Sign In</p>
+        </div>
         <Form onSubmit={formik.handleSubmit} className={classes.signForm}>
         {/* <Label htmlFor="loginEmail">Email Address</Label> */}
         <div className={classes.inputContainer}>
