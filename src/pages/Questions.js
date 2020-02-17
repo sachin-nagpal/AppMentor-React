@@ -23,6 +23,7 @@ import {
   DropdownItem
  } from 'reactstrap';
 import  AddQuestionPop  from '../components/Questions/AddQuestionPop';
+import QuestionSearch from '../components/Questions/QuestionSearch';
 
 const Questions = (props) => {
 
@@ -76,7 +77,7 @@ const Questions = (props) => {
       const response = await AxiosRequest().get(`${process.env.REACT_APP_API_HOST_URL}/singletags/${urlName}`);
       console.log(response);
         setResponse(response.data.findallquestions);
-        setRelatedQuestions(response.data.relatedquestions);
+        setRelatedQuestions(response.data.trendingquestion);
         setTagTopics(response.data.findtagtopics);
         setFindalltopics(response.data.findalltopics);
     })();
@@ -87,21 +88,7 @@ const Questions = (props) => {
     <div>
         <div className="questions-header">
            <div className="w-50 m-auto py-3">
-            <InputGroup>
-              {/* <InputGroupButtonDropdown addonType="append" isOpen={dropdownOpen} toggle={toggleDropDown}>
-                <DropdownToggle caret className="search-dropdown">
-                  <div className="filter-text">Filter</div>
-                </DropdownToggle>
-                <DropdownMenu>
-                  <DropdownItem header>Header</DropdownItem>
-                  <DropdownItem disabled>Action</DropdownItem>
-                  <DropdownItem>Another Action</DropdownItem>
-                  <DropdownItem divider />
-                  <DropdownItem>Another Action</DropdownItem>
-                </DropdownMenu>
-              </InputGroupButtonDropdown> */}
-              <Input placeholder="Search Questions"/>
-            </InputGroup>
+            <QuestionSearch/>
            </div>
            {authTokens ?
           <div><Button outline color="primary" onClick={handleAddingQuestion}>Add Questions</Button>{' '}</div>

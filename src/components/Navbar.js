@@ -1,6 +1,8 @@
 import React, { useState, useContext } from 'react';
 import axios from 'axios';
 import useToggleState from '../hooks/useToggleState';
+import Notification from '../images/notification.png';
+import NavbarProfile from './Navbar/NavbarProfile';
 
 import { Button } from 'reactstrap';
 
@@ -26,7 +28,6 @@ import {UserLoginState} from '../context/UserLoginState';
 
 
 //Cookies
-import { useCookies } from 'react-cookie';
 import {Redirect} from 'react-router-dom';
 const NavbarComponent = (props) => {
     function userLogout(){
@@ -61,7 +62,7 @@ const NavbarComponent = (props) => {
      }
         return (
             <div>
-                <Navbar className="navbar-inner" color="" light expand="md" style={{boxShadow:"-2px 2px 5px rgba(211, 210, 210, 0.75)"}}>
+                <Navbar className="navbar-inner" color="" light expand="md" style={{boxShadow:"-2px 2px 5px rgba(211, 210, 210, 0.75)",zIndex:'1000'}}>
                     <NavbarBrand to="/" tag={Link} className="brand-logo"> <img src={navLogo} alt="hh" height="25px" width="25px"></img> myApplicationMentor</NavbarBrand>
                     <NavbarToggler onClick={toggle} />
                     <Collapse isOpen={isOpen} navbar style={{justifyContent: "flex-end"}}>
@@ -78,27 +79,22 @@ const NavbarComponent = (props) => {
                             <NavItem className="mr-5">
                                 <NavLink to="/allquestions" tag={Link} className="nav-links"><strong>Answers</strong></NavLink>
                             </NavItem>
-                            {/* <NavItem className="mr-5">
-                                {!isUserLogin ? <NavLink to="/signup-login" tag={Link} className="nav-links"><strong>Blogs</strong></NavLink> : <button>Log out</button>}
-                            </NavItem> */}
+                            <NavItem className="mr-5">
+                                <NavLink to="/signup-login" tag={Link} className="nav-links"><strong>Blogs</strong></NavLink>
+                            </NavItem>
+                            <NavItem>
+                            <NavItem className="mr-5">
+                                <NavLink to="/signup-login" tag={Link} className="nav-links"><img src={`${Notification}`}/></NavLink>
+                            </NavItem>
+                            </NavItem>
                             <NavItem>
                             {!authTokens ? 
-                               <Link to="/signup-login" className="login-btn mr-5">
+                               <Link to="/signup-login" className="login-btn nav-links mr-5">
                                 Login
                                </Link>     
-                               : <Button onClick={handleUserLogout}>Log out</Button>}  
+                            //    : <Button onClick={handleUserLogout}>Log out</Button>}  
+                            : <NavbarProfile handleUserLogout={handleUserLogout}/>}
                             </NavItem>
-{/*                        
-                        <NavItem>
-                            <NavLink to="/allquestions" tag={Link}>Questions</NavLink>
-                        </NavItem>
-                        <NavItem>
-                            {!authTokens ? <NavLink to="/signup-login" tag={Link}>Signup/Login</NavLink> : <Button onClick={handleUserLogout}>Log out</Button>}
-                        </NavItem>
-                    */}
-                    {/* <NavItem>
-                        {!authTokens ? <NavLink to="/signup-login" tag={Link}>Signup/Login</NavLink> : <Button onClick={handleUserLogout}>Log out</Button>}
-                    </NavItem> */}
                         </Nav>
                     </Collapse>
                 </Navbar>

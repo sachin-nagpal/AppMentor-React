@@ -54,7 +54,7 @@ const SignupLoginPage = ({items,itemsBgCol}) => {
   const handlePopup = (val) => {
     setIsSnackbarOpen(val);
     if (val) {
-      setTimeout(function () { setIsSnackbarOpen(false); }, 5000);
+      // setTimeout(function () { setIsSnackbarOpen(false); }, 5000);
     }
   }
   return (

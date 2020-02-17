@@ -64,7 +64,7 @@ const useStyles = createUseStyles({
     userInfoContainer: {
         position: 'relative',
         bottom: '0',
-        marginBottom: '0.625rem',
+        // marginBottom: '0.625rem',
         marginTop: '0.625rem',
         display: 'flex'
     },

@@ -5,12 +5,12 @@ const useStyles = createUseStyles({
     divWithArrowContainer:styles=>({
         border: `1px solid ${styles.borderCol}`,
         backgroundColor: styles.bgCol,
-        cursor: 'pointer',
+        cursor: styles.cursor || 'pointer',
         // transition: 'background 0.1s',
         position: 'relative',
         marginTop: styles.marginTop,
         maxHeight: styles.heigth,
-        borderRadius: '0.625rem',
+        borderRadius: styles.borderRadius || '0.625rem',
         padding: '0.625rem 0.9375rem',
         '&:hover':{
             background: '#ffffff',
