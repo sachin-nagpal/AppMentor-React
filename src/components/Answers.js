@@ -8,16 +8,30 @@ import shareWhite from '../images/shareWhite.png';
 import share from '../images/share.png';
 import parse from 'html-react-parser';
 import AxiosRequests from '../helpers/AxiosRequests';
+import ProfileImage from '../images/noImage.jpg';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import SignupLoginPage from '../pages/SignupLoginPage';
+import {createUseStyles} from 'react-jss';
 // Context
 import { useAuth } from "../context/auth";
 
 import UpvoteBtn from './UpvoteBtn';
-// import Moment from 'react-moment';
-const Answers = ({answers,handleReload}) => {
+const useStyles = createUseStyles({
+    modalContainer: {
+        maxWidth: '60rem'
+    }
+})
+const Answers = ({ answers, handleReload }) => {
+    const classes = useStyles(false);
     const [clickedCount,setClickedCount] = useState('');
     const [time,setTime] = useState(0);
     const { authTokens } = useAuth();
-    const [upvotes,setUpvotes] = useState(answers.upvotes);
+    const [showSignUp, setShowSignUp] = useState(false);
+    const [upvotes, setUpvotes] = useState(answers.upvotes);
+    
+      const [modal, setModal] = useState(false);
+
+      const toggle = () => setModal(!modal);
     useEffect(() => {
         if(answers.findallanswers){
             setClickedCount(answers.findallanswers.upvotes);
@@ -26,6 +40,9 @@ const Answers = ({answers,handleReload}) => {
 
     const handleUpvote= async ()=>{
     //   alert('Clicked');
+        if (!authTokens) {
+           return toggle();
+        }
     let vote = upvotes;
     const response = await AxiosRequests().post(`${process.env.REACT_APP_API_HOST_URL}/upvoteans`,{
         ans_id: answers.id,
@@ -46,11 +63,14 @@ const Answers = ({answers,handleReload}) => {
 
     return(
         <div>
+        <Modal isOpen={modal} toggle={toggle} className={classes.modalContainer}>
+            <SignupLoginPage st={true}/>
+        </Modal>
             <div className="answers-container">
                 <div className="user-about">
                     <div className="d-flex">
                         <div className="answers-img-container">
-                            <img src={image} alt="" className="answers-img"></img>  
+                            <img src={answers.image ? answers.image : ProfileImage } alt="User" className="answers-img"></img>  
                         </div>
                         <div>
                             <div className="ans-user-name">{answers.fname} {answers.lname}</div>

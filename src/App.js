@@ -54,7 +54,7 @@ function App(props) {
       return (
           <>
         <UserLoginStateContextProvider>
-        <AuthContext.Provider value={{ authTokens, setAuthTokens: setTokens,setUserName: setUserNameContext,userName }}>
+        <AuthContext.Provider value={{ authTokens, setAuthTokens: setTokens,setUserName: setUserNameContext,userName}}>
           <Navbar />
             <Route>
                 <Switch>

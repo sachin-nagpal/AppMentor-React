@@ -3,7 +3,8 @@ import {createUseStyles} from 'react-jss';
 import DivWithArrow from '../HOC/DivWithArrow';
 import {useAuth} from '../../context/auth';
 import { motion } from "framer-motion";
-import {Button} from 'reactstrap';
+import { Button } from 'reactstrap';
+import ProfileImage from '../../images/noImage.jpg';
 const useStyles = createUseStyles({
     navProfileContainer:{
         position: 'relative',
@@ -57,7 +58,7 @@ export default function NavbarProfile({handleUserLogout}) {
     return (
         <div className={classes.navProfileContainer}>
             <div className={classes.navProfileImg} onClick={handleMenu}>
-                <img src='https://i.pravatar.cc/300'/>
+                <img src={ProfileImage} alt="Profile Image"/>
             </div>
             <div className={classes.navMenuDropDown}>
             <motion.div

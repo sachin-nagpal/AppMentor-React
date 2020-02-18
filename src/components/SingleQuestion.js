@@ -8,6 +8,7 @@ import parse from 'html-react-parser';
 import {createUseStyles} from 'react-jss';
 import AskedByStrip from '../components/Misc/AskedByStrip';
 import DivWithArrow from '../components/HOC/DivWithArrow';
+import ProfileImage from '../images/noImage.jpg';
 
 const useStyles = createUseStyles({
     singleQuestionContainer:{
@@ -118,10 +119,10 @@ export default function SingleQuestion({quesData,getTagData,styles}) {
                             </div>
                             <div className={classes.userInfoContainer}>
                                 <div className={classes.userImage}>
-                                    <img src="https://api.adorable.io/avatars/85/abott@adorable.png" className={classes.avatar} alt={`${quesData.answer.fname}${quesData.created_at}`} />
+                                    <img src={ProfileImage} className={classes.avatar} alt={`${quesData.answer.fname}${quesData.created_at}`} />
                                 </div>
                                 <div className={classes.infoContain}>
-                                    <p>{quesData.answer.usersname}{Math.floor(Math.random()*20)}</p>
+                                    <p>{quesData.answer.usersname}</p>
                                     <p>{quesData.created_at}</p>
                                 </div>
                             </div>
