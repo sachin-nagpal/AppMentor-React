@@ -118,10 +118,10 @@ export default function SingleQuestion({quesData,getTagData,styles}) {
                             </div>
                             <div className={classes.userInfoContainer}>
                                 <div className={classes.userImage}>
-                                    <img src="https://i.pravatar.cc/300" class={classes.avatar} alt={`${quesData.answer.fname}${quesData.created_at}`} />
+                                    <img src="https://api.adorable.io/avatars/85/abott@adorable.png" className={classes.avatar} alt={`${quesData.answer.fname}${quesData.created_at}`} />
                                 </div>
                                 <div className={classes.infoContain}>
-                                    <p>{quesData.answer.usersname}</p>
+                                    <p>{quesData.answer.usersname}{Math.floor(Math.random()*20)}</p>
                                     <p>{quesData.created_at}</p>
                                 </div>
                             </div>

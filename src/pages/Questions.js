@@ -42,6 +42,11 @@ const Questions = (props) => {
   const [isAddingQuestion, setIsAddingQuestion] = useState(false);
   const [isReload,setIsReload] = useState(false);
   const { authTokens } = useAuth();
+ 
+
+  // const handleSearchVal = (val) => {
+  //   setSearchVal(val)
+  // }
   
 
   function handleAddingQuestion(){
@@ -76,6 +81,7 @@ const Questions = (props) => {
     (async function () {
       const response = await AxiosRequest().get(`${process.env.REACT_APP_API_HOST_URL}/singletags/${urlName}`);
       console.log(response);
+      console.log('Re-Render');
         setResponse(response.data.findallquestions);
         setRelatedQuestions(response.data.trendingquestion);
         setTagTopics(response.data.findtagtopics);
@@ -88,13 +94,8 @@ const Questions = (props) => {
     <div>
         <div className="questions-header">
            <div className="w-50 m-auto py-3">
-            <QuestionSearch/>
+            <QuestionSearch handleAddingQuestion={handleAddingQuestion} isAddingQuestion={isAddingQuestion}/>
            </div>
-           {authTokens ?
-          <div><Button outline color="primary" onClick={handleAddingQuestion}>Add Questions</Button>{' '}</div>
-          :
-          <div><Link to='/signup-login'><Button outline color="primary">Login</Button>{' '}</Link></div>
-        }
         </div>
         {authTokens && <AddQuestionPop isAddingQuestion={isAddingQuestion} toggle={handleAddingQuestion} findalltopics={findalltopics} tagTopics={tagTopics} setIsReload={setIsReload} isReload={isReload}/>}
         <div className="container mt-5">
@@ -102,10 +103,9 @@ const Questions = (props) => {
                 <div className="col-md-8">
                   {quesResponse.map(quest=>(
                     <SingleQuestion quesData={quest} key={uuid()} getTagData={getTagData}/>
-
                   ))}
                 </div>
-
+                    
                 <div className="col-md-4">
                     <div style={{backgroundColor:"#ffffff"}}>
                       <RelatedQues relatedQ = {relatedQuestions}/>
@@ -118,4 +118,4 @@ const Questions = (props) => {
   );
 }
 
-export default Questions;
+export default React.memo(Questions);

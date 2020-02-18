@@ -58,7 +58,7 @@ const SignupLoginPage = ({items,itemsBgCol}) => {
     }
   }
   return (
-      <div className={classes.signupLoginWrapPage}>
+      // <div className={classes.signupLoginWrapPage}>
         <div className={classes.signUpPageContainer}>
          <Container>
             <Row className={classes.colRow}>
@@ -96,7 +96,7 @@ const SignupLoginPage = ({items,itemsBgCol}) => {
           <SnackBar isOpen={isSnackbarOpen} text="The username or password entered is incorrect." handlePopup={handlePopup}/>
          </Container>    
       </div>
-       </div> 
+      //  </div> 
     )
 }
 

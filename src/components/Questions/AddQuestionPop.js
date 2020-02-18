@@ -22,6 +22,11 @@ const AddQuestionPop = (props) => {
     const [textAreaval,setTextAreaVal] = React.useState('');
     const [isReRender,setIsReRender] = useState(false);
     // const [options,setOptions] = useState([]);
+    useEffect(() => {
+      // setTextAreaVal(props.searchVal)
+      console.log(props.searchVal);
+      
+    }, [])
     const optionVal = props.findalltopics.map(topic=>{
         return {value: topic.slug,label: topic.name, id: topic.id}
       })
