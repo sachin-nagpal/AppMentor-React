@@ -52,7 +52,7 @@ const NavbarComponent = (props) => {
      const toggle = () => setIsOpen(!isOpen);
      
 
-     const { authTokens, setAuthTokens,setUserName } = useAuth();
+     const { authTokens, setAuthTokens,setUserName,userImg } = useAuth();
 
      function handleUserLogout(){
         //  setIsLogout(isLogout);
@@ -93,7 +93,7 @@ const NavbarComponent = (props) => {
                                 Login
                                </Link>     
                             //    : <Button onClick={handleUserLogout}>Log out</Button>}  
-                            : <NavbarProfile handleUserLogout={handleUserLogout}/>}
+                            : <NavbarProfile handleUserLogout={handleUserLogout} userImg={userImg}/>}
                             </NavItem>
                         </Nav>
                     </Collapse>

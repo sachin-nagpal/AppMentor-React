@@ -9,7 +9,7 @@ import share from '../images/share.png';
 import parse from 'html-react-parser';
 import AxiosRequests from '../helpers/AxiosRequests';
 import ProfileImage from '../images/noImage.jpg';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Modal} from 'reactstrap';
 import SignupLoginPage from '../pages/SignupLoginPage';
 import {createUseStyles} from 'react-jss';
 // Context
@@ -63,9 +63,9 @@ const Answers = ({ answers, handleReload }) => {
 
     return(
         <div>
-        <Modal isOpen={modal} toggle={toggle} className={classes.modalContainer}>
-            <SignupLoginPage st={true}/>
-        </Modal>
+        {!authTokens && <Modal isOpen={modal} toggle={toggle} className={classes.modalContainer}>
+            <SignupLoginPage st={{pop:'yes'}}/>
+        </Modal>}
             <div className="answers-container">
                 <div className="user-about">
                     <div className="d-flex">

@@ -11,7 +11,8 @@ const useStyles = createUseStyles({
         marginTop: styles.marginTop,
         maxHeight: styles.heigth,
         borderRadius: styles.borderRadius || '0.625rem',
-        padding: '0.625rem 0.9375rem',
+        padding: styles.padding || '0.625rem 0.9375rem',
+        zIndex: '123',
         '&:hover':{
             background: '#ffffff',
         },
@@ -22,7 +23,7 @@ const useStyles = createUseStyles({
             borderTop: `1px solid ${styles.borderCol}`,
             borderLeft: `1px solid ${styles.borderCol}`,
             position: 'absolute',
-            backgroundColor: styles.bgCol,
+            backgroundColor: styles.triangleCol || styles.bgCol,
             height: styles.arrowSize,
             width: styles.arrowSize,
             transform:' rotate(45deg)',

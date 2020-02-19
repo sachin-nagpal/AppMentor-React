@@ -19,11 +19,11 @@ const useStyles = createUseStyles({
   },
     signUpPageContainer:st=>({
         maxWidth: '60rem',
-        margin: `${st ? 0 : 'auto'}`,
+        margin: `${st.pop === 'yes' ? 0 : 'auto'}`,
         boxShadow: '0 0 25px 2px rgba(206, 206, 206, 0.75)',
         position: 'relative',
-        top: `${st ? 0 : '50%'}`,
-        transform: `translateY(${st ? 0 : '-50%'})`
+        top: `${st.pop === 'yes'? 0 : '50%'}`,
+        transform: `translateY(${st.pop === 'yes' ? 0 : '-50%'})`,
     }),
     '@media screen and (max-width: 768px)': {
       signUpPageContainer: {
@@ -39,7 +39,7 @@ const useStyles = createUseStyles({
 })
 
 const SignupLoginPage = ({items,itemsBgCol,st}) => {
-  const classes = useStyles({itemsBgCol,st});
+  const classes = useStyles(st);
   const [isFlipped,setIsFlipped] = useState(true);
   const [isForgotPassShow, setForgotPassShow] = useState(true);
  

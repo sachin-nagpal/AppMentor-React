@@ -1,10 +1,10 @@
-import React,{useState} from 'react';
+import React,{useState,useRef} from 'react';
 import {createUseStyles} from 'react-jss';
 import DivWithArrow from '../HOC/DivWithArrow';
 import {useAuth} from '../../context/auth';
 import { motion } from "framer-motion";
 import { Button } from 'reactstrap';
-import ProfileImage from '../../images/noImage.jpg';
+import OuterClickCheck from '../../hooks/OuterClickCheck';
 const useStyles = createUseStyles({
     navProfileContainer:{
         position: 'relative',
@@ -48,17 +48,23 @@ const variants = {
         }
     },
   }
-export default function NavbarProfile({handleUserLogout}) {
+export default function NavbarProfile({handleUserLogout,userImg}) {
+    const innerRef = useRef(null);
     const [isMenuOpen,setIsMenuOpen] = useState(false);
     const {userName} = useAuth();
+
     const handleMenu=()=>{
         setIsMenuOpen(!isMenuOpen)
     }
+    OuterClickCheck(
+        e => setIsMenuOpen(false),
+        innerRef
+      );
     const classes = useStyles();
     return (
-        <div className={classes.navProfileContainer}>
+        <div className={classes.navProfileContainer} ref={innerRef}>
             <div className={classes.navProfileImg} onClick={handleMenu}>
-                <img src={ProfileImage} alt="Profile Image"/>
+                <img src={userImg} alt="Profile Image"/>
             </div>
             <div className={classes.navMenuDropDown}>
             <motion.div

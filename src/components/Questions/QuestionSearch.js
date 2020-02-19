@@ -6,7 +6,6 @@ import {createUseStyles} from 'react-jss';
 import SearchTags from './SearchTags';
 import uuid from 'uuid';
 import { avoidUnnecessarySearch } from '../../helpers/CancelRequest';
-import {Button} from 'reactstrap';
 import {Link} from 'react-router-dom';
 
 import OuterClickCheck from '../../hooks/OuterClickCheck';
@@ -19,6 +18,9 @@ import SearchIcon from '../../images/searchIcon.svg';
 
 
 const useStyles= createUseStyles({
+    modalContainer: {
+        maxWidth: '60rem'
+    },
     questonSearchContainer:{
         position: 'relative',
     },
@@ -31,11 +33,22 @@ const useStyles= createUseStyles({
         height: '2rem',
         display: 'flex',
         alignItems: 'center',
-        marginBottom: '0.9375rem',
+        // marginBottom: '0.9375rem',
+        width: '100%',
+        background: '#f7f7f7',
+        padding: '0.625rem 0.9375rem',
+        borderBottom: '1px solid #696969',
         '& img':{
             width: '1rem'
         },
     },
+    allContent:{
+        padding: '0.625rem 0.9375rem',
+    },  
+    relatedQuestionsTitle:{
+        // padding: '0.625rem 0.9375rem'
+        marginBottom: '1rem'
+    },  
     searchFixed: {
         marginLeft : '0.5rem',
         fontSize: '1.125rem',
@@ -50,6 +63,12 @@ const useStyles= createUseStyles({
     },
     searchIconContainer:{
         display: 'flex'
+    },
+    btnAddQues:{
+        border: 'none',
+        paddingLeft: '0',
+        color: '#406eb3',
+        background: '#ffffff'
     }
 })
 const variants = {
@@ -66,6 +85,7 @@ const variants = {
     closed: {
         opacity: 0,
         y: 50,
+        height: '0',
         transition: {
             y: {
                 stiffness: 1000,
@@ -89,9 +109,6 @@ export default function QuestionSearch({handleAddingQuestion}) {
       }
       
     OuterClickCheck(
-        // if you want to optimize performance a bit,
-        // don't provide an anonymous function here
-        // See link down under (*1)
         e => setIsSearchOpen(false),
         innerRef
       );
@@ -133,26 +150,30 @@ export default function QuestionSearch({handleAddingQuestion}) {
                     variants={variants}>
                     <DivWithArrow styles={{
                         borderCol: '#d7d7d7',
-                        bgCol: '#f8f8f8',
+                        bgCol: '#ffffff',
                         minHeight: '9.375rem',
                         arrowPosFromLeft: '5%',
                         arrowSize: '0.625rem',
-                        heigth: '11.25rem',
+                        heigth: '20rem',
                         marginTop: '0.9375rem',
                         borderRadius:'5px',
-                        cursor: 'default'
+                        cursor: 'default',
+                        padding: '0',
+                        triangleCol: '#ffffff'
                     }}>
                     <div className={classes.searchValContainer}>
                         <div className={classes.searchIconContainer}><img src={SearchIcon} alt="SearchIcon"/><span className={classes.searchFixed}>Search: </span><span className={classes.searchingTxt}>{searchVal}</span></div>
                     </div>
-                    <div className={classes.relatedQuestionsTitle}>
-                        {searchedData.length ? searchedData.map(data=>(<SearchTags key={uuid()} data={data}/>)) : 'No Data Found'}
-                    </div>
-                    {authTokens ?
-                        <div><Button outline color="primary" onClick={handleAddingQuestion}>Add Questions</Button>{' '}</div>
-                        :
-                        <div><Link to='/signup-login'><Button outline color="primary">Login</Button>{' '}</Link></div>
-                        }
+                    <div className={classes.allContent}>
+                            <div className={classes.relatedQuestionsTitle}>
+                                {searchedData.length ? searchedData.map(data=>(<SearchTags key={uuid()} data={data}/>)) : ''}
+                            </div> 
+                        {authTokens ?
+                            <div><button onClick={handleAddingQuestion} className={classes.btnAddQues}>+ Add Questions</button>{' '}</div>
+                            :
+                            <div><Link to='/signup-login'><button className={classes.btnAddQues}>+ Add Questions</button></Link></div>
+                            }
+                    </div>    
                 </DivWithArrow>
                 </motion.div>
             </div>

@@ -4,17 +4,23 @@ import Select from 'react-select';
 import { createUseStyles } from 'react-jss';
 import AxiosRequest from '../../helpers/AxiosRequests';
 import { Tooltip } from 'reactstrap';
-
+import uuid from 'uuid';
 //Context
 import { useAuth } from "../../context/auth";
   
 const useStyles = createUseStyles({
     modalMain:{
         maxWidth: '43.75rem'
+    },
+    userInfoCont:{
+      display: 'flex',
+      '& img': {
+        width: '3rem'
+      }
     }
 })
 const AddQuestionPop = (props) => {
-    const { userName,authTokens } = useAuth();
+    const { userName,authTokens,userImg } = useAuth();
     const classes = useStyles();
     const closeBtn = <button className="close" onClick={props.toggle}>&times;</button>;
     const [selectedOption,setSelectedOption] = useState([]);
@@ -88,7 +94,10 @@ const AddQuestionPop = (props) => {
         {/* <Button color="danger" onClick={toggle}>{buttonLabel}</Button> */}
         <Modal isOpen={props.isAddingQuestion} toggle={props.toggle} className={classes.modalMain}>
           <ModalHeader toggle={props.toggle} close={closeBtn}>Add Question</ModalHeader>
+          <div className={classes.userInfoCont}>
+            <img src={userImg} alt='user Image'/>
             <h1>{userName}</h1>
+          </div>
           <ModalBody>
           <FormGroup>
             <Input type="textarea" value={textAreaval} name="text" className="addQuestionTextArea" rows="8" placeholder='Select your Question with "What","How","Why,etc"' onChange={handleTextareaChange}/>
@@ -105,7 +114,7 @@ const AddQuestionPop = (props) => {
       {/* onClick={()=>setSelectedOption([...selectedOption,{value: this.value,label: this.name, id: this.id}])} */}
       <div>
       {props.tagTopics.map(topic=>(
-        <span id={topic.id}>
+        <span id={topic.id} key={uuid()}>
         <Badges data={{value:topic.slug, label:topic.name, id:topic.id}} handleBadgeChanges={handleBadgeChanges} />
         </span>
       ))}

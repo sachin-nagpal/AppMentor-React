@@ -1,7 +1,6 @@
 import React, { useState, useEffect,useContext } from 'react';
 import SingleQuestion from '../components/SingleQuestion';
 import '../styles/Questions.css';
-import {Link} from 'react-router-dom'
 import uuid from 'uuid';
 
 import AxiosRequest from '../helpers/AxiosRequests';
@@ -12,16 +11,6 @@ import { useAuth } from "../context/auth";
 
 
 import RelatedQues from '../components/RelatedQues';
-import {
-  InputGroup,
-  InputGroupAddon,
-  InputGroupButtonDropdown,
-  Input,
-  Button,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem
- } from 'reactstrap';
 import  AddQuestionPop  from '../components/Questions/AddQuestionPop';
 import QuestionSearch from '../components/Questions/QuestionSearch';
 
@@ -88,7 +77,6 @@ const Questions = (props) => {
         setFindalltopics(response.data.findalltopics);
     })();
   }
-
   // {isCancelled && <h1>Waiting...</h1>}
   return (
     <div>
@@ -98,6 +86,7 @@ const Questions = (props) => {
            </div>
         </div>
         {authTokens && <AddQuestionPop isAddingQuestion={isAddingQuestion} toggle={handleAddingQuestion} findalltopics={findalltopics} tagTopics={tagTopics} setIsReload={setIsReload} isReload={isReload}/>}
+          
         <div className="container mt-5">
             <div className="row">
                 <div className="col-md-8">
@@ -113,7 +102,6 @@ const Questions = (props) => {
                   </div>            
             </div>
          </div>
-
     </div>
   );
 }

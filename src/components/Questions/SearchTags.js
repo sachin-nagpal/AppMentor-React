@@ -4,8 +4,13 @@ import {createUseStyles} from 'react-jss';
 
 const useStyles =createUseStyles({
     singleQuestionTag:{
+        display: 'flex',
+        flexDirection: 'column',
         '& a':{
-            
+            textDecoration: 'none',
+        },
+        '&:not(:last-child)':{
+            marginBottom: '0.5rem',
         }
     }
 })

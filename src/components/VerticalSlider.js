@@ -2,7 +2,7 @@ import React from "react";
 import Slider from "react-slick";
 import uuid from 'uuid';
 
-import VerticalSlideItem from './VerticalSlideItem';
+import VerticalSlideItem from '../components/VerticalSliderItem';
 
 import { createUseStyles } from 'react-jss';
 
@@ -13,11 +13,11 @@ const useStyles = createUseStyles({
    }
 })
 
+
 const VerticalSlider =(props)=> {
     const classes = useStyles();
     const settings = {
       dots: true,
-      arrows: true,
       infinite: false,
       slidesToShow: 3,
       slidesToScroll: 1,

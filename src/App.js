@@ -8,6 +8,7 @@ import Questions from './pages/Questions';
 import { CookiesProvider } from 'react-cookie';
 import axios from 'axios';
 import './styles/body.css';
+import ProfileImg from './images/noImage.jpg';
 
 import Navbar from './components/Navbar';
 
@@ -25,6 +26,7 @@ function App(props) {
 
   const [userName, setUserName] = useState(localStorage.getItem('userName') ? localStorage.getItem('userName') : null);
   const [authTokens, setAuthTokens] = useState(localStorage.getItem('userId') ? localStorage.getItem('userId') : null);
+  const [userImg, setUserImg] = useState(localStorage.getItem('userImg') ? localStorage.getItem('userImg') : ProfileImg);
   
   useEffect(() => {
     // (()=>{async () => {
@@ -34,7 +36,7 @@ function App(props) {
     //       this.setState(user[0]);
     //   })
     // })
-
+    
       // axios.get(`https://randomuser.me/api/`)
       //   .then(res => {
       //     const user = res.data.results;
@@ -50,11 +52,15 @@ function App(props) {
     localStorage.setItem("userName", name);
     setUserName(name);
    }
+
+   const setUserProfileImage = (img)=>{
+     localStorage.setItem("userImg",img)
+   }
    
       return (
           <>
         <UserLoginStateContextProvider>
-        <AuthContext.Provider value={{ authTokens, setAuthTokens: setTokens,setUserName: setUserNameContext,userName}}>
+        <AuthContext.Provider value={{ authTokens, setAuthTokens: setTokens,setUserName: setUserNameContext,userName,userImg,setUserImg:setUserProfileImage}}>
           <Navbar />
             <Route>
                 <Switch>
@@ -63,7 +69,7 @@ function App(props) {
                     <Route exact path='/allquestions' render={(routeProps)=><Questions {...routeProps} />}/>
                     <Route exact path='/allquestions/:tag' render={(routeProps)=><Questions {...routeProps} />}/>
                     <Route exact path='/singlequestion/:slug' render={(routeProps)=><QA {...routeProps} />}/>
-                    <Route exact path='/signup-login' render={(routeProps)=><SignupLoginPage {...routeProps} />}/>
+                    <Route exact path='/signup-login' render={(routeProps)=><SignupLoginPage {...routeProps} st={{pop: 'no'}}/>}/>
                     <PrivateRoutes path='/profile' component={Profile}/>/>
                     <Route path='*' exact={true} component={NotFound} />
                   </Switch>
