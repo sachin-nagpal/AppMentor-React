@@ -1,50 +1,99 @@
 import React,{useState} from 'react';
 import UpvoteArrow from '../images/triangle.svg';
 import {createUseStyles} from 'react-jss';
-import {motion} from 'framer-motion';
+import {motion,useAnimation} from 'framer-motion';
 
 const variants = {
-    open: {
-        opacity: 1,
-        y: 35,
+    rest: {
+        color: "grey",
+        y: 0,
         transition: {
-            y: {
-                stiffness: 1000,
-                velocity: -100
-            }
+          duration: 0.5,
+          type: "spring",
+          ease: "easeInOut"
         }
-    },
-    closed: {
-        opacity: 0,
-        y: 100,
+      },
+      hover: {
+        color: "blue",
+        y: -2,
         transition: {
-            y: {
-                stiffness: 1000,
-                velocity: -100
-            }
+          duration: 0.5,
+          type: "spring",
+          ease: "easeInOut"
         }
-    },
+      },
+      click:{
+        scale: [0.8,1.01,0.9,1],
+        y: [0,-5,2,0],
+        // y: -20,
+        transition: {
+            duration: 0.4,
+            type: "spring",
+            ease: "backInOut"
+          }
+
+      }
   }
 
 const useStyles = createUseStyles({
-    upvoteContainer: {
+    upvoteContainer:{
+        // width: '4.375rem',
+        height: '1.375rem',
+        display:'flex',
+        alignItems: 'center',
+        background: '#f3f3f3',
+        borderRadius: '3px',
+        marginRight: '1rem'
+    },
+    arrowContainer: {
         width: '1.5rem',
-        '& img':{
-            width: '100%'
+        marginLeft: '0.5rem',
+        '& *':{
+            width: '100%',
+            height: '100%'
+        }
+    },
+    upvotesCount:{
+        marginLeft: '1rem',
+        marginRight: '1rem',
+        '& span':{
+            color: '#959595',
+            fontFamily: 'Roboto',
+            fontSize: '1rem',
         }
     }
 });
 
-export default function UpvoteBtn({upvotes,handleUpvote}) {
-    const classes = useStyles()
+
+export default function UpvoteBtn({upvotes,handleUpvote,isVoted,setIsVoted,setIsLoading,isLoading,authTokens}) {
+    const classes = useStyles();
+    const [isClick,setIsClick] = React.useState(isVoted);
+    const handleClick = ()=>{
+        setIsClick(!isClick);
+        handleUpvote();
+        setIsVoted(!isVoted);
+    }
     return (
-        <div className={classes.upvoteContainer} onClick={handleUpvote}>
-            {/* <motion.div
-                initial={{ opacity: "0" }}
-                animate={isOpen ? "open" : "closed"}
-                variants={variants}> */}
-                <img src={UpvoteArrow}/>
-            {/* </motion.div> */}
+        <div className={classes.upvoteContainer}>
+            <motion.div
+                // initial={{ opacity: "0" }}
+                initial="rest" animate={isClick ? 'click' : 'rest'} variants={variants}>
+                <div className={classes.arrowContainer} onClick={handleClick} style={{cursor: 'pointer'}}>
+                <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                            width="512px" height="512px" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xmlSpace="preserve">
+                        <g>
+                            <g>
+                                <path fill={isVoted || isClick  ? authTokens ? '#406eb3' : 'none' : 'none'} stroke={isClick ?  '' : "#959595"} stroke-width="20" stroke-miterlimit="10" d="M275.277,130.955
+                                    c-8.926-8.921-23.665-8.921-32.586,0L25.474,348.171c-14.74,14.744-4.266,39.564,16.292,39.564h434.433
+                                    c20.559,0,31.032-24.82,16.291-39.564L275.277,130.955z"/>
+                            </g>
+                        </g>
+                        </svg>
+                </div>
+            </motion.div>
+                <div className={classes.upvotesCount}>
+                    <span>{upvotes}</span>
+                </div>
         </div>
             // <div className="upvote-triangle" onClick={handleUpvote}>
             //     <div style={{color:"#959595", marginLeft:"20px"}}>{upvotes}</div>

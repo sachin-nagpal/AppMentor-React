@@ -8,6 +8,9 @@ const useStyles =createUseStyles({
         flexDirection: 'column',
         '& a':{
             textDecoration: 'none',
+            color:'#5d5d5d',
+            fontFamily: 'Roboto',
+            fontWeight: '500'
         },
         '&:not(:last-child)':{
             marginBottom: '0.5rem',

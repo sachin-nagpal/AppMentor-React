@@ -30,7 +30,7 @@ const useStyles= createUseStyles({
         zIndex: '10'
     },
     searchValContainer:{
-        height: '2rem',
+        height: '3rem',
         display: 'flex',
         alignItems: 'center',
         // marginBottom: '0.9375rem',
@@ -59,7 +59,9 @@ const useStyles= createUseStyles({
     searchingTxt: {
         fontWeight: '500',
         marginLeft : '0.5rem',
-        color: '#406eb3'
+        color: '#406eb3',
+        fontFamily: 'Roboto',
+        fontSize: '1.125rem',   
     },
     searchIconContainer:{
         display: 'flex'

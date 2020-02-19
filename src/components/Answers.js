@@ -28,22 +28,27 @@ const Answers = ({ answers, handleReload }) => {
     const { authTokens } = useAuth();
     const [showSignUp, setShowSignUp] = useState(false);
     const [upvotes, setUpvotes] = useState(answers.upvotes);
+    const [isVoted,setIsVoted] = useState(answers.voted === 'yes' ? true : false);
+    const [isLoading, setIsLoading] = useState(false);
     
-      const [modal, setModal] = useState(false);
+    const [modal, setModal] = useState(false);
 
-      const toggle = () => setModal(!modal);
+    const toggle = () => setModal(!modal);
     useEffect(() => {
         if(answers.findallanswers){
             setClickedCount(answers.findallanswers.upvotes);
+            setIsVoted(answers.isVoted);
         }
     }, []);
 
     const handleUpvote= async ()=>{
-    //   alert('Clicked');
+        //   alert('Clicked');
         if (!authTokens) {
-           return toggle();
+            return toggle();
         }
-    let vote = upvotes;
+        // if(isLoading){
+        let vote = upvotes;
+        // setUpvotes(vote+1)
     const response = await AxiosRequests().post(`${process.env.REACT_APP_API_HOST_URL}/upvoteans`,{
         ans_id: answers.id,
         token: authTokens
@@ -55,10 +60,12 @@ const Answers = ({ answers, handleReload }) => {
             if(response.data.vote === 'down'){
                 setUpvotes(vote-1);
             }
+            // setIsLoading(false)
             // else{
             //     alert('Network Error')
             // }
     //   handleReload();
+        // }
     }
 
     return(
@@ -99,7 +106,7 @@ const Answers = ({ answers, handleReload }) => {
                         {/* <div className="upvote-triangle" onClick={handleClick}>
                             <div style={{color:"#959595", marginLeft:"20px"}}>{clickedCount}</div>
                         </div> */}
-                        <UpvoteBtn upvotes={upvotes} handleUpvote={handleUpvote}/>
+                        <UpvoteBtn upvotes={upvotes} handleUpvote={handleUpvote} isVoted={isVoted} setIsVoted={setIsVoted} setIsLoading isLoading authTokens/>
                     </div>
                     <img src={comment} alt="" className="ans-btn-img"></img><span className="comment-share-text">Comment</span>
                     <img src={shareWhite} alt="" className="ans-btn-img"></img><span className="comment-share-text">Share</span>
