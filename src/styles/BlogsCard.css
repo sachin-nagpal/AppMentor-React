@@ -55,3 +55,15 @@
     font-family: Merriweather;
     padding: 0.5rem 0rem 1rem;
 }
+
+.user_image{
+    height: 4rem;
+    width: 4rem;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.user_name{
+    color: #6a6464;
+    font-family: Merriweather;
+}

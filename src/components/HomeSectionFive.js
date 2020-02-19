@@ -5,19 +5,36 @@ import ShowMoreText from './ShowMoreText';
 
 const path = 'http://localhost/MyApplicationMentor/public/';
 
+
+const SamplePrevArrow=(props)=> {
+    const { style, onClick } = props;
+    return (
+      <p style={{ display: "block", background: "green", color: 'red' }} onClick={onClick}>Next</p>
+    );
+  }
+
+  function SampleNextArrow(props) {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        // className={className}
+        style={{ display: "block", background: "red" }}
+        onClick={onClick}
+      />
+    );
+  }
+
 const HomeSectionThree = (props) =>{
 
     const settings = {
-        dots: true,
+        dots: false,
         infinite: true,
         speed: 500,
         slidesToShow: 3,
-        slidesToScroll: 3
+        slidesToScroll: 3,
+        nextArrow: <SampleNextArrow />,
+        prevArrow: <SamplePrevArrow />
       };
-
-    useEffect(() =>{
-            console.log(props.topics)
-    }, []);
 
     return(
         <>

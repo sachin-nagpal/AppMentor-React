@@ -16,7 +16,7 @@ const useStyles = createUseStyles({
 const VerticalSlider =(props)=> {
     const classes = useStyles();
     const settings = {
-      dots: true,
+      dots: false,
       arrows: true,
       infinite: false,
       slidesToShow: 3,

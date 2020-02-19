@@ -1,12 +1,16 @@
+a:hover{
+    text-decoration: none !important;
+}
+
 
 .section-four-container{
     background-color: #f7f7f7;
     padding: 30px 0px 60px;
 }
 
-.slick-dots{
+/* .slick-dots{
     display: none !important;
-}
+} */
 
 .get-answers{
     font-family: Merriweather;
@@ -15,7 +19,7 @@
     text-align: center;
     margin-bottom: 35px;
 }
-
+/* 
 .slick-next:before {
     content:url('../images/icon.png') !important;
     font-weight: 700;
@@ -55,4 +59,4 @@
     left: 0% !important;
     height: initial;
     top: 430px !important;
-}
+} */

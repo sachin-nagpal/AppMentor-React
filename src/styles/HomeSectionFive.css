@@ -9,7 +9,7 @@
 }
 
 .get-started{
-    margin-top: 4rem;
+    margin-top: 2rem;
     padding: 1.2rem 2.5rem;
     border-radius: 8px;
     background-color: #416aa6;
@@ -31,4 +31,26 @@
     border-radius: 8px;
     outline: none;
     border: none;
+}
+
+/* .slick-prev, .slick-next {
+    height: fit-content !important;
+    width: fit-content !important;
+}
+
+.slick-prev:before, .slick-next:before {
+    font-size: 1.9rem !important;
+    color: purple !important;
+}
+
+.slick-track{
+    padding-bottom: 20px;
+} */
+
+/* .slick-dots{
+    display: none !important;
+} */
+
+.navPrev{
+    background-color: red;
 }

@@ -22,6 +22,10 @@ const BlogCard = (props) => {
                 <div className="blog-detail">
                     <ShowMoreText text={props.blog.excerpt} length={50} btnText={{ more:"Read More",less:"Read Less" }} btnCol="#0000ef" textColor="#686767" />
                 </div>
+                <div className="d-flex align-items-center">
+                    <img src={props.blog.user_image} className="user_image"></img>
+                    <div className="user_name">{props.blog.user_fname} {props.blog.user_lname}</div>
+                </div>
             </div>
         </div>
     )

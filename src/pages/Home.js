@@ -10,12 +10,14 @@ const Home = () => {
 
     const [tagTopics , setTagTopics] = useState([])
     const [Blogs , setBlogs] = useState([])
+    const [Questions , setQuestions] = useState([])
 
       useEffect(() => {
         axios.get('http://localhost/MyApplicationMentor/homepage')
         .then(res => {
             setTagTopics(res.data.findtagtopics)
             setBlogs(res.data.blogs)
+            setQuestions(res.data.allquestions)
             console.log(res)
         })
       }, []);
@@ -25,7 +27,7 @@ const Home = () => {
              <HomeSectionOne/>
              <HomeSectionTwo/>
              <HomeSectionThree topics={tagTopics}/>
-             <HomeSectionFour/>
+             <HomeSectionFour questions={Questions}/>
              <HomeSectionFive blogs={Blogs}/>
           </>
         ) 
