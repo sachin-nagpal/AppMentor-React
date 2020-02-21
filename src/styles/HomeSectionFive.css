@@ -21,6 +21,8 @@
 .get-started-text{
     font-size: 1.8rem;
     color: #ffffff;
+    font-family: Merriweather;
+    line-height: 3.5rem;
 }
 
 .get-started-btn{

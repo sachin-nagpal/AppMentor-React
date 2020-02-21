@@ -13,7 +13,7 @@ const Home = () => {
     const [Questions , setQuestions] = useState([])
 
       useEffect(() => {
-        axios.get('http://localhost/MyApplicationMentor/homepage')
+        axios.get(`${process.env.REACT_APP_API_HOST_URL}/homepage`)
         .then(res => {
             setTagTopics(res.data.findtagtopics)
             setBlogs(res.data.blogs)

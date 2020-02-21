@@ -6,7 +6,7 @@ const AllQuestions = () => {
     
     useEffect(() => {
         async function fetchData() {
-             axios.get(`localhost:8000/api/allquestions`)
+             axios.get(`${process.env.REACT_APP_API_HOST_URL}api/allquestions`)
             .then(res => {
                 const qus = res.data;
                 setAllQuestions(qus);

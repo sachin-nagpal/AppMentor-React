@@ -41,7 +41,9 @@ const HomeSectionFour =(props)=> {
             <Slider {...settings}>
             {
                 props.questions.map(question =>(
+                  // if({question.answer}){
                     <VerticalSlideItem st={{width: '100%',height: '5rem',borderCol:'#b7b7b7'}} data={question} key={uuid()}/>
+                  // }
                 ))
             }
             </Slider>

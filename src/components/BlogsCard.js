@@ -6,8 +6,8 @@ import '../styles/BlogsCard.css';
 import Tag from '../components/Tag';
 
 
-const path = 'http://localhost/MyApplicationMentor/public/';
-
+const path =`${process.env.REACT_APP_API_HOST_URL}/public/`;
+ 
 const BlogCard = (props) => {
     if(props.blog.tagarray.length!==0){
         console.log(props.blog.tagarray[0].name)
@@ -17,20 +17,6 @@ const BlogCard = (props) => {
             <div className="inner">
                 <img src ={path + props.blog.image}className="blog-img"></img>
                 <div>
-
-
-
-                    {/* {props.blog.tagarray[0].id} */}
-                    {/* {props.blog.tagarray.map(tag =>(
-                        <Tag style={{color: "red" , bgColor: "yellow"}} data={tag.name}/>
-                    ))} */}
-
-                    {/* {props.blog.tagarray.length!==0 ? 
-                            
-                    } */}
-   
-                            
-
                 </div>
                 <div className="blog-title">{props.blog.title}</div>
                 <div className="time-date-row">

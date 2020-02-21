@@ -3,7 +3,7 @@ import CarouselBlogs from './CarouselBlogs';
 import '../styles/HomeSectionFive.css';
 import ShowMoreText from './ShowMoreText';
 
-const path = 'http://localhost/MyApplicationMentor/public/';
+const path = `${process.env.REACT_APP_API_HOST_URL}/public/`;
 
 
 const SamplePrevArrow=(props)=> {

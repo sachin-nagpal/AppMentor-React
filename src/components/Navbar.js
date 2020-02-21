@@ -31,7 +31,7 @@ import {UserLoginState} from '../context/UserLoginState';
 import {Redirect} from 'react-router-dom';
 const NavbarComponent = (props) => {
     function userLogout(){
-        axios.get('/http://localhost/MyApplicationMentor/userlogout', {
+        axios.get(`${process.env.REACT_APP_API_HOST_URL}/userlogout`, {
             params: {
               ID: 12345
             }

@@ -96,13 +96,14 @@ function VerticalSlideItem({st,data,colors}) {
     const classes = useStyles(st);
     return (
         <ReactCardFlip isFlipped={isFlipped} flipDirection="vertical">
-
-        <div className={classes.verticalSlideItem}>
+         <div className={classes.verticalSlideItem}>
             <Container className={classes.ansContainer}>
                 <Row className="align-items-center">
                     <Col md="9" lg="10">
                         <div className={classes.quesDescrip}>
-                            <div>{data.title}</div>
+                            {/* if({data.answer}){ */}
+                                <div>{data.title}</div>
+                            {/* // } */}
                         </div>
                         <div className={classes.quesTags}> 
                             {data.topics.map((tag,i) => (
@@ -119,7 +120,7 @@ function VerticalSlideItem({st,data,colors}) {
                     </Col>
                 </Row>
             </Container>
-        </div>
+         </div>
 
         <div className={classes.verticalSlideItem}>
             <Container className={classes.ansContainer}>
@@ -141,6 +142,7 @@ function VerticalSlideItem({st,data,colors}) {
         </div>
 
         </ReactCardFlip>
+        
     );
 }
 

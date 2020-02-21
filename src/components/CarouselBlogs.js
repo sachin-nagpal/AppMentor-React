@@ -9,7 +9,7 @@ import {
   useRouteMatch
 } from "react-router-dom";
 
-const path = 'http://localhost/MyApplicationMentor/public/';
+const path = `${process.env.REACT_APP_API_HOST_URL}/puclic/`;
 
 export default class MultipleItems extends Component {
 

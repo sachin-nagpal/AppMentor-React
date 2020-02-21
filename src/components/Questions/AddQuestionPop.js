@@ -7,19 +7,65 @@ import { Tooltip } from 'reactstrap';
 import uuid from 'uuid';
 //Context
 import { useAuth } from "../../context/auth";
+import Tag from '../Tag';
   
 const useStyles = createUseStyles({
+    heading:{
+      color: '#295caa',
+      padding: '0.7rem 1rem',
+      borderTopLeftRadius: '5rem'
+    },
     modalMain:{
-        maxWidth: '43.75rem'
+        maxWidth: '43.75rem',
+        borderRadius: '40px'
+    },
+    userImg:{
+      borderRadius: '50%'
+    },
+    userName:{
+      color: "#444444",
+      fontSize:"1.3rem",
+      paddingLeft: '0.5rem',
+      marginBottom: '0rem'
+    },
+    asked:{
+      color: '#7c7c7c',
+      letterSpacing: '0.5px',
+      letterSpacing: '1px'
+    },
+    askedBar:{
+      backgroundColor: '#f0f0f0 !important'
     },
     userInfoCont:{
+      borderTop: '2px solid #f0f0f0',
+      background: '#f0f0f0',
+      display: 'flex',
+      alignItems: 'center',
+      padding: '0.4rem 0rem 0.4rem 2rem',
       display: 'flex',
       '& img': {
-        width: '3rem'
+        width: '2.5rem'
       }
+    },
+
+    suggestedTags: {
+      color: '#505050',
+      fontFamily: 'Roboto',
+      fontWeight: '600'
+    },
+    placeholder:{
+      color: '#b3b3b3',
+      fontFamily: 'Roboto',
+      borderRadius: '40px'
+    },
+    submitBtn:{
+      background: '#007fbd !important',
+      color: '#fefefe !important',
+      fontWeight:'500'
     }
 })
-const AddQuestionPop = (props) => {
+
+const AddQuestionPop = (props, {colors}) => {
     const { userName,authTokens,userImg } = useAuth();
     const classes = useStyles();
     const closeBtn = <button className="close" onClick={props.toggle}>&times;</button>;
@@ -90,20 +136,25 @@ const AddQuestionPop = (props) => {
       }
       const [isDisbled,setIsDisabled] = useState(true)      
       return (
-      <div>
+      <div className={classes.abc}>
         {/* <Button color="danger" onClick={toggle}>{buttonLabel}</Button> */}
         <Modal isOpen={props.isAddingQuestion} toggle={props.toggle} className={classes.modalMain}>
-          <ModalHeader toggle={props.toggle} close={closeBtn}>Add Question</ModalHeader>
-          <div className={classes.userInfoCont}>
-            <img src={userImg} alt='user Image'/>
-            <h1>{userName}</h1>
+          <div>
+          <ModalHeader toggle={props.toggle} close={closeBtn} className={classes.heading}>
+            Add Question
+          </ModalHeader>
+          <div className="askedBar">
+            <div className={classes.userInfoCont}>
+              <img src={userImg} className={classes.userImg} alt='user Image'/>
+              <h1 className={classes.userName}>{userName} <span className={classes.asked}>asked</span></h1>
+            </div>
           </div>
           <ModalBody>
-          <FormGroup>
-            <Input type="textarea" value={textAreaval} name="text" className="addQuestionTextArea" rows="8" placeholder='Select your Question with "What","How","Why,etc"' onChange={handleTextareaChange}/>
+          <FormGroup className={classes.placeholder}>
+            <Input type="textarea" value={textAreaval} name="text" rows="8" placeholder='Start your Question with “What”, “How”, “Why”, etc."' onChange={handleTextareaChange}/>
         </FormGroup>
         <FormGroup>
-        <Label for="exampleSelectMulti">Tabs</Label>
+        <Label for="exampleSelectMulti" className={classes.suggestedTags}>Tags</Label>
             <Select
             value={selectedOption}
             onChange={handleChange}
@@ -113,9 +164,11 @@ const AddQuestionPop = (props) => {
       </FormGroup>
       {/* onClick={()=>setSelectedOption([...selectedOption,{value: this.value,label: this.name, id: this.id}])} */}
       <div>
+        <div className={classes.suggestedTags}>Suggested Tags</div>
       {props.tagTopics.map(topic=>(
         <span id={topic.id} key={uuid()}>
-        <Badges data={{value:topic.slug, label:topic.name, id:topic.id}} handleBadgeChanges={handleBadgeChanges} />
+            {/* <Tag key={uuid()} style={{color: colors.tagColor[Math.floor(Math.random() * colors.tagColor.length)] , bgColor: colors.tagBgColor[Math.floor(Math.random() * colors.tagBgColor.length)]}} data={{value:topic.slug, label:topic.name, id:topic.id}}/> */}
+            <Badges data={{value:topic.slug, label:topic.name, id:topic.id}} handleBadgeChanges={handleBadgeChanges} />
         </span>
       ))}
       </div>
@@ -123,15 +176,23 @@ const AddQuestionPop = (props) => {
           </ModalBody>
           <ModalFooter>
             <Button color="secondary" onClick={props.toggle}>Cancel</Button>
-            <Button color="primary" onClick={handleAddQuestion} disabled={isDisbled} id="addBtn">
+            <Button color="primary" onClick={handleAddQuestion} disabled={isDisbled} id="addBtn" className={classes.submitBtn}>
               Add Question
             </Button>{' '}
           </ModalFooter>
+          </div>
         </Modal>
       </div>)
 }
 
 const Badges = (props)=>{
   return <Badge onClick={()=>props.handleBadgeChanges(props.data)} color="primary">{props.data.label}</Badge>
+}
+
+AddQuestionPop.defaultProps={
+  colors : {
+      tagColor : ['#4c70ab', '#ac5d1c;' , '#a64141', '#2e9557'],
+      tagBgColor : ['#eaf8ff', '#fff5ea' , '#fff4f4', '#eafff2']
+  }
 }
 export default AddQuestionPop;
