@@ -44,7 +44,7 @@ const Questions = (props) => {
 
   useEffect(() => {
     let isCancelled = false;
-    let url = props.match.params.tag ? `http://localhost/MyApplicationMentor/singletags/${props.match.params.tag}` : `http://localhost/MyApplicationMentor/getallquestion`;
+    let url = props.match.params.tag ? `${process.env.REACT_APP_API_HOST_URL}/${props.match.params.tag}` : `${process.env.REACT_APP_API_HOST_URL}/getallquestion`;
     console.log(url);
     
     // let url = match
@@ -89,7 +89,7 @@ const Questions = (props) => {
           
         <div className="container mt-5">
             <div className="row">
-                <div className="col-md-8">
+                <div className="col-md-8" >
                   {quesResponse.map(quest=>(
                     <SingleQuestion quesData={quest} key={uuid()} getTagData={getTagData}/>
                   ))}

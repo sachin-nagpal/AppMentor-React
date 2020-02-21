@@ -23,6 +23,7 @@ const useStyles= createUseStyles({
     },
     questonSearchContainer:{
         position: 'relative',
+        width: '100%',
     },
     questionSearchDrop:{
         position: 'absolute',
