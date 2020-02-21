@@ -73,7 +73,8 @@ const useStyles= createUseStyles({
         background: '#ffffff'
     },
     divContainer:{
-        boxShadow: '0 3px 8px 1px rgba(149, 149, 149, 0.75)'
+        boxShadow: '0 3px 8px 1px rgba(149, 149, 149, 0.75)',
+        zIndex: 12345
     }
 })
 const variants = {
@@ -165,7 +166,8 @@ export default function QuestionSearch({handleAddingQuestion}) {
                         borderRadius:'5px',
                         cursor: 'default',
                         padding: '0',
-                        triangleCol: '#ffffff'
+                        triangleCol: '#ffffff',
+                        zIndex: '1234'
                     }}>
                     <div className={classes.searchValContainer}>
                         <div className={classes.searchIconContainer}><img src={SearchIcon} alt="SearchIcon"/><span className={classes.searchFixed}>Search: </span><span className={classes.searchingTxt}>{searchVal}</span></div>

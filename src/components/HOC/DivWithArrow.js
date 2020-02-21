@@ -12,7 +12,7 @@ const useStyles = createUseStyles({
         maxHeight: styles.heigth,
         borderRadius: styles.borderRadius || '0.625rem',
         padding: styles.padding || '0.625rem 0.9375rem',
-        zIndex: '123',
+        zIndex: styles.zIndex || '0',
         '&:hover':{
             background: '#ffffff',
         },
