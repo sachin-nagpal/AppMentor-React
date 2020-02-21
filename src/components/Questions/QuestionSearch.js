@@ -27,7 +27,7 @@ const useStyles= createUseStyles({
     questionSearchDrop:{
         position: 'absolute',
         width: '100%',
-        zIndex: '10'
+        // zIndex: '10'
     },
     searchValContainer:{
         height: '3rem',
@@ -71,6 +71,9 @@ const useStyles= createUseStyles({
         paddingLeft: '0',
         color: '#406eb3',
         background: '#ffffff'
+    },
+    divContainer:{
+        boxShadow: '0 3px 8px 1px rgba(149, 149, 149, 0.75)'
     }
 })
 const variants = {
@@ -87,7 +90,7 @@ const variants = {
     closed: {
         opacity: 0,
         y: 50,
-        height: '0',
+        height: 0,
         transition: {
             y: {
                 stiffness: 1000,
@@ -150,6 +153,7 @@ export default function QuestionSearch({handleAddingQuestion}) {
                     initial={{ opacity: "0" }}
                     animate={isSearchOpen ? "open" : "closed"}
                     variants={variants}>
+                    <div className={classes.divContainer}> 
                     <DivWithArrow styles={{
                         borderCol: '#d7d7d7',
                         bgCol: '#ffffff',
@@ -177,6 +181,7 @@ export default function QuestionSearch({handleAddingQuestion}) {
                             }
                     </div>    
                 </DivWithArrow>
+                </div>
                 </motion.div>
             </div>
         </div>
