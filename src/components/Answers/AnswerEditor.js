@@ -9,11 +9,6 @@ import BoldIcon from '../../images/B.png';
 import draftToHtml from 'draftjs-to-html';
 // import htmlToDraft from 'html-to-draftjs';
 
-const styleMap = {
-  'P':{
-    backgroundColor: 'red'
-  }
-}
 // const imagePlugin = createImagePlugin();
 function uploadImageCallBack(file) {
   return new Promise(
@@ -50,7 +45,7 @@ class AnswerEditor extends Component {
           wrapperClassName="demo-wrapper"
           editorClassName="demo-editor"
           toolbarClassName="demo-toolbar-custom"
-          customStyleMap={styleMap}
+          stripPastedStyles = "true"
           toolbar={{
             options: ['inline', 'list','emoji','image'],
             inline: {
