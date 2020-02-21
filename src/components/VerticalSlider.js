@@ -1,8 +1,8 @@
 import React from "react";
 import Slider from "react-slick";
 import uuid from 'uuid';
-
-import VerticalSlideItem from '../components/VerticalSliderItem';
+import arrow from '../images/arrow.png';
+import VerticalSlideItem from './VerticalSlideItem';
 
 import { createUseStyles } from 'react-jss';
 
@@ -14,15 +14,69 @@ const useStyles = createUseStyles({
 })
 
 
+// .slick-next:before {
+//     content:url('../images/icon.png') !important;
+//     font-weight: 700;
+//     color: red;
+//     transform: rotate(0deg);
+//     width: 24%;
+//     left: 38%;
+// }
+
+// .slick-next{
+//     width: 100% !important;
+//     position: absolute !important;
+//     display: block !important;
+//     top: -59px !important;
+//     right: 0% !important;
+//     height: initial;
+// }
+
+// .slick-prev:before {
+//     content:url('../images/icon.png') !important;
+//     font-weight: 700;
+//     color: red;
+//     transform: rotate(180deg);
+//     width: 24%;
+//     left: 38%;
+// }
+
+// .slick-prev, .slick-next {
+//     height: fit-content;
+// }
+
+// .slick-prev{
+//     width: 100% !important;
+//     position: absolute !important;
+//     display: block !important;
+//     transform: rotate(180deg) !important;
+//     left: 0% !important;
+//     height: initial;
+//     top: 430px !important;
+// }
+
+function SamplePrevArrow(props) {
+  const { className, style, onClick } = props;
+  return (
+    <div
+      className={className}
+      style={{ ...style, display: "block", background: "red" }}
+      onClick={onClick}
+    />
+  );
+}
+
 const VerticalSlider =(props)=> {
     const classes = useStyles();
     const settings = {
-      dots: true,
+      dots: false,
       infinite: false,
       slidesToShow: 3,
       slidesToScroll: 1,
       vertical: true,
       verticalSwiping: true,
+      nextArrow: <SampleNextArrow/>,
+      prevArrow: <SamplePrevArrow/>,
       beforeChange: function(currentSlide, nextSlide) {
         console.log("before change", currentSlide, nextSlide);
       },
@@ -45,28 +99,5 @@ const VerticalSlider =(props)=> {
       </div>
     );
   }
-
-VerticalSlider.defaultProps = {
-  slides: [
-    {
-      text: 'While applying for two different programs in an university is it apt to write different area of interests in different SOP?',
-      tags: ['University','Study Abroad']
-    }, {
-      text: 'How good is Trinity Business School for MSc Finance in terms of employment opportunities in Ireland, return on investment, course content and worldwide reputation?',
-      tags: ['MSc']
-    }, {
-      text: 'With 69% in B.Tech, 7+ years of work experience, and a 690 GMAT score, what are chances to get admission to top-notch universities in Canada for an MBA program?',
-      tags: ['MBA']
-    },
-     {
-      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ut pharetra leo. Sed molestie, mauris eget faucibus sodales, nulla dui faucibus velit, a faucibus mi nisi ac enim. Do',
-      tags: ['MMM']
-    },
-     {
-      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ut pharetra leo. Sed molestie, mauris eget faucibus sodales, nulla dui faucibus velit, a faucibus mi nisi ac enim. Do',
-      tags: ['TTT']
-    },
-  ]
-}
 
 export default VerticalSlider;

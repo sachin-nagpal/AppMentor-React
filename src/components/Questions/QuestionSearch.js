@@ -16,14 +16,18 @@ import { useAuth } from "../../context/auth";
 //Images 
 import SearchIcon from '../../images/searchIcon.svg';
 
-
 const useStyles= createUseStyles({
     modalContainer: {
         maxWidth: '60rem'
     },
+
+    inputSearch:{
+        border:'none'
+    },
+
     questonSearchContainer:{
         position: 'relative',
-        width: '100%',
+        width: '100%'
     },
     questionSearchDrop:{
         position: 'absolute',
@@ -148,7 +152,7 @@ export default function QuestionSearch({handleAddingQuestion}) {
     return (
         <div className={classes.questonSearchContainer} ref={innerRef}>
             <InputGroup>
-              <Input placeholder="Search Questions" value={searchVal} onChange={onChangeHandler} onFocus={()=>handleSearchOpen(true)}/>
+              <Input placeholder="Search Questions" value={searchVal} onChange={onChangeHandler} onFocus={()=>handleSearchOpen(true)} className={classes.inputSearch}/>
             </InputGroup>
             <div className={classes.questionSearchDrop}>
                 <motion.div

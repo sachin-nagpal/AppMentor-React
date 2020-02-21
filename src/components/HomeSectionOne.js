@@ -2,6 +2,7 @@ import React from 'react';
 import home from '../images/home.png';
 import bgStroke from '../images/bg-stroke.png';
 import '../styles/HomeSectionOne.css';
+import QuestionSearch from './Questions/QuestionSearch';
 
 const HomeSectionOne = () =>{
     
@@ -26,7 +27,9 @@ const HomeSectionOne = () =>{
                             Let's get started!
                         </div>
                         <div className="home-search">
-                            <input type="text" placeholder="Search Questions"></input>
+                            <div className="search-section">
+                                <QuestionSearch/>
+                            </div>
                             <button className="search-btn">Search</button>
                         </div>
                     </div>

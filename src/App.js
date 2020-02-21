@@ -4,6 +4,7 @@ import SignupLoginPage from './pages/SignupLoginPage';
 import PrivateRoutes from './components/PrivateRoutes';
 import SingleQuestionPage from './pages/SingleQuestionPage';
 import QA from './pages/QA';
+import Blogs from './pages/Blogs';
 import Questions from './pages/Questions';
 import { CookiesProvider } from 'react-cookie';
 import axios from 'axios';
@@ -70,6 +71,7 @@ function App(props) {
                     <Route exact path='/allquestions/:tag' render={(routeProps)=><Questions {...routeProps} />}/>
                     <Route exact path='/singlequestion/:slug' render={(routeProps)=><QA {...routeProps} />}/>
                     <Route exact path='/signup-login' render={(routeProps)=><SignupLoginPage {...routeProps} st={{pop: 'no'}}/>}/>
+                    <Route exact path='/blogs' render={(routeProps)=><Blogs {...routeProps}/>}/>
                     <PrivateRoutes path='/profile' component={Profile}/>/>
                     <Route path='*' exact={true} component={NotFound} />
                   </Switch>

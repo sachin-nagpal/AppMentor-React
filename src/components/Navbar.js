@@ -31,7 +31,7 @@ import {UserLoginState} from '../context/UserLoginState';
 import {Redirect} from 'react-router-dom';
 const NavbarComponent = (props) => {
     function userLogout(){
-        axios.get('/http://localhost/MyApplicationMentor/userlogout', {
+        axios.get(`${process.env.REACT_APP_API_HOST_URL}/userlogout`, {
             params: {
               ID: 12345
             }
@@ -80,7 +80,7 @@ const NavbarComponent = (props) => {
                                 <NavLink to="/allquestions" tag={Link} className="nav-links"><strong>Answers</strong></NavLink>
                             </NavItem>
                             <NavItem className="mr-5">
-                                <NavLink to="/signup-login" tag={Link} className="nav-links"><strong>Blogs</strong></NavLink>
+                                <NavLink to="/blogs" tag={Link} className="nav-links"><strong>Blogs</strong></NavLink>
                             </NavItem>
                             <NavItem>
                             <NavItem className="mr-5">
@@ -91,8 +91,7 @@ const NavbarComponent = (props) => {
                             {!authTokens ? 
                                <Link to="/signup-login" className="login-btn nav-links mr-5">
                                 Login
-                               </Link>     
-                            //    : <Button onClick={handleUserLogout}>Log out</Button>}  
+                               </Link>      
                             : <NavbarProfile handleUserLogout={handleUserLogout} userImg={userImg}/>}
                             </NavItem>
                         </Nav>

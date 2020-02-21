@@ -1,5 +1,23 @@
 @import url('https://fonts.googleapis.com/css?family=Merriweather&display=swap');
 
+.search-section{
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.abc .questonSearchContainer-0-2-7{
+    width: 100% !important;
+}
+
+.form-control{
+    border: none;
+}
+
+.form-control:focus{
+    border: none;
+}
+
 .common-sec-one{
     font-family: 'Merriweather', serif;
     font-weight: 400;
