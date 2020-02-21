@@ -39,8 +39,10 @@
     color: #999797;
     font-size: 1.2rem;
     color: #999797;
-    font-size: 1.2rem;
+    font-size: 1rem;
+    font-weight: 700;
     margin: 0px 7px;
+    margin-top: 0.1rem;
 }
 
 .blog-dot{
@@ -54,4 +56,16 @@
 .blog-detail{
     font-family: Merriweather;
     padding: 0.5rem 0rem 1rem;
+}
+
+.user_image{
+    height: 4rem;
+    width: 4rem;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.user_name{
+    color: #6a6464;
+    font-family: Merriweather;
 }

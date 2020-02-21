@@ -17,7 +17,7 @@ const useStyles = createUseStyles({
 const HomeSectionFour =(props)=> {
     const classes = useStyles();
     const settings = {
-      dots: true,
+      dots: false,
       arrows: true,
       infinite: false,
       slidesToShow: 3,
@@ -40,8 +40,8 @@ const HomeSectionFour =(props)=> {
         <div className={classes.sliderContainer}>
             <Slider {...settings}>
             {
-                props.slides.map(slide =>(
-                    <VerticalSlideItem st={{width: '100%',height: '5rem',borderCol:'#b7b7b7'}} data={slide} key={uuid()}/>
+                props.questions.map(question =>(
+                    <VerticalSlideItem st={{width: '100%',height: '5rem',borderCol:'#b7b7b7'}} data={question} key={uuid()}/>
                 ))
             }
             </Slider>
