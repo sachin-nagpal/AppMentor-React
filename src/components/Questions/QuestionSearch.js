@@ -27,7 +27,7 @@ const useStyles= createUseStyles({
     questionSearchDrop:{
         position: 'absolute',
         width: '100%',
-        // zIndex: '10'
+        zIndex: '10'
     },
     searchValContainer:{
         height: '3rem',
