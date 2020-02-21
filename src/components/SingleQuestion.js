@@ -12,7 +12,7 @@ import ProfileImage from '../images/noImage.jpg';
 
 const useStyles = createUseStyles({
     singleQuestionContainer:{
-        marginBottom: '2rem'
+        marginBottom: '4rem'
     },
     singleQuestionQuestion: {
     // margin: 5px 0px,
