@@ -26,7 +26,6 @@ const ForgetPassSignin = ({handleForgotCard})=>{
         validate,
         onSubmit: values => {
           setIsVarifying();
-          alert(JSON.stringify(values, null, 2));
         },
       });
       const [isVarifying, setIsVarifying] = useToggleState(false);

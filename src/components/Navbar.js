@@ -74,7 +74,7 @@ const NavbarComponent = (props) => {
                                 <img src={search} alt="search" height="20px" width="20px"></img>
                             </NavItem>
                             <NavItem className="mr-5">
-                                <NavLink href="https://github.com/reactstrap/reactstrap" className="nav-links"><strong>Explore</strong></NavLink>
+                                <NavLink href="#" className="nav-links"><strong>Explore</strong></NavLink>
                             </NavItem>
                             <NavItem className="mr-5">
                                 <NavLink to="/allquestions" tag={Link} className="nav-links"><strong>Answers</strong></NavLink>

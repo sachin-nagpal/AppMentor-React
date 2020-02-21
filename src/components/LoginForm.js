@@ -3,7 +3,7 @@ import { useFormik } from 'formik';
 import { Col, Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import useStyles from '../styles/LoginComponentStyle'
 import useToggleState from '../hooks/useToggleState';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 
 //Context
 import { useAuth } from "../context/auth";
@@ -122,11 +122,17 @@ const LoginForm = ({handleFlip,handleForgotCard,props,history, path,handlePopup}
       <div className={classes.signCallAction}><p>Don’t have an account? <span onClick={handleFlip}>Get Started!</span></p></div>
       <div className={classes.orHeading}><p>or</p></div>
       <div className={classes.googleFbSignup}>
+
         <div className={classes.googleSignup}>
-            <Button className={classes.googleSignIn} color='' size="lg" active>Google</Button>
+            <Button className={classes.googleSignIn} color='' size="lg" active>
+              <a href={`http://myapplicationmentor.mim-essay.com/MyApplicationMentor/login/google`} style={{textDecoration: 'none'}}>
+                   Google
+                </a>
+            </Button>
         </div>
         <div className={classes.fbSignup}>
-            <Button className={classes.fbSignIn} color='' size="lg" active>Facebook</Button>
+            <Button className={classes.fbSignIn} color='' size="lg" active>
+            <a href={`http://myapplicationmentor.mim-essay.com/MyApplicationMentor/login/facebook`} style={{textDecoration: 'none'}}>Facebook</a></Button>
         </div>
       </div>
      </div>  

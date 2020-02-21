@@ -68,7 +68,6 @@ const SignupForm = ({handleFlip}) => {
     },
     validate,
     onSubmit: values => {
-      alert(JSON.stringify(values, null, 2));
       axios.post(`${process.env.REACT_APP_API_HOST_URL}/registeruser`, {
         email: values.signEmail,
         fname: values.firstName,
