@@ -20,7 +20,7 @@ const useStyles = createUseStyles({
         color: '#406eb3',
         cursor: 'pointer',
         background: sty.bg || '',
-        padding: sty.padding || '',
+        padding: sty.padding || '', 
         margin: '0 0.2rem'
     })
 })
