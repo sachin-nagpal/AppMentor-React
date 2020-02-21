@@ -12,6 +12,7 @@ import ProfileImage from '../images/noImage.jpg';
 import { Modal} from 'reactstrap';
 import SignupLoginPage from '../pages/SignupLoginPage';
 import {createUseStyles} from 'react-jss';
+
 // Context
 import { useAuth } from "../context/auth";
 

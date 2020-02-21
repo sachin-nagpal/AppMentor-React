@@ -9,8 +9,10 @@ import uuid from 'uuid';
 import { useAuth } from "../../context/auth";
   
 const useStyles = createUseStyles({
+  modalMainContainer:{
+  },
     modalMain:{
-        maxWidth: '43.75rem'
+        maxWidth: '43.75rem',
     },
     userInfoCont:{
       display: 'flex',
@@ -90,7 +92,7 @@ const AddQuestionPop = (props) => {
       }
       const [isDisbled,setIsDisabled] = useState(true)      
       return (
-      <div>
+      <div className={classes.modalMainContainer}>
         {/* <Button color="danger" onClick={toggle}>{buttonLabel}</Button> */}
         <Modal isOpen={props.isAddingQuestion} toggle={props.toggle} className={classes.modalMain}>
           <ModalHeader toggle={props.toggle} close={closeBtn}>Add Question</ModalHeader>

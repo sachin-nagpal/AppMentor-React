@@ -4,63 +4,90 @@ import { Editor } from 'react-draft-wysiwyg';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import '../../styles/AnswersEditor.css'
 import {Button} from 'reactstrap';
+import BoldIcon from '../../images/B.png';
 // Testing
 import draftToHtml from 'draftjs-to-html';
 // import htmlToDraft from 'html-to-draftjs';
 
+const styleMap = {
+  'P':{
+    backgroundColor: 'red'
+  }
+}
 // const imagePlugin = createImagePlugin();
+function uploadImageCallBack(file) {
+  return new Promise(
+    (resolve, reject) => {
+      const xhr = new XMLHttpRequest();
+      xhr.open('POST', 'https://api.imgur.com/3/image');
+      xhr.setRequestHeader('Authorization', 'Client-ID XXXXX');
+      const data = new FormData();
+      data.append('image', file);
+      xhr.send(data);
+      xhr.addEventListener('load', () => {
+        const response = JSON.parse(xhr.responseText);
+        resolve(response);
+      });
+      xhr.addEventListener('error', () => {
+        const error = JSON.parse(xhr.responseText);
+        reject(error);
+      });
+    }
+  );
+}
 
 class AnswerEditor extends Component {
-  state = {
-    editorState: EditorState.createEmpty(),
-  }
-
-
  onEditorStateChange = (editorState)=>{
-   this.setState({
-     editorState
-    });
+  this.props.handleEditorState(editorState)
   };
   render() {
-    const { editorState } = this.state;
     return (
-      <div style={{backgroundColor: 'white', height: '20rem', marginBottom:'2rem'}}>
+      <div style={{marginBottom:'0'}}>
         <Editor
-          editorState={editorState}
-          wrapperClassName="wrapper-class"
-          editorClassName="editor-class"
-          toolbarClassName="toolbar-class"
-          placeholder="Write your answer."
-          // plugins={[imagePlugin]}
+          editorState={this.props.editorState}
           onEditorStateChange={this.onEditorStateChange}
+          placeholder="Write your answer."
+          wrapperClassName="demo-wrapper"
+          editorClassName="demo-editor"
+          toolbarClassName="demo-toolbar-custom"
+          customStyleMap={styleMap}
           toolbar={{
-             image: {
-              //  icon: image,
-               className: undefined,
-               component: undefined,
-               popupClassName: undefined,
-               urlEnabled: true,
-               uploadEnabled: true,
-               alignmentEnabled: true,
-               uploadCallback: undefined,
-               previewImage: false,
-               inputAccept: 'image/gif,image/jpeg,image/jpg,image/png,image/svg',
-               alt: {
-                 present: false,
-                 mandatory: false
-               },
-               defaultSize: {
-                 height: 'auto',
-                 width: 'auto',
-               },
-             },
+            options: ['inline', 'list','emoji','image'],
+            inline: {
+              inDropdown: false,
+              className: undefined,
+              component: undefined,
+              dropdownClassName: undefined,
+              options: ['bold', 'italic'],
+              bold: { className: 'bold' },
+              italic: {className: 'italic'}
+            },
+            list: {
+              inDropdown: false,
+              className: undefined,
+              component: undefined,
+              dropdownClassName: undefined,
+              options: ['unordered','ordered'],
+              unordered: {className: 'unordered'},
+              ordered: {className: 'ordered'}
+              // unordered: { icon: unordered, className: undefined },
+              // ordered: { icon: ordered, className: undefined },
+              // indent: { icon: indent, className: undefined },
+              // outdent: { icon: outdent, className: undefined },
+            },
+            emoji:{
+              className: 'emoji',
+            },
+            textAlign: { inDropdown: true },
+            link: { inDropdown: true },
+            history: { inDropdown: true },
+            image: { uploadCallback: uploadImageCallBack, alt: { present: true, mandatory: true },className: 'image' },
           }}
         />
         {/* <textarea
           disabled
           value={draftToHtml(convertToRaw(editorState.getCurrentContent()))}
         /> */}
-        <Button onClick={()=>this.props.handlePostAnswer(editorState.getCurrentContent())}>Submit</Button>
       </div>
     );
   }

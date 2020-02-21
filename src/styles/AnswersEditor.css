@@ -1,13 +1,21 @@
 div.DraftEditor-root {
-    /* border: 1px solid #000;
-    background-color: beige; */
+    border: 1px solid transparent;
+    background-color: #ffffff;
     min-height: 200px;
     padding: 0 1rem;
 }
 div.DraftEditor-root::placeholder{
 }
+.demo-toolbar-custom{
+    border-bottom: 1px solid #cecece;
+    margin-bottom: 0;
+}
 
 div.DraftEditor-editorContainer,
 div.public-DraftEditor-content {
     height: 100%;
+}
+
+.bold,.italic,.unordered,.ordered,.emoji,.image{
+    border: 0;
 }

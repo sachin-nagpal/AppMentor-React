@@ -28,9 +28,9 @@ const QAheader = ({quesResponse,isEditing,setIsEditing,getData,handleChangeState
                     </div>
                     <div className="ad-answer-row d-flex align-items-center">
                         <div className="d-flex align-items-center">
-                            <img src={edit} className="small-icons"></img><strong>{answerCount}</strong>
+                            <img src={edit} className="small-icons"></img><strong style={{color: '#565656'}}>{answerCount} Answers</strong>
                             <div className="dot"></div>
-                            <img src={share} className="small-icons"></img><strong>Share this Question</strong>
+                            <img src={share} className="small-icons"></img><strong style={{color: '#575757',fontFamily: 'Roboto'}}>Share this Question</strong>
                         </div>
 
                         <div>
