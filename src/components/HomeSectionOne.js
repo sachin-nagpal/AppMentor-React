@@ -27,11 +27,9 @@ const HomeSectionOne = () =>{
                             Let's get started!
                         </div>
                         <div className="home-search">
-                            {/* <input type="text" placeholder="Search Questions"> */}
-                            <div className="abc">
-                                 <QuestionSearch/>
+                            <div className="search-section">
+                                <QuestionSearch/>
                             </div>
-                            {/* </input> */}
                             <button className="search-btn">Search</button>
                         </div>
                     </div>

@@ -1,9 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Merriweather&display=swap');
 
-.abc{
+.search-section{
     width: 100%;
     display: flex;
-    align-items: centers;
+    align-items: center;
 }
 
 .abc .questonSearchContainer-0-2-7{
