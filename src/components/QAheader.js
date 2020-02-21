@@ -20,7 +20,7 @@ const QAheader = ({quesResponse,isEditing,setIsEditing,getData,handleChangeState
                         </div>
                         <button className="QAheader-tag-btn">Business Analytics</button>
                         <button className="QAheader-tag-btn">Masters in Management</button> */}
-                    <AskedByStrip name={`${'Karan'} ${'handa'}`} tags={quesResponse.findquestion[0].topics} getTagData={getData} handleChangeState={handleChangeState} url={`/allquestions/`}/>
+                    <AskedByStrip name={`${'Karan'} ${'handa'}`} tags={quesResponse.findquestion[0].topics} getTagData={getData} handleChangeState={handleChangeState} url={`/allquestions/`} st={{bg:'#f2f2f2',padding:'0.2rem'}}/>
                     </div>
 
                     <div className="main-ques">
