@@ -16,18 +16,22 @@ const useStyles = createUseStyles({
         color: '#406eb3',
         cursor: 'pointer'
     },
-    tagTxt: {
+    tagTxt: sty=>({
         color: '#406eb3',
-        cursor: 'pointer'
-    }
+        cursor: 'pointer',
+        background: sty.bg || '',
+        padding: sty.padding || '',
+        margin: '0 0.2rem'
+    })
 })
 
-function AskedByStrip({ name, tags , getTagData, url ,handleChangeState}) {
+function AskedByStrip({ name, tags , getTagData, url ,handleChangeState,st}) {
+    const sty = st !== undefined && st;
     // Tags Comes in array ↑
-    const classes = useStyles();
+    const classes = useStyles(sty);
     return (
         <div className={classes.stripContainer}>
-            <span className={classes.askedByTxt}>Asked by</span> <span className={classes.nameTxt}>{name}</span> in {tags.map((tag,i)=>(<div key={uuid()} style={{display: 'inline-block'}}><span onClick={()=>getTagData(tag.slug,handleChangeState)} className={classes.tagTxt}><Link to={`${url}${tag.slug}`}>{tag.name}{tags.length-1 !== i && ", "}</Link></span></div>))}
+            <span className={classes.askedByTxt}>Asked by</span> <span className={classes.nameTxt}>{name}</span> in {tags.map((tag,i)=>(<div key={uuid()} style={{display: 'inline-block'}}><span onClick={()=>getTagData(tag.slug,handleChangeState)} className={classes.tagTxt}><Link to={`${url}${tag.slug}`}>{tag.name}{tags.length-1 !== i && sty ? '' : ", "}</Link></span></div>))}
         </div>
     );
 }

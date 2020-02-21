@@ -57,7 +57,7 @@ const useStyles = createUseStyles({
         marginLeft: '1rem',
         marginRight: '1rem',
         '& span':{
-            color: '#959595',
+            color: '#406eb3',
             fontFamily: 'Roboto',
             fontSize: '1rem',
         }

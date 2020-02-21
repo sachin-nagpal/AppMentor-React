@@ -82,7 +82,7 @@ const Answers = ({ answers, handleReload }) => {
                         </div>
                         <div>
                             <div className="ans-user-name">{answers.fname} {answers.lname}</div>
-                            <div className="ans-user-about">Founder at MiM-Essay.com , MiM Grad- ESCP Europe</div>
+                            <div className="ans-user-about">--</div>
                             <div className="ans-date">{answers.created_at}</div>
                         </div>
                     </div>
