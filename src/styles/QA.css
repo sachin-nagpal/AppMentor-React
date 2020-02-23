@@ -1,14 +1,15 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
-
 
 .QAheader-inside-container{
     padding: 20px 0px;
     margin: auto;  
     margin-bottom: 4rem;
 }
-.QAheader-inside-container::before{
-    top: 32.5%;
-	left: 12%;
+.main-Contai{
+    position: relative;
+}
+.main-Contai::before {
+    bottom: calc(0% - 50px);
+	left: 30%;
 	border: solid transparent;
 	content: " ";
 	height: 0;
@@ -193,8 +194,7 @@ strong{
 
 .related-ques-container{
     box-shadow: 2px 4px 8px 1px rgba(211, 211, 211, 0.75);
-    border: 1px solid #d3d3d3;
-    background: white;
+    background: #ffffff;
     padding: 10px 30px;
     width: 100%;
 }
