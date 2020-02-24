@@ -44,7 +44,7 @@ const Questions = (props) => {
 
   useEffect(() => {
     let isCancelled = false;
-    let url = props.match.params.tag ? `${process.env.REACT_APP_API_HOST_URL}/singletag/${props.match.params.tag}` : `${process.env.REACT_APP_API_HOST_URL}/getallquestion`;
+    let url = props.match.params.tag ? `${process.env.REACT_APP_API_HOST_URL}/singletags/${props.match.params.tag}` : `${process.env.REACT_APP_API_HOST_URL}/getallquestion`;
     console.log(url);
     
     // let url = match
@@ -68,7 +68,7 @@ const Questions = (props) => {
   const getTagData =(urlName) =>{
     // http://localhost/MyApplicationMentor/singletags/analytics
     (async function () {
-      const response = await AxiosRequest().get(`${process.env.REACT_APP_API_HOST_URL}/singletags/${urlName}`);
+      const response = await AxiosRequest().get(`${process.env.REACT_APP_API_HOST_URL}/${urlName}`);
       console.log(response);
       console.log('Re-Render');
         setResponse(response.data.findallquestions);

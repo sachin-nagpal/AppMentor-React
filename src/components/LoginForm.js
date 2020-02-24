@@ -125,14 +125,14 @@ const LoginForm = ({handleFlip,handleForgotCard,props,history, path,handlePopup}
 
         <div className={classes.googleSignup}>
             <Button className={classes.googleSignIn} color='' size="lg" active>
-              <a href={`http://myapplicationmentor.mim-essay.com/MyApplicationMentor/login/google`} style={{textDecoration: 'none'}}>
+              <a href={`http://myapplicationmentor.mim-essay.com/MyApplicationMentor/login/google`} style={{textDecoration: 'none',color: 'white'}}>
                    Google
                 </a>
             </Button>
         </div>
         <div className={classes.fbSignup}>
             <Button className={classes.fbSignIn} color='' size="lg" active>
-            <a href={`http://myapplicationmentor.mim-essay.com/MyApplicationMentor/login/facebook`} style={{textDecoration: 'none'}}>Facebook</a></Button>
+            <a href={`http://myapplicationmentor.mim-essay.com/MyApplicationMentor/login/facebook`} style={{textDecoration: 'none',color: 'white'}}>Facebook</a></Button>
         </div>
       </div>
      </div>  
