@@ -140,7 +140,7 @@ const QA = ({ match,location }) => {
             <SignupLoginPage st={{pop:'yes'}}/>
         </Modal>}
           <div>
-          <QAheader quesResponse={quesResponse} isEditing={isEditing} setIsEditing={setIsEditing} answerCount={quesResponse.answercount} getData={getData} handleChangeState={handleChangeState} isFollowQues={isFollowQues} handleQuestionFollow={handleQuestionFollow}/>
+          <QAheader quesResponse={quesResponse} isEditing={isEditing} setIsEditing={setIsEditing} answerCount={quesResponse.answercount} getData={getData} handleChangeState={handleChangeState} isFollowQues={isFollowQues} handleQuestionFollow={handleQuestionFollow} toggle={toggle}/>
           </div>
 
           <div className="container mt-4">

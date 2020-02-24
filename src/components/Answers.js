@@ -13,7 +13,7 @@ import ProfileImage from '../images/noImage.jpg';
 // import SignupLoginPage from '../pages/SignupLoginPage';
 import {createUseStyles} from 'react-jss';
 
-import { EmailShareButton, FacebookShareButton } from 'react-share';
+import { EmailShareButton, TwitterShareButton } from 'react-share';
 
 
 // Context
@@ -129,15 +129,24 @@ const Answers = ({ answers, handleReload,toggle,handleFollow }) => {
                         </div>
                     </div>
                     <div>
-                    {!isFollow ?
-                        <button className={classes.answerUserBtn} style={{ backgroundColor: "#3e70bb" }} onClick={()=>handleFollow(answers.userid,handleIsFollow)}>
+                     {authTokens ?
+                        !isFollow ?
+                            <button className={classes.answerUserBtn} style={{ backgroundColor: "#3e70bb" }} onClick={()=>handleFollow(answers.userid,handleIsFollow)}>
+                                <div className={classes.btnContentContainer}>
+                                    <div className={classes.iconInBtn}><img src={follow} alt="follow"></img></div>
+                                        <span className="">&nbsp;&nbsp;Follow</span>
+                                </div>
+                            </button>
+                        : 
+                             <div style={{ backgroundColor: "#3e70bb" }} className={classes.answerUserBtn}>Following</div>
+                        
+                        :
+                        <button className={classes.answerUserBtn} style={{ backgroundColor: "#3e70bb" }} onClick={toggle}>
                             <div className={classes.btnContentContainer}>
                                 <div className={classes.iconInBtn}><img src={follow} alt="follow"></img></div>
                                     <span className="">&nbsp;&nbsp;Follow</span>
                             </div>
                         </button>
-                        : 
-                        <div style={{ backgroundColor: "#3e70bb" }} className={classes.answerUserBtn}>Following</div>
                         }
                         {/* <button className={classes.answerUserBtn} style={{ backgroundColor: "#2f9657" }}>
                             <div className={classes.btnContentContainer}>
@@ -160,7 +169,7 @@ const Answers = ({ answers, handleReload,toggle,handleFollow }) => {
                         <UpvoteBtn upvotes={upvotes} handleUpvote={handleUpvote} isVoted={isVoted} setIsVoted={setIsVoted} setIsLoading isLoading authTokens/>
                     </div>
                     <div className={classes.answerComntSharebtn}><div className={classes.iconInBtn}><img src={comment} alt="Comment" className={classes.btnIcon}></img></div> <span className={classes.comntShare}>Comment</span><span className={classes.dot}>&bull;</span>0</div>
-                    <FacebookShareButton url={window.location.href}><div className={classes.answerComntSharebtn} ><div className={classes.iconInBtn}><img src={shareWhite} alt="Share" className={classes.btnIcon}></img></div> <span className={classes.comntShare}>Share</span><span className={classes.dot}>&bull;</span>0</div></FacebookShareButton>
+                    <TwitterShareButton url={window.location.href}><div className={classes.answerComntSharebtn} ><div className={classes.iconInBtn}><img src={shareWhite} alt="Share" className={classes.btnIcon}></img></div> <span className={classes.comntShare}>Share</span><span className={classes.dot}>&bull;</span>0</div></TwitterShareButton>
                 </div>
             </div>
         </div>
