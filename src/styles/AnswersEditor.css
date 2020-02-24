@@ -4,7 +4,8 @@ div.DraftEditor-root {
     min-height: 200px;
     padding: 0 1rem;
 }
-div.DraftEditor-root::placeholder{
+div.DraftEditor-root .public-DraftEditorPlaceholder-root {
+    padding: 1rem;
 }
 .demo-toolbar-custom{
     border-bottom: 1px solid #cecece;

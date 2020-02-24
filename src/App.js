@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Route, Switch } from 'react-router-dom'; 
+import { Route, Switch, Router, HashRouter  } from 'react-router-dom'; 
 import SignupLoginPage from './pages/SignupLoginPage';
 import PrivateRoutes from './components/PrivateRoutes';
 import SingleQuestionPage from './pages/SingleQuestionPage';
@@ -63,7 +63,6 @@ function App(props) {
         <UserLoginStateContextProvider>
         <AuthContext.Provider value={{ authTokens, setAuthTokens: setTokens,setUserName: setUserNameContext,userName,userImg,setUserImg:setUserProfileImage}}>
           <Navbar />
-            <Route>
                 <Switch>
                   <Route exact path='/' render={(routeProps) => <Home {...routeProps}/>}/>
                     {/* <Route exact path='/profile' render={(routeProps)=><Profile {...routeProps} user={this.state.user}/>}/> */}
@@ -74,8 +73,7 @@ function App(props) {
                     <Route exact path='/blogs' render={(routeProps)=><Blogs {...routeProps}/>}/>
                     <PrivateRoutes path='/profile' component={Profile}/>/>
                     <Route path='*' exact={true} component={NotFound} />
-                  </Switch>
-            </Route>
+                </Switch>
           </AuthContext.Provider>
           </UserLoginStateContextProvider> 
          

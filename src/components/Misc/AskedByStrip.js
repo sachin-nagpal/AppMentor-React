@@ -26,12 +26,12 @@ const useStyles = createUseStyles({
 })
 
 function AskedByStrip({ name, tags , getTagData, url ,handleChangeState,st}) {
+    // tags Comes in array 
     const sty = st !== undefined && st;
-    // Tags Comes in array ↑
     const classes = useStyles(sty);
     return (
         <div className={classes.stripContainer}>
-            <span className={classes.askedByTxt}>Asked by</span> <span className={classes.nameTxt}>{name}</span> in {tags.map((tag,i)=>(<div key={uuid()} style={{display: 'inline-block'}}><span onClick={()=>getTagData(tag.slug,handleChangeState)} className={classes.tagTxt}><Link to={`${url}${tag.slug}`}>{tag.name}{tags.length-1 !== i && sty ? '' : ", "}</Link></span></div>))}
+            <span className={classes.askedByTxt}>Asked by</span> <span className={classes.nameTxt}>{name}</span> in {tags.map((tag,i)=>(<div key={uuid()} style={{display: 'inline-block'}}><span onClick={()=>getTagData(tag.slug,handleChangeState)} className={classes.tagTxt}><Link to={`${url}${tag.slug}`}>{tag.name}{tags.length-1 !== i && !sty ? ',' : sty && ''}</Link></span></div>))}
         </div>
     );
 }

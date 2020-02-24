@@ -44,7 +44,7 @@ const validate = values => {
   return errors;
 };
 
-const SignupForm = ({handleFlip}) => {
+const SignupForm = ({handleFlip,handleIsActivePop}) => {
   // Pass the useFormik() hook initial form values and a submit function that will
   // be called when the form is submitted
 
@@ -80,6 +80,13 @@ const SignupForm = ({handleFlip}) => {
           // setAuthTokens('123456')
           setUserName('');
           setAuthTokens('');
+          console.log(response.data.msg);
+          if(response.data.msg === 'yes'){
+            handleIsActivePop(true);
+          }
+          else{
+            handleIsActivePop(false);
+          }
         }
       })
       .catch(function (error) {
