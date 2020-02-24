@@ -59,7 +59,7 @@ const useStyles = createUseStyles({
             height: '100%'
         }
     }
-})
+}) 
 const Answers = ({ answers, handleReload,toggle }) => {
     const classes = useStyles(false);
     const [clickedCount,setClickedCount] = useState('');
