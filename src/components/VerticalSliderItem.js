@@ -7,7 +7,6 @@ import uuid from 'uuid';
 import { Link } from 'react-router-dom';
 import ReactCardFlip from 'react-card-flip';
 import parse, { domToReact } from 'html-react-parser';
-import striptags from 'striptags';
 
 
 const useStyles = createUseStyles({
