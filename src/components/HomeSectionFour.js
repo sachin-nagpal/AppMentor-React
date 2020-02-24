@@ -2,17 +2,57 @@ import React from "react";
 import Slider from "react-slick";
 import uuid from 'uuid';
 import '../styles/HomeSectionFour.css';
+import arrow from '../images/arrow.png';
 
 import VerticalSlideItem from './VerticalSliderItem';
 
 import { createUseStyles } from 'react-jss';
 
 const useStyles = createUseStyles({
-    sliderContainer: {
-        maxWidth: '60%',
-        margin: 'auto'
-   }
+  sliderContainer: {
+      maxWidth: '60%',
+      margin: 'auto'
+ },
+  prevArrow: {
+    display: 'block',
+    position: 'absolute',
+    top: '0%',
+    top: '-5rem',
+    width: '20%',
+    left: '40%'
+  },
+  
+  prevArrowImg: {
+    transform: 'rotate(0deg)'
+  },
+  nextArrow: {
+    display: 'block',
+    position: 'absolute',
+    bottom: '-7rem',
+    width: '20%',
+    left: '40%'
+  },
+  
+  nextArrowImg: {
+    transform: 'rotate(180deg)'
+  }
 })
+
+function SamplePrevArrow(props) {
+  const classes = useStyles();
+  const { onClick } = props;
+  return (
+    <div className={classes.prevArrow} onClick={onClick}><img src={arrow} className={classes.prevArrowImg}></img></div>
+  );
+}
+
+function SampleNextArrow(props) {
+  const classes = useStyles();
+  const { className, style, onClick } = props;
+  return (
+    <div className={classes.nextArrow} onClick={onClick}><img src={arrow} className={classes.nextArrowImg}></img></div>
+  );
+}
 
 const HomeSectionFour =(props)=> {
     const classes = useStyles();
@@ -22,6 +62,8 @@ const HomeSectionFour =(props)=> {
       infinite: false,
       slidesToShow: 3,
       slidesToScroll: 1,
+      nextArrow: <SampleNextArrow />,
+      prevArrow: <SamplePrevArrow />,
       vertical: true,
       verticalSwiping: true,
       beforeChange: function(currentSlide, nextSlide) {
@@ -41,9 +83,7 @@ const HomeSectionFour =(props)=> {
             <Slider {...settings}>
             {
                 props.questions.map(question =>(
-                  // if({question.answer}){
-                    <VerticalSlideItem st={{width: '100%',height: '5rem',borderCol:'#b7b7b7'}} data={question} key={uuid()}/>
-                  // }
+                    <VerticalSlideItem st={{width: 'fit-content',height: '5rem',borderCol:'#b7b7b7'}} data={question} key={uuid()}/>
                 ))
             }
             </Slider>

@@ -16,9 +16,9 @@ const HomeSectionTwo = () =>{
     return(
         <div className="main-container">
             <p className="how-it-works">How it works</p>
-            <div className="inner-container">
-                <div className="d-flex justify-content-center align-items-center">
-                    <div className="w-50">
+            <div className="container">
+                <div className="row">
+                    <div className="col-md-6">
                         <div className="ques-sec">
                             <div className="circle"><div className="inner-circle"></div></div>
                             <div className="head">Ask a Question </div>
@@ -40,7 +40,7 @@ const HomeSectionTwo = () =>{
                             <div className="sub-head">You can ask questions and get answers within minutes. <br></br> 24/7, without wasting time and money and much more.</div> 
                         </div>
                      </div>
-                    <div className="w-50">
+                    <div className="col-md-6 d-flex align-items-center">
                         <div className="img_container">
                             <img src={laptop}style={{width:"80%"}}></img>
                         </div>

@@ -11,15 +11,16 @@
 }
 
 .blog-title{
-    margin-top:1.5rem;
+    margin-top: 0.8rem;
     font-size: 1.5rem;
-    height: 5rem;
+    /* height: 7rem; */
     color: #333030;
     font-family: Merriweather;
 }
 
 .time-date-row{
-    margin: 0.2rem 0rem 0.8rem;
+    /* margin: 0.2rem 0rem 0.8rem; */
+    margin: 0.5rem 0rem 0.6rem;
     display: flex;
     align-items: center;
 }
