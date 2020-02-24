@@ -68,7 +68,7 @@ const Questions = (props) => {
   const getTagData =(urlName) =>{
     // http://localhost/MyApplicationMentor/singletags/analytics
     (async function () {
-      const response = await AxiosRequest().get(`${process.env.REACT_APP_API_HOST_URL}/${urlName}`);
+      const response = await AxiosRequest().get(`${process.env.REACT_APP_API_HOST_URL}/singletags/${urlName}`);
       console.log(response);
       console.log('Re-Render');
         setResponse(response.data.findallquestions);
