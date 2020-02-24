@@ -60,7 +60,7 @@ const useStyles = createUseStyles({
         }
     }
 }) 
-const Answers = ({ answers, handleReload,toggle }) => {
+const Answers = ({ answers, handleReload,toggle,handleFollow }) => {
     const classes = useStyles(false);
     const [clickedCount,setClickedCount] = useState('');
     // const [time,setTime] = useState(0);
@@ -68,11 +68,15 @@ const Answers = ({ answers, handleReload,toggle }) => {
     // const [showSignUp, setShowSignUp] = useState(false);
     const [upvotes, setUpvotes] = useState(answers.upvotes);
     const [isVoted,setIsVoted] = useState(answers.voted === 'yes' ? true : false);
+    const [isFollow,setIsFollow] = useState(false);
     // const [isLoading, setIsLoading] = useState(false);
     
     // const [modal, setModal] = useState(false);
 
     // const toggle = () => setModal(!modal);
+    const handleIsFollow = () => {
+        setIsFollow(!isFollow)
+    }
     useEffect(() => {
         if(answers.findallanswers){
             setClickedCount(answers.findallanswers.upvotes);
@@ -125,18 +129,22 @@ const Answers = ({ answers, handleReload,toggle }) => {
                         </div>
                     </div>
                     <div>
-                        <button className={classes.answerUserBtn} style={{ backgroundColor: "#3e70bb" }}>
+                    {!isFollow ?
+                        <button className={classes.answerUserBtn} style={{ backgroundColor: "#3e70bb" }} onClick={()=>handleFollow(answers.userid,handleIsFollow)}>
                             <div className={classes.btnContentContainer}>
                                 <div className={classes.iconInBtn}><img src={follow} alt="follow"></img></div>
                                     <span className="">&nbsp;&nbsp;Follow</span>
                             </div>
                         </button>
-                        <button className={classes.answerUserBtn} style={{ backgroundColor: "#2f9657" }}>
+                        : 
+                        <div style={{ backgroundColor: "#3e70bb" }} className={classes.answerUserBtn}>Following</div>
+                        }
+                        {/* <button className={classes.answerUserBtn} style={{ backgroundColor: "#2f9657" }}>
                             <div className={classes.btnContentContainer}>
                                 <div className={classes.iconInBtn}><img src={call} alt="call"></img></div> 
                                 <span className="btnIcon">&nbsp;&nbsp;Tak to {answers.fname} {answers.lname}</span>
                             </div>
-                        </button>
+                        </button> */}
                     </div> 
                 </div>
 
