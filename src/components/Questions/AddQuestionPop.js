@@ -5,6 +5,7 @@ import { createUseStyles } from 'react-jss';
 import AxiosRequest from '../../helpers/AxiosRequests';
 import { Tooltip } from 'reactstrap';
 import uuid from 'uuid';
+import '../../styles/ModalCustom.css'
 //Context
 import { useAuth } from "../../context/auth";
 import Tag from '../Tag';
@@ -12,8 +13,9 @@ import Tag from '../Tag';
 const useStyles = createUseStyles({
     heading:{
       color: '#295caa',
-      padding: '0.7rem 1rem',
-      borderTopLeftRadius: '5rem'
+      width: '100%',
+      padding: '0px',
+      fontSize: '1.5rem'
     },
     modalMain:{
         maxWidth: '43.75rem',
