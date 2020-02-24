@@ -42,8 +42,9 @@ const useStyles = createUseStyles({
         display:'flex',
         alignItems: 'center',
         background: '#f3f3f3',
-        borderRadius: '3px',
-        marginRight: '1rem'
+        marginRight: '1rem',
+        borderRadius: '3rem',
+        padding: '0.8rem 0'
     },
     arrowContainer: {
         width: '1.5rem',
@@ -54,14 +55,20 @@ const useStyles = createUseStyles({
         }
     },
     upvotesCount:{
-        marginLeft: '1rem',
+        marginLeft: '0.5rem',
         marginRight: '1rem',
+        color: '#416aa6',
+        fontFamily: 'Roboto',
+        fontSize: '1rem',
+        '& b': {
+          marginRight: '0.2rem'  
+        },
         '& span':{
-            color: '#406eb3',
+            color: '#6790cd',
             fontFamily: 'Roboto',
-            fontSize: '1rem',
+            marginLeft: '0.1rem',
         }
-    }
+    },
 });
 
 
@@ -92,7 +99,9 @@ export default function UpvoteBtn({upvotes,handleUpvote,isVoted,setIsVoted,setIs
                 </div>
             </motion.div>
                 <div className={classes.upvotesCount}>
-                    <span>{upvotes}</span>
+                    <b>Upvote</b>
+                    <span className={classes.dot}>&bull;</span>
+                    <span> {upvotes}</span>
                 </div>
         </div>
             // <div className="upvote-triangle" onClick={handleUpvote}>
