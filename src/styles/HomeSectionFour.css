@@ -4,10 +4,6 @@
     padding: 30px 0px 60px;
 }
 
-/* .slick-dots{
-    display: none !important;
-} */
-
 .get-answers{
     font-family: Merriweather;
     font-size: 36px;
@@ -15,44 +11,3 @@
     text-align: center;
     margin-bottom: 35px;
 }
-/* 
-.slick-next:before {
-    content:url('../images/icon.png') !important;
-    font-weight: 700;
-    color: red;
-    transform: rotate(0deg);
-    width: 24%;
-    left: 38%;
-}
-
-.slick-next{
-    width: 100% !important;
-    position: absolute !important;
-    display: block !important;
-    top: -59px !important;
-    right: 0% !important;
-    height: initial;
-}
-
-.slick-prev:before {
-    content:url('../images/icon.png') !important;
-    font-weight: 700;
-    color: red;
-    transform: rotate(180deg);
-    width: 24%;
-    left: 38%;
-}
-
-.slick-prev, .slick-next {
-    height: fit-content;
-}
-
-.slick-prev{
-    width: 100% !important;
-    position: absolute !important;
-    display: block !important;
-    transform: rotate(180deg) !important;
-    left: 0% !important;
-    height: initial;
-    top: 430px !important;
-} */

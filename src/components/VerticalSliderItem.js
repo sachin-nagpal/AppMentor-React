@@ -21,7 +21,6 @@ const useStyles = createUseStyles({
         border: `1px solid ${st.borderCol}`,
         backgroundColor: '#ffffff',
         alignItems: 'center',
-
     }),
 
     quesDescrip: { 
@@ -31,6 +30,12 @@ const useStyles = createUseStyles({
         color: '#393939',
         fontFamily: 'Roboto',
         fontSize: '1.25rem'
+    },
+
+    frontCard: {
+        display: 'flex',
+        alignItems : 'center',
+        justifyContent: 'space-between'
     },
 
     quesTags: {
@@ -53,7 +58,8 @@ const useStyles = createUseStyles({
     ansDescrip: {
         width: '80%',
         fontSize: '1rem',
-        position: 'relative'
+        position: 'relative',
+        height: '100%'
     },
     btnContainer:{
         position: 'absolute',
@@ -63,25 +69,21 @@ const useStyles = createUseStyles({
     },
     readMoreBtn: {
         transition: 'background 0.1s',
-        bottom: '18px',
+        top: '4rem',
         position: 'absolute',
         transform: 'translateY(-1.5625rem)',
         width: '100%',
         height: '2rem',
         textAlign: 'center',
-        // background: 'rgb(0, 0, 0)',
         background: 'linear-gradient(0deg, rgba(248, 248, 248, 1) 0%, rgba(248, 248, 248,0.5) 80%, rgba(255,255,255,0.01) 100%)'
     },
     readMBtn: {
-        // all: 'unset',
         width: '10rem',
         background: 'rgba(248, 248, 248,1)',
         border: '1px solid #d7d7d7',
         borderRadius: '10px'
     },
 })
-
-
 
 function VerticalSlideItem({st,data,colors}) {
    
@@ -97,12 +99,10 @@ function VerticalSlideItem({st,data,colors}) {
         <ReactCardFlip isFlipped={isFlipped} flipDirection="vertical">
          <div className={classes.verticalSlideItem}>
             <Container className={classes.ansContainer}>
-                <Row className="align-items-center">
-                    <Col md="9" lg="10">
+                <div className={classes.frontCard}>
+                    <div>
                         <div className={classes.quesDescrip}>
-                            {/* if({data.answer}){ */}
-                                <div>{data.title}</div>
-                            {/* // } */}
+                            <div>{data.title}</div>
                         </div>
                         <div className={classes.quesTags}> 
                             {data.topics.map((tag,i) => (
@@ -113,11 +113,11 @@ function VerticalSlideItem({st,data,colors}) {
                                </>
                             ))}
                         </div>
-                    </Col>
-                    <Col>
+                    </div>
+                    <div>
                         <Button outline className={classes.previewBtn} onClick={handleClick}>Preview Answer</Button>{' '}
-                    </Col>
-                </Row>
+                    </div>
+                </div>
             </Container>
          </div>
 
@@ -127,11 +127,10 @@ function VerticalSlideItem({st,data,colors}) {
                     <div className={classes.ansDescrip}>
                         {parse(data.answer)}
                         {<div className={classes.readMoreBtn}>
-                            <Link to={"/singlequestion/"+ data.slug}>
+                            <Link to={"/singlequestion/"+ data.slug} target="_blank">
                                 <button className={classes.readMBtn}>read more</button>
                             </Link>
                         </div>}
-                
                     </div>
                     <div className={classes.btnContainer}>
                         <Button outline onClick={handleClick} className={classes.previewBtn}>View Question</Button>{' '}

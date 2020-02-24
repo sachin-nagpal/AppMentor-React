@@ -2,27 +2,16 @@ import React, { useEffect } from 'react';
 import CarouselBlogs from './CarouselBlogs';
 import '../styles/HomeSectionFive.css';
 import ShowMoreText from './ShowMoreText';
+import { createUseStyles } from 'react-jss';
 
 const path = `${process.env.REACT_APP_API_HOST_URL}/public/`;
 
-
-const SamplePrevArrow=(props)=> {
-    const { style, onClick } = props;
-    return (
-      <p style={{ display: "block", background: "green", color: 'red' }} onClick={onClick}>Next</p>
-    );
+const useStyles = createUseStyles({
+  sliderContainer: {
+      maxWidth: '60%',
+      margin: 'auto'
   }
-
-  function SampleNextArrow(props) {
-    const { className, style, onClick } = props;
-    return (
-      <div
-        // className={className}
-        style={{ display: "block", background: "red" }}
-        onClick={onClick}
-      />
-    );
-  }
+  })
 
 const HomeSectionFive = (props) =>{
 
@@ -31,9 +20,7 @@ const HomeSectionFive = (props) =>{
         infinite: true,
         speed: 500,
         slidesToShow: 3,
-        slidesToScroll: 3,
-        nextArrow: <SampleNextArrow />,
-        prevArrow: <SamplePrevArrow />
+        slidesToScroll: 3
       };
 
     return(

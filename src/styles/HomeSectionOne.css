@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Merriweather&display=swap');
 
+a:hover{
+    text-decoration: none !important;
+}
+
 .search-section{
     width: 100%;
     display: flex;
