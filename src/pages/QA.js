@@ -14,6 +14,7 @@ import { useAuth } from "../context/auth";
 
 import uuid from 'uuid';
 import {createUseStyles} from 'react-jss';
+import { transform } from 'framer-motion';
 const useStyles = createUseStyles({
   qaContainer: {
         backgroundColor: "#f5f5f5",
@@ -55,8 +56,11 @@ const useStyles = createUseStyles({
     height: '2rem'
   },
   modalContainer: {
-    maxWidth: '60rem'
+    maxWidth: '60rem',
   },
+  modelContent:{
+    transform: 'scale(0.9)'
+  }
 
 })
 const QA = ({ match,location }) => {
@@ -136,7 +140,7 @@ const QA = ({ match,location }) => {
   const [isEditing, setIsEditing] = useState(location.isEditing || false);
   return (
     <div className={classes.qaContainer}>
-      {!authTokens && <Modal isOpen={modal} toggle={toggle} className={classes.modalContainer}>
+      {!authTokens && <Modal isOpen={modal} toggle={toggle} className={classes.modalContainer} centered contentClassName={classes.modelContent}>
             <SignupLoginPage st={{pop:'yes'}}/>
         </Modal>}
           <div>

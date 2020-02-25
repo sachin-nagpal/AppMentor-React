@@ -79,7 +79,7 @@ const useStyles= createUseStyles({
     },
     divContainer:{
         boxShadow: '0 3px 8px 1px rgba(149, 149, 149, 0.75)',
-        zIndex: 12345
+        // zIndex: 12345
     }
 })
 const variants = {
@@ -96,12 +96,11 @@ const variants = {
     closed: {
         opacity: 0,
         y: 50,
-        height: 0,
         transition: {
             y: {
                 stiffness: 1000,
                 velocity: -100
-            }
+            },
         }
     },
   }
@@ -149,6 +148,12 @@ export default function QuestionSearch({handleAddingQuestion}) {
         }
         setIsLoading(false);
       };
+      function returnDisplay (){
+        if(isSearchOpen){
+            return 'block'
+        }
+        return 'none'
+      }
     return (
         <div className={classes.questonSearchContainer} ref={innerRef}>
             <InputGroup>
@@ -172,7 +177,7 @@ export default function QuestionSearch({handleAddingQuestion}) {
                         cursor: 'default',
                         padding: '0',
                         triangleCol: '#ffffff',
-                        zIndex: '1234'
+                        // zIndex: '1234',
                     }}>
                     <div className={classes.searchValContainer}>
                         <div className={classes.searchIconContainer}><img src={SearchIcon} alt="SearchIcon"/><span className={classes.searchFixed}>Search: </span><span className={classes.searchingTxt}>{searchVal}</span></div>

@@ -130,16 +130,15 @@ const Answers = ({ answers, handleReload,toggle,handleFollow }) => {
                     </div>
                     <div>
                      {authTokens ?
-                        !isFollow ?
-                            <button className={classes.answerUserBtn} style={{ backgroundColor: "#3e70bb" }} onClick={()=>handleFollow(answers.userid,handleIsFollow)}>
-                                <div className={classes.btnContentContainer}>
-                                    <div className={classes.iconInBtn}><img src={follow} alt="follow"></img></div>
-                                        <span className="">&nbsp;&nbsp;Follow</span>
-                                </div>
-                            </button>
+                        isFollow || answers.follow ?
+                            <div style={{ backgroundColor: "#3e70bb" }} className={classes.answerUserBtn}>Following</div>
                         : 
-                             <div style={{ backgroundColor: "#3e70bb" }} className={classes.answerUserBtn}>Following</div>
-                        
+                        <button className={classes.answerUserBtn} style={{ backgroundColor: "#3e70bb" }} onClick={()=>handleFollow(answers.userid,handleIsFollow)}>
+                            <div className={classes.btnContentContainer}>
+                                <div className={classes.iconInBtn}><img src={follow} alt="follow"></img></div>
+                                    <span className="">&nbsp;&nbsp;Follow</span>
+                            </div>
+                        </button>
                         :
                         <button className={classes.answerUserBtn} style={{ backgroundColor: "#3e70bb" }} onClick={toggle}>
                             <div className={classes.btnContentContainer}>
@@ -169,7 +168,7 @@ const Answers = ({ answers, handleReload,toggle,handleFollow }) => {
                         <UpvoteBtn upvotes={upvotes} handleUpvote={handleUpvote} isVoted={isVoted} setIsVoted={setIsVoted} setIsLoading isLoading authTokens/>
                     </div>
                     <div className={classes.answerComntSharebtn}><div className={classes.iconInBtn}><img src={comment} alt="Comment" className={classes.btnIcon}></img></div> <span className={classes.comntShare}>Comment</span><span className={classes.dot}>&bull;</span>0</div>
-                    <TwitterShareButton url={window.location.href}><div className={classes.answerComntSharebtn} ><div className={classes.iconInBtn}><img src={shareWhite} alt="Share" className={classes.btnIcon}></img></div> <span className={classes.comntShare}>Share</span><span className={classes.dot}>&bull;</span>0</div></TwitterShareButton>
+                    <TwitterShareButton url={window.location.href} title={answers.answer}><div className={classes.answerComntSharebtn} ><div className={classes.iconInBtn}><img src={shareWhite} alt="Share" className={classes.btnIcon}></img></div> <span className={classes.comntShare}>Share</span><span className={classes.dot}>&bull;</span>0</div></TwitterShareButton>
                 </div>
             </div>
         </div>

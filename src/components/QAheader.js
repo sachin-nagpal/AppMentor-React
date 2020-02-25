@@ -63,15 +63,15 @@ const QAheader = ({quesResponse,isEditing,setIsEditing,getData,handleChangeState
                             <div className="dot"></div>
                             <img src={share} className="small-icons" alt='share icon'></img><strong style={{color: '#575757',fontFamily: 'Roboto'}}>Share this Question</strong>
                             {authTokens ?
-                                !isFollowQues ?
+                                isFollowQues || quesResponse.findquestion[0].follow                                ?
+                                    <div style={{ backgroundColor: "#3e70bb" }} className={classes.answerUserBtn}>Following</div>
+                                : 
                                     <button className={classes.answerUserBtn} style={{ backgroundColor: "#3e70bb" }} onClick={handleQuestionFollow}>
                                         <div className={classes.btnContentContainer}>
                                             <div className={classes.iconInBtn}><img src={follow} alt="follow"></img></div>
                                                 <span className="">&nbsp;&nbsp;Follow</span>
                                         </div>
                                     </button>
-                                : 
-                                    <div style={{ backgroundColor: "#3e70bb" }} className={classes.answerUserBtn}>Following</div>
                                 :
                                     <button className={classes.answerUserBtn} style={{ backgroundColor: "#3e70bb" }} onClick={toggle}>
                                         <div className={classes.btnContentContainer}>
@@ -83,7 +83,7 @@ const QAheader = ({quesResponse,isEditing,setIsEditing,getData,handleChangeState
                         </div>
 
                         <div>
-                            <button className="QAheader-btn" onClick={()=>setIsEditing(!isEditing)}>{!isEditing ? 'Add an Answer' : 'Close Editor' }</button>
+                            { authTokens ? <button className="QAheader-btn" onClick={()=>setIsEditing(!isEditing)}>{!isEditing ? 'Add an Answer' : 'Close Editor' }</button> : <button className="QAheader-btn" onClick={toggle}>Add an Answer</button>}
                         </div>
                     </div>
                 </div>

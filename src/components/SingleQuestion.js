@@ -96,7 +96,7 @@ export default function SingleQuestion({quesData,getTagData,styles}) {
            <AskedByStrip name={`${quesData.fname} ${quesData.lname}`} tags={quesData.topics} getTagData={getTagData} url={`/allquestions/`}/>
            <Link to={{ pathname: `/singlequestion/${quesData.slug}` }} style={{textDecoration: 'none'}}>
            <div className={classes.singleQuestionQuestion}>{quesData.title}</div></Link>
-           <Link to={{ pathname: `/singlequestion/${quesData.slug}` , isEditing: false }} style={{textDecoration: 'none'}}>
+           <Link to={{ pathname: `/singlequestion/${quesData.slug}` , isEditing: false }} style={{textDecoration: 'none'}} target="_blank">
            <div className="questions__answers-about"><img src={edit} height="15px" width="15px" alt="img"/><span> {quesData.count} </span><div style={{height:"5px", width:"5px", borderRadius:"50%", backgroundColor: "#c4c4c4"}}></div>{quesData.created_at}</div>
                 {quesData.count > 0 &&
                     <div className={classes.ansContiner}>
@@ -130,7 +130,7 @@ export default function SingleQuestion({quesData,getTagData,styles}) {
                     </div>}    
             </Link>
             {quesData.count <= 0 &&
-                <Link to={{ pathname: `/singlequestion/${quesData.slug}`, isEditing: true }} style={{ textDecoration: 'none' }}>
+                <Link to={{ pathname: `/singlequestion/${quesData.slug}`, isEditing: true }} style={{ textDecoration: 'none' }} target="_blank">
                     <div>Be the first to <span >answer</span>.</div>
                 </Link>}
        </article>
