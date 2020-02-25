@@ -11,10 +11,7 @@ import defaultImg from '../images/noImage.jpg'
 const path =`${process.env.REACT_APP_API_HOST_URL}/public/`;
  
     const BlogCard = (props) => {
-    if(props.blog.tagarray.length!==0){
-        console.log(props.blog.tagarray[0].name)
-    }
-
+        
     const tagColors = {
         tagColor : ['#4c70ab', '#ac5d1c;' , '#a64141', '#2e9557'],
         tagBgColor : ['#eaf8ff', '#fff5ea' , '#fff4f4', '#eafff2']
@@ -22,9 +19,9 @@ const path =`${process.env.REACT_APP_API_HOST_URL}/public/`;
 
     return(
         <div className="card-container">
-            <div className="inner">
                 <img src ={path + props.blog.image}className="blog-img"></img>
 
+            <div className="inner">
                     <div className="mt-3 d-flex">
                         {props.blog.tagarray.length ? 
                         props.blog.tagarray.map((tag,i) => (
@@ -62,12 +59,5 @@ const path =`${process.env.REACT_APP_API_HOST_URL}/public/`;
         </div>
     )
 }
-
-// BlogCard.defaultProps={
-//     tagColors : {
-//         tagColor : ['#4c70ab', '#ac5d1c;' , '#a64141', '#2e9557'],
-//         tagBgColor : ['#eaf8ff', '#fff5ea' , '#fff4f4', '#eafff2']
-//     }
-// }
 
 export default BlogCard;

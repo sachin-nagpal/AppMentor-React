@@ -52,8 +52,6 @@ function SamplePrevArrowBlog(props) {
   const classes = useStyles();
   const { onClick,style} = props;
   return (
-    // <img src={arrow} className={classes.prevArrowImgBlog}></img>
-    // <div style={{ ...style, display: "block", background: "green" }}></div>
     <div className={classes.prevArrow} onClick={onClick}><img src={arrow} className={classes.prevArrowImg}></img></div>
 
   );
@@ -63,8 +61,6 @@ function SampleNextArrowBlog(props) {
   const classes = useStyles();
   const { onClick,style } = props;
   return (
-    // <img src={arrow} className={classes.nextArrowImgBlog}></img>
-    // <div style={{ ...style, display: "block", background: "green" }}></div>
     <div className={classes.nextArrow} onClick={onClick}><img src={arrow} className={classes.nextArrowImg}></img></div>
 
   );

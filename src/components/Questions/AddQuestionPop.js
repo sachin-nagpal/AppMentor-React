@@ -58,7 +58,8 @@ const useStyles = createUseStyles({
     placeholder:{
       color: '#b3b3b3',
       fontFamily: 'Roboto',
-      borderRadius: '40px'
+      borderRadius: '40px',
+      fontSize: '1rem'
     },
     submitBtn:{
       background: '#007fbd !important',

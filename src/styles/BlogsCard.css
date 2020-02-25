@@ -1,13 +1,8 @@
 .card-container{
     border-radius: 12px;
     box-shadow: -1px 1px 10px 1px rgba(119, 119, 119, 0.75);
-    margin: 3.8rem 1rem 0rem;
-    padding: 0rem 0.7rem;
-}
-
-.inner{
-    position: relative;
-    top: -2rem;
+    margin: 1.8rem 1rem 1rem;
+    /* padding: 0rem 0.7rem; */
 }
 
 .blog-title{
@@ -16,6 +11,10 @@
     /* height: 7rem; */
     color: #333030;
     font-family: Merriweather;
+}
+
+.inner{
+    padding: 0rem 0.7rem 0.5rem;
 }
 
 .time-date-row{
@@ -70,4 +69,8 @@
 .user_name{
     color: #6a6464;
     font-family: Merriweather;
+}
+
+.blog-of-day-container{
+    display: flex;
 }

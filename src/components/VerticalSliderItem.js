@@ -8,7 +8,6 @@ import { Link } from 'react-router-dom';
 import ReactCardFlip from 'react-card-flip';
 import parse, { domToReact } from 'html-react-parser';
 
-
 const useStyles = createUseStyles({
     verticalSlideItem: st =>({
         overflow:'hidden',
