@@ -177,7 +177,8 @@ export default function QuestionSearch({handleAddingQuestion}) {
                         cursor: 'default',
                         padding: '0',
                         triangleCol: '#ffffff',
-                        // zIndex: '1234',
+                        // zIndex: returnDisplay(),
+                        display: returnDisplay()
                     }}>
                     <div className={classes.searchValContainer}>
                         <div className={classes.searchIconContainer}><img src={SearchIcon} alt="SearchIcon"/><span className={classes.searchFixed}>Search: </span><span className={classes.searchingTxt}>{searchVal}</span></div>

@@ -83,7 +83,7 @@ const QAheader = ({quesResponse,isEditing,setIsEditing,getData,handleChangeState
                         </div>
 
                         <div>
-                            { authTokens ? <button className="QAheader-btn" onClick={()=>setIsEditing(!isEditing)}>{!isEditing ? 'Add an Answer' : 'Close Editor' }</button> : <button className="QAheader-btn" onClick={toggle}>Add an Answer</button>}
+                            { authTokens ? <button className="QAheader-btn" onClick={()=>setIsEditing(!isEditing)}>{!isEditing ? quesResponse.answerquestion === 'yes' ? 'Update Answer' : 'Add an Answer' : 'Close Editor' }</button> : <button className="QAheader-btn" onClick={toggle}>Add an Answer</button>}
                         </div>
                     </div>
                 </div>

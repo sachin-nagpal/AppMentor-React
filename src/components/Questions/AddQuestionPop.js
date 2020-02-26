@@ -122,7 +122,8 @@ const AddQuestionPop = (props, {colors}) => {
         setTextAreaVal(evt.target.value);
       }
       const handleBadgeChanges = (data)=>{
-        console.log("badge Change")
+        console.log("badge Change");
+        setIsDisabled(false);
         if(selectedOption){
           const allSelectedVals = selectedOption.map(selected => {
           return selected.value;
