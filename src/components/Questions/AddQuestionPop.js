@@ -114,7 +114,8 @@ const AddQuestionPop = (props, {colors}) => {
         setTextAreaVal(evt.target.value);
       }
       const handleBadgeChanges = (data)=>{
-        console.log("badge Change")
+        console.log("badge Change");
+        setIsDisabled(false);
         if(selectedOption){
           // if(selectedOption.length > 0 ){
           //   setIsDisabled(false);

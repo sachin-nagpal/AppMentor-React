@@ -87,10 +87,10 @@ export default function UpvoteBtn({upvotes,handleUpvote,isVoted,setIsVoted,setIs
                 initial="rest" animate={isClick ? 'click' : 'rest'} variants={variants}>
                 <div className={classes.arrowContainer} onClick={handleClick} style={{cursor: 'pointer'}}>
                 <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                            width="512px" height="512px" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xmlSpace="preserve">
+                            width="512px" height="512px" viewBox="0 0 512 512" xmlSpace="preserve">
                         <g>
                             <g>
-                                <path fill={isVoted || isClick  ? authTokens ? '#406eb3' : 'none' : 'none'} stroke={isClick ?  '' : "#959595"} stroke-width="20" stroke-miterlimit="10" d="M275.277,130.955
+                                <path fill={isVoted || isClick  ? authTokens ? '#406eb3' : 'none' : 'none'} stroke={isClick ?  '' : "#959595"} strokeWidth="20" d="M275.277,130.955
                                     c-8.926-8.921-23.665-8.921-32.586,0L25.474,348.171c-14.74,14.744-4.266,39.564,16.292,39.564h434.433
                                     c20.559,0,31.032-24.82,16.291-39.564L275.277,130.955z"/>
                             </g>

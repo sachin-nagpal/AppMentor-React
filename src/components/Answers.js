@@ -12,6 +12,7 @@ import ProfileImage from '../images/noImage.jpg';
 // import { Modal} from 'reactstrap';
 // import SignupLoginPage from '../pages/SignupLoginPage';
 import {createUseStyles} from 'react-jss';
+// import Comments from '../components/Answers/Comments';
 
 import { EmailShareButton, TwitterShareButton } from 'react-share';
 
@@ -112,7 +113,7 @@ const Answers = ({ answers, handleReload,toggle,handleFollow }) => {
     }
 
     return(
-        <div>
+        <div style={{marginBottom: '2rem'}}>
         {/* {!authTokens && <Modal isOpen={modal} toggle={toggle} className={classes.modalContainer}>
             <SignupLoginPage st={{pop:'yes'}}/>
         </Modal>} */}
@@ -129,7 +130,8 @@ const Answers = ({ answers, handleReload,toggle,handleFollow }) => {
                         </div>
                     </div>
                     <div>
-                     {authTokens ?
+                    {answers.follow === 2 ? '' :
+                     authTokens?
                         isFollow || answers.follow ?
                             <div style={{ backgroundColor: "#3e70bb" }} className={classes.answerUserBtn}>Following</div>
                         : 
