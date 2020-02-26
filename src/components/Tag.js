@@ -4,6 +4,7 @@ import { createUseStyles } from 'react-jss';
 const useStyles = createUseStyles({
     TagStyles: style=>({
         borderRadius: '10px',
+        width: 'fit-content',
         color: style.color,
         backgroundColor: style.bgColor,
         fontFamily: 'Merriweather',

@@ -13,6 +13,7 @@ const useStyles = createUseStyles({
         borderRadius: styles.borderRadius || '0.625rem',
         padding: styles.padding || '0.625rem 0.9375rem',
         zIndex: styles.zIndex || '0',
+        display: styles.display || '',
         '&:hover':{
             background: '#ffffff',
         },

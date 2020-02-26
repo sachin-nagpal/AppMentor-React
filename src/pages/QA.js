@@ -14,10 +14,11 @@ import { useAuth } from "../context/auth";
 
 import uuid from 'uuid';
 import {createUseStyles} from 'react-jss';
+import { transform } from 'framer-motion';
 const useStyles = createUseStyles({
   qaContainer: {
         backgroundColor: "#f5f5f5",
-        height: '100%'
+        height: 'fit-content'
     },
   answerEditorContainer:{
     border: '1px solid #9f9f9f',
@@ -55,8 +56,12 @@ const useStyles = createUseStyles({
     height: '2rem'
   },
   modalContainer: {
-    maxWidth: '60rem'
+    maxWidth: '60rem',
+  },
+  modelContent:{
+    transform: 'scale(0.9)'
   }
+
 })
 const QA = ({ match,location }) => {
   const classes = useStyles();
@@ -66,6 +71,10 @@ const QA = ({ match,location }) => {
   }
   const [isReload, setIsReload] = useState(false);
   const [editorState,setEdtorSate] = useState(EditorState.createEmpty());
+  const [isFollowQues,setIsFollowQues] = useState(false);
+  const handleSetFollowQues = () => {
+    setIsFollowQues(!isFollowQues);
+  }
   const handleEditorState =  (ed) => {
     setEdtorSate(ed);
   }
@@ -74,9 +83,6 @@ const QA = ({ match,location }) => {
     getData(match.params.slug, handleChangeState)
   }, [match.params.slug,isReload]);
 
-  const handleShare = () => {
-    alert('Yo')
-  }
 
   const handlePostAnswer = () =>{
   const answer = draftToHtml(convertToRaw(editorState.getCurrentContent()));
@@ -101,17 +107,44 @@ const QA = ({ match,location }) => {
   const handleReload = () =>{
     setIsReload(!isReload)
   }
+  const handleQuestionFollow = () => {    
+    (async function () {
+      const response = await AxiosRequest().post(`${process.env.REACT_APP_API_HOST_URL}/followq`, {
+            token: authTokens,
+            ques_id: quesResponse.findquestion[0].id,
+          });
+          // console.log(response.data.msg);
+          if(response.data.msg === 'done'){
+              console.log(response.data.msg);
+              handleSetFollowQues()
+          }
+  })();
+  }
+  const handleFollow = (userid,handleIsFollow) => {
+    (async function () {
+      const response = await AxiosRequest().post(`${process.env.REACT_APP_API_HOST_URL}/follow`, {
+            token: authTokens,
+            following: userid,
+          });
+          // console.log(response.data.msg);
+          if(response.data.msg === 'done'){
+              console.log(this);
+              handleIsFollow()
+          }
+  })();
+  
+  }
   const { authTokens,userImg,userName } = useAuth();
   const [modal, setModal] = useState(false);
    const toggle = () => setModal(!modal);
   const [isEditing, setIsEditing] = useState(location.isEditing || false);
   return (
     <div className={classes.qaContainer}>
-      {!authTokens && <Modal isOpen={modal} toggle={toggle} className={classes.modalContainer}>
+      {!authTokens && <Modal isOpen={modal} toggle={toggle} className={classes.modalContainer} centered contentClassName={classes.modelContent}>
             <SignupLoginPage st={{pop:'yes'}}/>
         </Modal>}
           <div>
-          <QAheader quesResponse={quesResponse} isEditing={isEditing} setIsEditing={setIsEditing} answerCount={quesResponse.answercount} getData={getData} handleChangeState={handleChangeState}/>
+          <QAheader quesResponse={quesResponse} isEditing={isEditing} setIsEditing={setIsEditing} answerCount={quesResponse.answercount} getData={getData} handleChangeState={handleChangeState} isFollowQues={isFollowQues} handleQuestionFollow={handleQuestionFollow} toggle={toggle}/>
           </div>
 
           <div className="container mt-4">
@@ -129,7 +162,7 @@ const QA = ({ match,location }) => {
           }
                 <div className="">
                   {quesResponse.findallanswers && quesResponse.findallanswers.map(answers=>(
-                    <Answers answers={answers} key={uuid()} handleReload={handleReload} toggle={toggle}/>
+                    <Answers answers={answers} key={uuid()} handleReload={handleReload} toggle={toggle} handleFollow={handleFollow}/>
                   ))}
                 </div>
               </div>

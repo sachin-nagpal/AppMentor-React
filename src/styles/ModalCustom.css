@@ -3,4 +3,14 @@
 .modal-title{
     border-bottom: 2.5px solid #295caa;
     width: fit-content;
+    padding: 10px 15px;
+}
+
+.modal-content{
+    border-top-left-radius: 10px !important;
+    border-top-right-radius: 10px !important;
+}
+
+.close{
+    padding: 25px 30px !important;
 }

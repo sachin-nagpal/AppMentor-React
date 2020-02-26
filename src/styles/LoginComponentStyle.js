@@ -23,6 +23,10 @@ const useStyles = createUseStyles({
         maxWidth: '30rem',
         margin: 'auto'
     }),
+    signForm:{
+        width: '98%',
+        margin: 'auto'
+    },
     signLogForm: {
         width: '80%',
         margin: 'auto'
@@ -89,7 +93,7 @@ const useStyles = createUseStyles({
     forgotPass: {
         color: '#c53e46',
         fontFamily: 'Merriweather',
-        width: '100%',
+        width: '98%',
         margin: '1rem auto',
         textAlign: 'right',
         cursor: 'pointer'

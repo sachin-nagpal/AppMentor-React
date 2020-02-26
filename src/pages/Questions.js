@@ -44,7 +44,7 @@ const Questions = (props) => {
 
   useEffect(() => {
     let isCancelled = false;
-    let url = props.match.params.tag ? `${process.env.REACT_APP_API_HOST_URL}/${props.match.params.tag}` : `${process.env.REACT_APP_API_HOST_URL}/getallquestion`;
+    let url = props.match.params.tag ? `${process.env.REACT_APP_API_HOST_URL}/singletags/${props.match.params.tag}` : `${process.env.REACT_APP_API_HOST_URL}/getallquestion`;
     console.log(url);
     
     // let url = match

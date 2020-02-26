@@ -13,7 +13,7 @@ import ProfileImage from '../images/noImage.jpg';
 // import SignupLoginPage from '../pages/SignupLoginPage';
 import {createUseStyles} from 'react-jss';
 
-import { EmailShareButton, FacebookShareButton } from 'react-share';
+import { EmailShareButton, TwitterShareButton } from 'react-share';
 
 
 // Context
@@ -59,8 +59,8 @@ const useStyles = createUseStyles({
             height: '100%'
         }
     }
-})
-const Answers = ({ answers, handleReload,toggle }) => {
+}) 
+const Answers = ({ answers, handleReload,toggle,handleFollow }) => {
     const classes = useStyles(false);
     const [clickedCount,setClickedCount] = useState('');
     // const [time,setTime] = useState(0);
@@ -68,11 +68,15 @@ const Answers = ({ answers, handleReload,toggle }) => {
     // const [showSignUp, setShowSignUp] = useState(false);
     const [upvotes, setUpvotes] = useState(answers.upvotes);
     const [isVoted,setIsVoted] = useState(answers.voted === 'yes' ? true : false);
+    const [isFollow,setIsFollow] = useState(false);
     // const [isLoading, setIsLoading] = useState(false);
     
     // const [modal, setModal] = useState(false);
 
     // const toggle = () => setModal(!modal);
+    const handleIsFollow = () => {
+        setIsFollow(!isFollow)
+    }
     useEffect(() => {
         if(answers.findallanswers){
             setClickedCount(answers.findallanswers.upvotes);
@@ -125,18 +129,30 @@ const Answers = ({ answers, handleReload,toggle }) => {
                         </div>
                     </div>
                     <div>
-                        <button className={classes.answerUserBtn} style={{ backgroundColor: "#3e70bb" }}>
+                     {authTokens ?
+                        isFollow || answers.follow ?
+                            <div style={{ backgroundColor: "#3e70bb" }} className={classes.answerUserBtn}>Following</div>
+                        : 
+                        <button className={classes.answerUserBtn} style={{ backgroundColor: "#3e70bb" }} onClick={()=>handleFollow(answers.userid,handleIsFollow)}>
                             <div className={classes.btnContentContainer}>
                                 <div className={classes.iconInBtn}><img src={follow} alt="follow"></img></div>
                                     <span className="">&nbsp;&nbsp;Follow</span>
                             </div>
                         </button>
-                        <button className={classes.answerUserBtn} style={{ backgroundColor: "#2f9657" }}>
+                        :
+                        <button className={classes.answerUserBtn} style={{ backgroundColor: "#3e70bb" }} onClick={toggle}>
+                            <div className={classes.btnContentContainer}>
+                                <div className={classes.iconInBtn}><img src={follow} alt="follow"></img></div>
+                                    <span className="">&nbsp;&nbsp;Follow</span>
+                            </div>
+                        </button>
+                        }
+                        {/* <button className={classes.answerUserBtn} style={{ backgroundColor: "#2f9657" }}>
                             <div className={classes.btnContentContainer}>
                                 <div className={classes.iconInBtn}><img src={call} alt="call"></img></div> 
                                 <span className="btnIcon">&nbsp;&nbsp;Tak to {answers.fname} {answers.lname}</span>
                             </div>
-                        </button>
+                        </button> */}
                     </div> 
                 </div>
 
@@ -152,7 +168,7 @@ const Answers = ({ answers, handleReload,toggle }) => {
                         <UpvoteBtn upvotes={upvotes} handleUpvote={handleUpvote} isVoted={isVoted} setIsVoted={setIsVoted} setIsLoading isLoading authTokens/>
                     </div>
                     <div className={classes.answerComntSharebtn}><div className={classes.iconInBtn}><img src={comment} alt="Comment" className={classes.btnIcon}></img></div> <span className={classes.comntShare}>Comment</span><span className={classes.dot}>&bull;</span>0</div>
-                    <FacebookShareButton url={window.location.href}><div className={classes.answerComntSharebtn} ><div className={classes.iconInBtn}><img src={shareWhite} alt="Share" className={classes.btnIcon}></img></div> <span className={classes.comntShare}>Share</span><span className={classes.dot}>&bull;</span>0</div></FacebookShareButton>
+                    <TwitterShareButton url={window.location.href} title={answers.answer}><div className={classes.answerComntSharebtn} ><div className={classes.iconInBtn}><img src={shareWhite} alt="Share" className={classes.btnIcon}></img></div> <span className={classes.comntShare}>Share</span><span className={classes.dot}>&bull;</span>0</div></TwitterShareButton>
                 </div>
             </div>
         </div>

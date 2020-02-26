@@ -3,10 +3,41 @@ import '../styles/QA.css';
 // import image from '../images/image.jpeg';
 import edit from '../images/edit.png';
 import share from '../images/share.png';
+import follow from '../images/follow.png';
 
 import AskedByStrip from './Misc/AskedByStrip';
-
-const QAheader = ({quesResponse,isEditing,setIsEditing,getData,handleChangeState,answerCount}) => {
+import {createUseStyles} from 'react-jss';
+// Context
+import { useAuth } from "../context/auth";
+const useStyles = createUseStyles({
+    btnContentContainer: {
+        display: 'flex'
+    },
+    iconInBtn: {
+        display: 'flex',
+        height: '0.8rem',
+        width: '0.8rem',
+        margin: 'auto',
+        '& img': {
+            width: '100%',
+            height: '100%'
+        }
+    },
+    answerUserBtn: {
+        outline: 'none',
+        color: '#ffffff',
+        fontFamily: 'Roboto',
+        fontSize: '0.875rem',
+        fontWeight: '400',
+        border: 'none',
+        borderRadius: '4px',
+        marginLeft: '0.5rem',
+        padding: '0.3rem 0.5rem'
+    },
+})
+const QAheader = ({quesResponse,isEditing,setIsEditing,getData,handleChangeState,answerCount,isFollowQues,handleQuestionFollow,toggle}) => {
+    const classes = useStyles();
+    const { authTokens} = useAuth();
     return(
         <div>
         { quesResponse.findquestion &&
@@ -31,10 +62,28 @@ const QAheader = ({quesResponse,isEditing,setIsEditing,getData,handleChangeState
                             <img src={edit} className="small-icons" alt='edit icon'></img><strong style={{color: '#565656'}}>{answerCount} Answers</strong>
                             <div className="dot"></div>
                             <img src={share} className="small-icons" alt='share icon'></img><strong style={{color: '#575757',fontFamily: 'Roboto'}}>Share this Question</strong>
+                            {authTokens ?
+                                isFollowQues || quesResponse.findquestion[0].follow                                ?
+                                    <div style={{ backgroundColor: "#3e70bb" }} className={classes.answerUserBtn}>Following</div>
+                                : 
+                                    <button className={classes.answerUserBtn} style={{ backgroundColor: "#3e70bb" }} onClick={handleQuestionFollow}>
+                                        <div className={classes.btnContentContainer}>
+                                            <div className={classes.iconInBtn}><img src={follow} alt="follow"></img></div>
+                                                <span className="">&nbsp;&nbsp;Follow</span>
+                                        </div>
+                                    </button>
+                                :
+                                    <button className={classes.answerUserBtn} style={{ backgroundColor: "#3e70bb" }} onClick={toggle}>
+                                        <div className={classes.btnContentContainer}>
+                                            <div className={classes.iconInBtn}><img src={follow} alt="follow"></img></div>
+                                                <span className="">&nbsp;&nbsp;Follow</span>
+                                        </div>
+                                    </button>
+                            }
                         </div>
 
                         <div>
-                            <button className="QAheader-btn" onClick={()=>setIsEditing(!isEditing)}>{!isEditing ? 'Add an Answer' : 'Close Editor' }</button>
+                            { authTokens ? <button className="QAheader-btn" onClick={()=>setIsEditing(!isEditing)}>{!isEditing ? 'Add an Answer' : 'Close Editor' }</button> : <button className="QAheader-btn" onClick={toggle}>Add an Answer</button>}
                         </div>
                     </div>
                 </div>
