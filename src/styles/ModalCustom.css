@@ -1,7 +1,6 @@
 
 
 .modal-title{
-    border-bottom: 2.5px solid #295caa;
     width: fit-content;
     padding: 10px 15px;
 }
@@ -11,6 +10,6 @@
     border-top-right-radius: 10px !important;
 }
 
-.close{
+.modal-header .close {
     padding: 25px 30px !important;
 }

@@ -21,6 +21,11 @@ const useStyles = createUseStyles({
         maxWidth: '43.75rem',
         borderRadius: '40px'
     },
+
+    addQuesBg: {
+      borderBottom: '2.5px solid #295caa',
+      padding: '5px 50px 5px 15px'
+    },
     userImg:{
       borderRadius: '50%'
     },
@@ -116,13 +121,7 @@ const AddQuestionPop = (props, {colors}) => {
       const handleBadgeChanges = (data)=>{
         console.log("badge Change")
         if(selectedOption){
-          // if(selectedOption.length > 0 ){
-          //   setIsDisabled(false);
-          // }
-          // else{
-          //   setIsDisabled(true);
-          // }
-        const allSelectedVals = selectedOption.map(selected => {
+          const allSelectedVals = selectedOption.map(selected => {
           return selected.value;
         })
       
@@ -144,7 +143,9 @@ const AddQuestionPop = (props, {colors}) => {
         <Modal isOpen={props.isAddingQuestion} toggle={props.toggle} className={classes.modalMain}>
           <div>
           <ModalHeader toggle={props.toggle} close={closeBtn} className={classes.heading}>
-            Add Question
+            <div className={classes.addQuesBg}>
+                Add Question
+            </div>
           </ModalHeader>
           <div className="askedBar">
             <div className={classes.userInfoCont}>

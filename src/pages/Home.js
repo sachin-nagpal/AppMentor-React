@@ -24,10 +24,10 @@ const Home = () => {
 
         return(
           <>
-             <HomeSectionOne/>
+             <HomeSectionOne topics={tagTopics}/>
              <HomeSectionTwo/>
              <HomeSectionThree topics={tagTopics}/>
-             <HomeSectionFour questions={Questions}/>
+             {/* <HomeSectionFour questions={Questions}/> */}
              <HomeSectionFive blogs={Blogs}/>
           </>
         ) 

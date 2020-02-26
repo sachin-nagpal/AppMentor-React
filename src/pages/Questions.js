@@ -66,11 +66,8 @@ const Questions = (props) => {
   }, [props.match.url,isReload])
 
   const getTagData =(urlName) =>{
-    // http://localhost/MyApplicationMentor/singletags/analytics
     (async function () {
       const response = await AxiosRequest().get(`${process.env.REACT_APP_API_HOST_URL}/singletags/${urlName}`);
-      console.log(response);
-      console.log('Re-Render');
         setResponse(response.data.findallquestions);
         setRelatedQuestions(response.data.trendingquestion);
         setTagTopics(response.data.findtagtopics);
@@ -89,7 +86,7 @@ const Questions = (props) => {
           
         <div className="container mt-5">
             <div className="row">
-                <div className="col-md-8" >
+                <div className="col-md-8">
                   {quesResponse.map(quest=>(
                     <SingleQuestion quesData={quest} key={uuid()} getTagData={getTagData}/>
                   ))}

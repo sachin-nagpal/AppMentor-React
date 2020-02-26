@@ -1,15 +1,31 @@
-import React from 'react';
+import React, { useState, useEffect,useContext } from 'react';
 import home from '../images/home.png';
 import bgStroke from '../images/bg-stroke.png';
 import '../styles/HomeSectionOne.css';
+import { useAuth } from "../context/auth";
+import AxiosRequest from '../helpers/AxiosRequests';
 import QuestionSearch from './Questions/QuestionSearch';
+import AddQuestionPop  from '../components/Questions/AddQuestionPop';
 
-const HomeSectionOne = () =>{
+const HomeSectionOne = (props) =>{
     
     const imgContainer = {
         width: "80%",
         margin: 'auto'
     };
+
+    const [quesResponse, setResponse] = useState([]);
+    const [isAddingQuestion, setIsAddingQuestion] = useState(false);
+    const [isReload,setIsReload] = useState(false);
+    const [tagTopics,setTagTopics] = useState([]);
+    const [findalltopics,setFindalltopics] = useState([]);
+    const { authTokens } = useAuth();
+
+    function handleAddingQuestion(){
+        setIsAddingQuestion(!isAddingQuestion)
+        setTagTopics(props.topics);
+        setFindalltopics(props.topics);
+      }
 
     return(
         <div className="section-one-container">
@@ -28,8 +44,10 @@ const HomeSectionOne = () =>{
                         </div>
                         <div className="home-search">
                             <div className="search-section">
-                                <QuestionSearch/>
+                                <QuestionSearch handleAddingQuestion={handleAddingQuestion} isAddingQuestion={isAddingQuestion}/>
                             </div>
+                            {authTokens && <AddQuestionPop isAddingQuestion={isAddingQuestion} toggle={handleAddingQuestion} findalltopics={findalltopics} tagTopics={tagTopics} setIsReload={setIsReload} isReload={isReload}/>}
+
                             <button className="search-btn">Search</button>
                         </div>
                     </div>
