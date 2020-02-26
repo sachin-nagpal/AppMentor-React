@@ -2,14 +2,18 @@
 
 .modal-title{
     width: fit-content;
-    padding: 10px 15px;
+    padding: 0px;
 }
+
 
 .modal-content{
     border-top-left-radius: 10px !important;
     border-top-right-radius: 10px !important;
 }
 
+
 .modal-header .close {
     padding: 25px 30px !important;
+    /* border-top-left-radius: 10px !important;
+    border-top-right-radius: 10px !important; */
 }

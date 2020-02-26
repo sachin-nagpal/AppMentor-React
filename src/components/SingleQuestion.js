@@ -130,7 +130,7 @@ export default function SingleQuestion({quesData,getTagData,styles}) {
                     </div>}    
             </Link>
             {quesData.count <= 0 &&
-                <Link to={{ pathname: `/singlequestion/${quesData.slug}`, isEditing: true }} style={{ textDecoration: 'none' }} target="_blank">
+                <Link to={{ pathname: `/singlequestion/${quesData.slug}`, isEditing: true }} style={{ textDecoration: 'none' }}>
                     <div>Be the first to <span >answer</span>.</div>
                 </Link>}
        </article>

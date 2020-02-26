@@ -24,7 +24,7 @@ const HomeSectionOne = (props) =>{
     function handleAddingQuestion(){
         setIsAddingQuestion(!isAddingQuestion)
         setTagTopics(props.topics);
-        setFindalltopics(props.topics);
+        setFindalltopics(props.allTopics);
       }
 
     return(

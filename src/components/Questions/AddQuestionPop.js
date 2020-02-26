@@ -24,8 +24,11 @@ const useStyles = createUseStyles({
 
     addQuesBg: {
       borderBottom: '2.5px solid #295caa',
-      padding: '5px 50px 5px 15px'
+      fontSize: '1.25rem',
+      padding: '10px 50px 10px 20px',
+      borderBottom: '2.5px solid #295caa'
     },
+    
     userImg:{
       borderRadius: '50%'
     },

@@ -33,11 +33,6 @@ const Questions = (props) => {
   const { authTokens } = useAuth();
  
 
-  // const handleSearchVal = (val) => {
-  //   setSearchVal(val)
-  // }
-  
-
   function handleAddingQuestion(){
     setIsAddingQuestion(!isAddingQuestion)
   }
@@ -74,7 +69,7 @@ const Questions = (props) => {
         setFindalltopics(response.data.findalltopics);
     })();
   }
-  // {isCancelled && <h1>Waiting...</h1>}
+
   return (
     <div>
         <div className="questions-header">
