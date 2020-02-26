@@ -4,7 +4,7 @@ import '../styles/HomeSectionFive.css';
 import ShowMoreText from './ShowMoreText';
 import { createUseStyles } from 'react-jss';
 
-const path = `${process.env.REACT_APP_API_HOST_URL}/public/`;
+const path = `${process.env.REACT_APP_API_HOST_URL}/public/`; 
 
 const useStyles = createUseStyles({
   sliderContainer: {
